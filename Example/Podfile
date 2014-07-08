@@ -1,0 +1,12 @@
+target 'ChatControl', :exclusive => true do
+  pod "ChatControl", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "ChatControl", :path => "../"
+
+  pod 'Specta', '~> 0.2.1'
+  pod 'Expecta'
+  pod 'FBSnapshotTestCase'
+  pod 'EXPMatchers+FBSnapshotTest'
+end
