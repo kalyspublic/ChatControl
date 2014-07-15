@@ -7,12 +7,22 @@
 //
 
 #import "KOAppDelegate.h"
+#import <ChatControl/KOChatViewController.h>
 
 @implementation KOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    // Override point for customization after app launch
+    /*
+    KOChatViewController *chatViewController = [[KOChatViewController alloc] init];
+    self.window.rootViewController = chatViewController;
+    
+    // Add the split view controller's view to the window and display.
+    [self.window addSubview:chatViewController.view];
+    [self.window makeKeyAndVisible];
+    */
     return YES;
 }
 							
