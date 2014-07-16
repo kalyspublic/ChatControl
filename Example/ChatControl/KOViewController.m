@@ -58,10 +58,14 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<KOChatEntryDelegate> entry = self.entries[indexPath.row];
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
-    CGRect rect = [[entry text] boundingRectWithSize:CGSizeMake(229, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-    float cellHeight = rect.size.height + 54;
+    CGRect rect = [[entry text] boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+    float cellHeight = rect.size.height + 48;
     if (indexPath.row == 1) {
         cellHeight += 16;
+    }
+
+    if ([[entry likesCount] integerValue] != 0 || [[entry dislikesCount] integerValue] != 0) {
+        cellHeight += 20;
     }
     return cellHeight;
 }
@@ -75,26 +79,61 @@
 }
 
 - (NSArray *) prepareChatEntries {
-    KOChatEntry *entry1 = [KOChatEntry new];
-    entry1.text = @"Hello.\nHow are you?";
-    entry1.isOutgoing = YES;
-    entry1.username = @"Kalys";
-    entry1.time = @"11:30";
-    entry1.date = @"Today";
-    entry1.likesCount = @10;
-    entry1.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    KOChatEntry *entry = [KOChatEntry new];
+    entry.text = @"Hello.\nHow are you?";
+    entry.isOutgoing = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    KOChatEntry *entry1 = entry;
 
-    KOChatEntry *entry2 = [KOChatEntry new];
-    entry2.text = @"Hey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!";
-    entry2.isOutgoing = YES;
-    entry2.username = @"Misha";
-    entry2.date = @"Today";
-    entry2.time = @"12:44";
-    entry2.likesCount = @10;
-    entry2.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    entry = [KOChatEntry new];
+    entry.text = @"Hey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!";
+    entry.isOutgoing = NO;
+    entry.isBookmarked = YES;
+    entry.username = @"Misha Sytchev";
+    entry.date = @"Today";
+    entry.time = @"12:44";
+    entry.likesCount = @10;
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    KOChatEntry *entry2 = entry;
+
+    entry = [KOChatEntry new];
+    entry.text = @"Hello.\nHow are you?";
+    entry.isOutgoing = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    entry.dislikesCount = @5;
+    KOChatEntry *entry3 = entry;
+    
+    entry = [KOChatEntry new];
+    entry.text = @"Hello.\nHow are you?";
+    entry.isOutgoing = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    entry.likesCount = @23;
+    entry.dislikesCount = @5;
+    KOChatEntry *entry4 = entry;
+    
+    entry = [KOChatEntry new];
+    entry.text = @"Hello.\nHow are you?";
+    entry.isOutgoing = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    entry.likesCount = @23;
+    entry.dislikesCount = @5;
+    entry.isSpamed = YES;
+    KOChatEntry *entry5 = entry;
     
     //KOChatEntry *entry3 = [KOChatEntry new];
-    return @[entry1, entry2, entry1, entry1, entry1];//, entry2, entry3];
+    return @[entry1, entry2, entry3, entry4, entry5];//, entry2, entry3];
 }
 
 @end

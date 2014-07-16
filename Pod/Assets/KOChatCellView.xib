@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZp-7h-Kjm">
-                        <rect key="frame" x="16" y="18" width="288" height="177"/>
+                        <rect key="frame" x="9" y="18" width="302" height="177"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLN-8S-0ml" userLabel="Label Username">
@@ -28,18 +28,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:26" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnq-FI-lKv">
-                                <rect key="frame" x="248" y="12" width="31" height="15"/>
+                                <rect key="frame" x="244" y="12" width="31" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.69019607843137254" green="0.69019607843137254" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Message text." translatesAutoresizingMaskIntoConstraints="NO" id="4fQ-nt-XQJ">
-                                <rect key="frame" x="46" y="30" width="229" height="135"/>
+                                <rect key="frame" x="46" y="30" width="240" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.98722678419999998" green="0.23233869670000001" blue="0.26568970079999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="229" id="ein-J6-fRn"/>
+                                    <constraint firstAttribute="width" constant="240" id="ein-J6-fRn"/>
                                 </constraints>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -53,15 +52,66 @@
                                     <constraint firstAttribute="height" constant="32" id="kac-gs-wY3"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="iconBookmark.png" translatesAutoresizingMaskIntoConstraints="NO" id="TSq-iH-vUG">
+                                <rect key="frame" x="281" y="-1" width="12" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="top-g9-Pye" userLabel="Likes Box">
+                                <rect key="frame" x="46" y="159" width="30" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconLike.png" translatesAutoresizingMaskIntoConstraints="NO" id="fFO-ki-7MU">
+                                        <rect key="frame" x="0.0" y="0.0" width="12" height="10"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhQ-gH-n9h" userLabel="Label - Likes count">
+                                        <rect key="frame" x="15" y="-1" width="20" height="12"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Aih-sr-k0B"/>
+                                    <constraint firstAttribute="height" constant="12" id="eU0-hf-x2s"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hvE-bc-JKe" userLabel="DisLikes Box">
+                                <rect key="frame" x="80" y="159" width="50" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iconSpam.png" translatesAutoresizingMaskIntoConstraints="NO" id="OFJ-jp-q2o">
+                                        <rect key="frame" x="0.0" y="-1" width="12" height="12"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dU-cl-axx" userLabel="Label - Dislikes count">
+                                        <rect key="frame" x="15" y="-1" width="20" height="12"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="XKK-Iu-bl8"/>
+                                    <constraint firstAttribute="width" constant="50" id="z5T-WO-8YS"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.87058823529999996" green="0.95686274510000002" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="TSq-iH-vUG" secondAttribute="trailing" constant="9" id="4zB-x9-keF"/>
                             <constraint firstItem="hnq-FI-lKv" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="12" id="ABk-kN-H8h"/>
                             <constraint firstItem="X4z-bP-dj6" firstAttribute="leading" secondItem="qZp-7h-Kjm" secondAttribute="leading" constant="4" id="D80-YF-ADC"/>
+                            <constraint firstItem="hvE-bc-JKe" firstAttribute="leading" secondItem="qZp-7h-Kjm" secondAttribute="leading" constant="80" id="ID2-pz-elu"/>
+                            <constraint firstItem="top-g9-Pye" firstAttribute="leading" secondItem="qZp-7h-Kjm" secondAttribute="leading" constant="46" id="IYO-Jg-wS1"/>
                             <constraint firstItem="X4z-bP-dj6" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="4" id="MIn-ET-cIa"/>
+                            <constraint firstAttribute="bottom" secondItem="top-g9-Pye" secondAttribute="bottom" constant="6" id="MJM-9g-2v6"/>
+                            <constraint firstAttribute="bottom" secondItem="hvE-bc-JKe" secondAttribute="bottom" constant="6" id="W00-sw-bdz"/>
                             <constraint firstItem="4fQ-nt-XQJ" firstAttribute="leading" secondItem="qZp-7h-Kjm" secondAttribute="leading" constant="46" id="ZNM-aP-iTZ"/>
-                            <constraint firstAttribute="trailing" secondItem="hnq-FI-lKv" secondAttribute="trailing" constant="9" id="bv6-MM-KxJ"/>
-                            <constraint firstAttribute="bottom" secondItem="4fQ-nt-XQJ" secondAttribute="bottom" constant="12" id="coS-w1-xim"/>
+                            <constraint firstAttribute="trailing" secondItem="hnq-FI-lKv" secondAttribute="trailing" constant="27" id="bv6-MM-KxJ"/>
+                            <constraint firstAttribute="bottom" secondItem="4fQ-nt-XQJ" secondAttribute="bottom" constant="32" id="coS-w1-xim"/>
                             <constraint firstItem="xLN-8S-0ml" firstAttribute="leading" secondItem="qZp-7h-Kjm" secondAttribute="leading" constant="46" id="koh-Ih-L5m"/>
                             <constraint firstItem="xLN-8S-0ml" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="8" id="oxS-vW-L1y"/>
                             <constraint firstItem="4fQ-nt-XQJ" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="30" id="svw-2i-gOM"/>
@@ -82,22 +132,35 @@
                 <constraints>
                     <constraint firstItem="wyL-tM-rDA" firstAttribute="top" secondItem="c2m-tH-O7k" secondAttribute="top" id="BSF-PQ-b64"/>
                     <constraint firstAttribute="bottom" secondItem="qZp-7h-Kjm" secondAttribute="bottom" constant="4" id="Jzj-49-QCI"/>
-                    <constraint firstAttribute="trailing" secondItem="qZp-7h-Kjm" secondAttribute="trailing" constant="16" id="X1N-BX-PtQ"/>
+                    <constraint firstAttribute="trailing" secondItem="qZp-7h-Kjm" secondAttribute="trailing" constant="9" id="X1N-BX-PtQ"/>
                     <constraint firstAttribute="centerX" secondItem="wyL-tM-rDA" secondAttribute="centerX" id="eWe-BW-nNG"/>
                     <constraint firstItem="qZp-7h-Kjm" firstAttribute="top" secondItem="c2m-tH-O7k" secondAttribute="top" constant="18" id="mzB-hv-6UB"/>
-                    <constraint firstItem="qZp-7h-Kjm" firstAttribute="leading" secondItem="c2m-tH-O7k" secondAttribute="leading" constant="16" id="uOc-AE-DZ0"/>
+                    <constraint firstItem="qZp-7h-Kjm" firstAttribute="leading" secondItem="c2m-tH-O7k" secondAttribute="leading" constant="9" id="uOc-AE-DZ0"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="avatarImageView" destination="X4z-bP-dj6" id="iui-Mn-XLA"/>
+                <outlet property="bookmarkImageView" destination="TSq-iH-vUG" id="t0h-Ce-4Gq"/>
                 <outlet property="bubbleView" destination="qZp-7h-Kjm" id="o1l-6q-NY4"/>
                 <outlet property="bubbleViewTop" destination="mzB-hv-6UB" id="JUH-rO-BRF"/>
                 <outlet property="dateLabel" destination="wyL-tM-rDA" id="0HW-31-kZi"/>
+                <outlet property="dislikesCountLabel" destination="4dU-cl-axx" id="4yT-oQ-ugk"/>
+                <outlet property="dislikesFrame" destination="hvE-bc-JKe" id="jEJ-Ok-vdJ"/>
+                <outlet property="dislikesFrameLeft" destination="ID2-pz-elu" id="RtB-en-SWB"/>
+                <outlet property="likesCountLabel" destination="jhQ-gH-n9h" id="Amt-Bp-isA"/>
+                <outlet property="likesFrame" destination="top-g9-Pye" id="xHd-Pq-eIR"/>
                 <outlet property="messageTextView" destination="4fQ-nt-XQJ" id="NTe-nV-nA3"/>
+                <outlet property="messageTextViewBottom" destination="coS-w1-xim" id="J8u-KE-dAL"/>
                 <outlet property="timeLabel" destination="hnq-FI-lKv" id="94P-Iz-QfD"/>
+                <outlet property="timeLabelRight" destination="bv6-MM-KxJ" id="Pf2-un-5Kd"/>
                 <outlet property="usernameLabel" destination="xLN-8S-0ml" id="7LX-WP-20D"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="iconBookmark.png" width="12" height="16"/>
+        <image name="iconLike.png" width="12" height="10"/>
+        <image name="iconSpam.png" width="12" height="12"/>
+    </resources>
 </document>
