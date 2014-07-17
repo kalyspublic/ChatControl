@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <ChatControl/KOKeyboardAccessoryViewDelegate.h>
-#import <ChatControl/KOChatTableDelegate.h>
+#import <ChatControl/KOChatViewController.h>
 
-@interface KOViewController : UIViewController<KOChatTableDelegate, KOKeyboardAccessoryViewDelegate>
+@interface KOViewController : UIViewController<KOKeyboardAccessoryViewDelegate, KOChatViewControllerDelegate>
 
 @end

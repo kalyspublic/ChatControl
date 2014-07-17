@@ -5,14 +5,16 @@
 //  Created by Kalys Osmonov on 7/10/14.
 //
 //
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "KOChatViewController.h"
 #import "KOKeyboardAccessoryView.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface KOChatViewController ()
 
 @property (nonatomic, strong) KOKeyboardAccessoryView *keyboardAccessoryView;
+@property (assign) BOOL isLoadMoreVisible;
+@property (assign) CGSize keyboardSize;
 @end
 
 @implementation KOChatViewController
@@ -22,8 +24,6 @@
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:@"KOChatCellView"
                                                bundle:nil] forCellReuseIdentifier:@"KOChatCell"];
-    RAC(self.tableView, dataSource) = RACObserve(self, tableDelegate);
-    RAC(self.tableView, delegate) = RACObserve(self, tableDelegate);
     
     [self registerForKeyboardNotifications];
     
@@ -71,30 +71,56 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardDidChangeFrameNotification
                                                   object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIDeviceOrientationDidChangeNotification
+                                                  object:nil];
 }
 
 - (void) keyboardDidChangeFrame:(NSNotification *) aNotification {
-    CGFloat topPadding;
-    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
-    {
-        topPadding = 56;
-    } else {
-        topPadding = 68;
-    }
     NSDictionary* info = [aNotification userInfo];
     CGRect keyboardRect = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGRect convertedRect = [self.view convertRect:keyboardRect fromView:nil];
-    CGSize kbSize = convertedRect.size;
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(topPadding, 0.0, kbSize.height - 38, 0.0);
-    self.tableView.contentInset = contentInsets;
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(topPadding - 4, 0.0, kbSize.height - 42, 0.0);
-    
-    CGFloat yOffset = 0;
-    
-    if (self.tableView.contentSize.height > self.tableView.bounds.size.height) {
-        yOffset = self.tableView.contentSize.height - self.tableView.bounds.size.height;
+    self.keyboardSize = convertedRect.size;
+    [self calculateTableViewInsets];
+}
+
+- (void) showLoadMore {
+    self.tableView.tableHeaderView = (KOChatTableViewHeader *)[[[NSBundle mainBundle] loadNibNamed:@"KOChatTableViewHeader" owner:self options:nil] firstObject];
+    self.isLoadMoreVisible = YES;
+    ((KOChatTableViewHeader *)self.tableView.tableHeaderView).delegate = self;
+    [self calculateTableViewInsets];
+}
+
+- (void) hideLoadMore {
+    self.isLoadMoreVisible = NO;
+    self.tableView.tableHeaderView = nil;
+    [self calculateTableViewInsets];
+}
+
+- (void) calculateTableViewInsets {
+    CGFloat topInset;
+    CGFloat keyboardTopInset;
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+    {
+        topInset = 54;
+        self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 568, 38);
+    } else {
+        self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 38);
+        topInset = 64;
     }
+    keyboardTopInset = topInset;
+    
+    if (!self.isLoadMoreVisible) {
+        topInset +=4;
+    }
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(topInset, 0.0, self.keyboardSize.height - 38, 0.0);
+    self.tableView.contentInset = contentInsets;
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(keyboardTopInset, 0.0, self.keyboardSize.height - 42, 0.0);
+}
+
+- (void) koChatTableViewHeader:(KOChatTableViewHeader *)koChatTableViewHeader loadMoreDidTap:(id)sender {
+    [self.delegate koChatViewController:self loadMoreDidTap:sender];
 }
 
 @end

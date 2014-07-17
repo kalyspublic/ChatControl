@@ -8,15 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "KOKeyboardAccessoryViewDelegate.h"
-#import "KOChatTableDelegate.h"
+#import "KOChatTableViewHeader.h"
 
-@interface KOChatViewController : UIViewController
+@class KOChatViewController;
+
+@protocol KOChatViewControllerDelegate <NSObject>
+
+- (void) koChatViewController:(KOChatViewController *)koChatViewController loadMoreDidTap:(id) sender;
+- (void) koChatViewController:(KOChatViewController *)koChatViewController joinDidTap:(id) sender;
+
+@end
+
+@interface KOChatViewController : UIViewController<KOChatTableViewHeaderDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, weak) id<KOKeyboardAccessoryViewDelegate> messageFormDelegate;
-@property (nonatomic, weak) id<KOChatTableDelegate> tableDelegate;
+@property (nonatomic, weak) id<KOChatViewControllerDelegate> delegate;
 
-- (void) setBackgroundImage:(UIImage *)backgroundImage;
-
+- (void) showLoadMore;
+- (void) hideLoadMore;
 @end

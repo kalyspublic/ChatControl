@@ -13,6 +13,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tail_green.png" translatesAutoresizingMaskIntoConstraints="NO" id="XDS-Mm-p2g">
+                        <rect key="frame" x="311" y="175" width="6" height="10"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="Hck-xd-pvP"/>
+                            <constraint firstAttribute="width" constant="6" id="L5g-AR-8xn"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tail_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="JKv-Ks-xgk">
+                        <rect key="frame" x="3" y="175" width="6" height="10"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="gUQ-vE-ghb"/>
+                            <constraint firstAttribute="width" constant="6" id="xnq-ZE-k8u"/>
+                        </constraints>
+                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZp-7h-Kjm">
                         <rect key="frame" x="9" y="18" width="302" height="177"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -150,7 +166,11 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="wyL-tM-rDA" firstAttribute="top" secondItem="c2m-tH-O7k" secondAttribute="top" id="BSF-PQ-b64"/>
+                    <constraint firstAttribute="bottom" secondItem="XDS-Mm-p2g" secondAttribute="bottom" constant="14" id="CMH-XF-LKg"/>
                     <constraint firstAttribute="centerX" secondItem="NPb-Xg-CwS" secondAttribute="centerX" id="FnX-8W-CQs"/>
+                    <constraint firstItem="JKv-Ks-xgk" firstAttribute="leading" secondItem="c2m-tH-O7k" secondAttribute="leading" constant="3" id="GPb-tf-K6E"/>
+                    <constraint firstAttribute="bottom" secondItem="JKv-Ks-xgk" secondAttribute="bottom" constant="14" id="H8u-w7-Hxx"/>
+                    <constraint firstAttribute="trailing" secondItem="XDS-Mm-p2g" secondAttribute="trailing" constant="3" id="HZG-ZK-XKa"/>
                     <constraint firstAttribute="bottom" secondItem="qZp-7h-Kjm" secondAttribute="bottom" constant="4" id="Jzj-49-QCI"/>
                     <constraint firstAttribute="centerY" secondItem="NPb-Xg-CwS" secondAttribute="centerY" id="W8N-W2-N7J"/>
                     <constraint firstAttribute="trailing" secondItem="qZp-7h-Kjm" secondAttribute="trailing" constant="9" id="X1N-BX-PtQ"/>
@@ -176,6 +196,8 @@
                 <outlet property="spanIconImageView" destination="NPb-Xg-CwS" id="ZDP-8F-wuR"/>
                 <outlet property="spinner" destination="dmO-eB-WeI" id="KC7-1j-aaB"/>
                 <outlet property="successfulImageView" destination="Bmq-5z-GVl" id="u82-H0-aAe"/>
+                <outlet property="tailGreenImageView" destination="XDS-Mm-p2g" id="y8g-OM-Pnd"/>
+                <outlet property="tailLeftImaveView" destination="JKv-Ks-xgk" id="Zlf-Th-kHk"/>
                 <outlet property="timeLabel" destination="hnq-FI-lKv" id="94P-Iz-QfD"/>
                 <outlet property="timeLabelRight" destination="bv6-MM-KxJ" id="Pf2-un-5Kd"/>
                 <outlet property="usernameLabel" destination="xLN-8S-0ml" id="7LX-WP-20D"/>
@@ -188,5 +210,7 @@
         <image name="iconSent.png" width="12" height="12"/>
         <image name="iconSpaaam.png" width="28" height="28"/>
         <image name="iconSpam.png" width="12" height="12"/>
+        <image name="tail_blue.png" width="6" height="10"/>
+        <image name="tail_green.png" width="6" height="10"/>
     </resources>
 </document>

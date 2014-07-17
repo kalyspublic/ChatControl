@@ -42,6 +42,10 @@
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, weak) IBOutlet UIImageView *successfulImageView;
 
+@property (nonatomic, weak) IBOutlet UIImageView *tailGreenImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *tailLeftImaveView;
+
+@property (nonatomic, strong) RACSignal *statusSignal;
 
 @end
 
@@ -63,7 +67,11 @@
     self.spinner.transform = CGAffineTransformMakeScale(0.6, 0.6);
     self.bubbleView.layer.cornerRadius = 8;
     
-    [RACObserve(self, entry) subscribeNext:^(id<KOChatEntryDelegate> entry) {
+    [[RACObserve(self, entry) ignore:nil] subscribeNext:^(id<KOChatEntryDelegate> entry) {
+        // default values
+        self.timeLabelRight.constant = 9;
+        self.successfulImageView.hidden = YES;
+        
         self.usernameLabel.text = [entry username];
         self.timeLabel.text = [entry time];
         self.dateLabel.text = [entry date];
@@ -82,7 +90,6 @@
             self.timeLabelRight.constant = 27;
         } else {
             self.bookmarkImageView.hidden = YES;
-            self.timeLabelRight.constant = 9;
         }
         
         if ([[entry likesCount] integerValue] != 0 || [[entry dislikesCount] integerValue] != 0) {
@@ -112,36 +119,31 @@
             self.dislikesFrame.hidden = YES;
         }
         
-        [RACObserve(entry, sendingStatus) subscribeNext:^(NSNumber *sendingStatus) {
-            if ([sendingStatus integerValue] == koMessageStatusSending) {
-                NSLog(@"sending");
-                self.timeLabelRight.constant = 27;
-                [self.spinner startAnimating];
-            } else if ([sendingStatus integerValue] == koMessageStatusError) {
-                NSLog(@"error");
-                [self.spinner stopAnimating];
-            } else if ([sendingStatus integerValue] == koMessageStatusSuccessful) {
-                self.timeLabelRight.constant = 27;
-                [self.spinner stopAnimating];
-                self.successfulImageView.hidden = NO;
-            }
-        }];
-        
         if ([entry isSpamed]) {
             self.bubbleView.alpha = 0.3;
+            self.tailLeftImaveView.alpha = 0.3;
+            self.tailGreenImageView.alpha = 0.3;
             self.spanIconImageView.hidden = NO;
         } else {
             self.bubbleView.alpha = 1;
+            self.tailLeftImaveView.alpha = 1;
+            self.tailGreenImageView.alpha = 1;
             self.spanIconImageView.hidden = YES;
         }
         
         if ([entry isOutgoing]) {
             self.bubbleView.backgroundColor = [UIColor colorWithHexString:koGreenBubbleColor];
+            self.tailGreenImageView.hidden = NO;
+            self.tailLeftImaveView.hidden = YES;
         } else {
+            self.tailGreenImageView.hidden = YES;
+            self.tailLeftImaveView.hidden = NO;
             if ([[entry likesCount] integerValue] >= koManyLikesCount) {
                 self.bubbleView.backgroundColor = [UIColor colorWithHexString:koBlueBubbleColor];
+                self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_blue"];
             } else {
                 self.bubbleView.backgroundColor = [UIColor colorWithHexString:koWhiteBubbleColor];
+                self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_white"];
             }
         }
         
@@ -151,7 +153,31 @@
         } else {
             self.bubbleViewTop.constant = 4;
         }
+        
+        [self setMessageStatus:[entry sendingStatus]];
+        
+        self.statusSignal = RACObserve(entry, sendingStatus);
+        
+        [[self.statusSignal filter:^BOOL(id value) {
+            return [value integerValue] > 0;
+        }] subscribeNext:^(NSNumber *sendingStatus) {
+            [self setMessageStatus:[sendingStatus integerValue]];
+        }];
     }];
+
+}
+
+- (void) setMessageStatus:(KOMessageStatus) sendingStatus {
+    if (sendingStatus == koMessageStatusSending) {
+        self.timeLabelRight.constant = 27;
+        [self.spinner startAnimating];
+    } else if (sendingStatus == koMessageStatusError) {
+        [self.spinner stopAnimating];
+    } else if (sendingStatus == koMessageStatusSuccessful) {
+        self.timeLabelRight.constant = 27;
+        [self.spinner stopAnimating];
+        self.successfulImageView.hidden = NO;
+    }
 }
 
 @end

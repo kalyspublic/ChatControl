@@ -14,7 +14,7 @@
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
     CGFloat textViewWidth;
     if (UIDeviceOrientationIsLandscape(deviceOrientation)) {
-        textViewWidth = 600;
+        textViewWidth = 560;
     } else {
         textViewWidth = 240;
     }

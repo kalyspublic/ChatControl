@@ -57,7 +57,7 @@ SPEC CHECKSUMS:
   ChatControl: 81843257c35cb5e6163fe4f4ebe0089b2dd37a21
   EDHexColor: 1593003ed93fdd7680949fa6206212ce05ad58a5
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
-  EXPMatchers+FBSnapshotTest: fcc428d6a5d4410c1711aeda4456c9c5e93f98d3
+  EXPMatchers+FBSnapshotTest: 3c48e8a29a445476fe2d72d7da45dfdd765b5f55
   FBSnapshotTestCase: 9053afee1d66b4c7c313fcb0ae582a5e47bea9d0
   GCPlaceholderTextView: d48f3558c8d71daaae65679275075592ca13e1c8
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
