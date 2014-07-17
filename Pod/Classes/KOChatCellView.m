@@ -10,6 +10,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <EDHexColor/UIColor+EDHexColor.h>
+
+#define koGreenBubbleColor @"def4c4"
+#define koBlueBubbleColor @"c4eaf5"
+#define koWhiteBubbleColor @"ffffff"
+#define koManyLikesCount 10
 
 @interface KOChatCellView ()
 
@@ -31,6 +37,11 @@
 @property (nonatomic, weak) IBOutlet UILabel *dislikesCountLabel;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *dislikesFrameLeft;
 
+@property (nonatomic, weak) IBOutlet UIImageView *spanIconImageView;
+
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *spinner;
+@property (nonatomic, weak) IBOutlet UIImageView *successfulImageView;
+
 
 @end
 
@@ -48,11 +59,8 @@
 }
 
 - (void) configureCell {
-    if (!self.bubbleColor) {
-        self.bubbleColor = [UIColor clearColor];
-    }
     
-    RAC(self.bubbleView, backgroundColor) = RACObserve(self, bubbleColor);
+    self.spinner.transform = CGAffineTransformMakeScale(0.6, 0.6);
     self.bubbleView.layer.cornerRadius = 8;
     
     [RACObserve(self, entry) subscribeNext:^(id<KOChatEntryDelegate> entry) {
@@ -79,11 +87,13 @@
         
         if ([[entry likesCount] integerValue] != 0 || [[entry dislikesCount] integerValue] != 0) {
             self.messageTextViewBottom.constant = 20.0;
-            self.dislikesFrameLeft.constant = 80.0;
+            self.dislikesFrameLeft.constant = 85.0;
             
             if ([[entry likesCount] integerValue] != 0) {
                 self.likesFrame.hidden = NO;
                 self.likesCountLabel.text = [[entry likesCount] stringValue];
+            } else {
+                self.likesFrame.hidden = YES;
             }
             
             if ([[entry dislikesCount] integerValue] != 0) {
@@ -93,6 +103,8 @@
                 if ([[entry likesCount] integerValue] == 0) {
                     self.dislikesFrameLeft.constant = 46.0;
                 }
+            } else {
+                self.dislikesFrame.hidden = YES;
             }
         } else {
             self.messageTextViewBottom.constant = 6.0;
@@ -100,20 +112,44 @@
             self.dislikesFrame.hidden = YES;
         }
         
+        [RACObserve(entry, sendingStatus) subscribeNext:^(NSNumber *sendingStatus) {
+            if ([sendingStatus integerValue] == koMessageStatusSending) {
+                NSLog(@"sending");
+                self.timeLabelRight.constant = 27;
+                [self.spinner startAnimating];
+            } else if ([sendingStatus integerValue] == koMessageStatusError) {
+                NSLog(@"error");
+                [self.spinner stopAnimating];
+            } else if ([sendingStatus integerValue] == koMessageStatusSuccessful) {
+                self.timeLabelRight.constant = 27;
+                [self.spinner stopAnimating];
+                self.successfulImageView.hidden = NO;
+            }
+        }];
+        
         if ([entry isSpamed]) {
             self.bubbleView.alpha = 0.3;
-        }
-    }];
-    
-    RAC(self.dateLabel, hidden) = [RACObserve(self, isDateVisible) map:^id(id value) {
-        return @(![value boolValue]);
-    }];
-    
-    RAC(self.bubbleViewTop, constant) = [RACObserve(self, isDateVisible) map:^id(id value) {
-        if ([value boolValue]) {
-            return @20;
+            self.spanIconImageView.hidden = NO;
         } else {
-            return @4;
+            self.bubbleView.alpha = 1;
+            self.spanIconImageView.hidden = YES;
+        }
+        
+        if ([entry isOutgoing]) {
+            self.bubbleView.backgroundColor = [UIColor colorWithHexString:koGreenBubbleColor];
+        } else {
+            if ([[entry likesCount] integerValue] >= koManyLikesCount) {
+                self.bubbleView.backgroundColor = [UIColor colorWithHexString:koBlueBubbleColor];
+            } else {
+                self.bubbleView.backgroundColor = [UIColor colorWithHexString:koWhiteBubbleColor];
+            }
+        }
+        
+        self.dateLabel.hidden = ![entry showDate];
+        if ([entry showDate]) {
+            self.bubbleViewTop.constant = 20;
+        } else {
+            self.bubbleViewTop.constant = 4;
         }
     }];
 }

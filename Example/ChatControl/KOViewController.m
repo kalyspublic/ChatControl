@@ -10,6 +10,7 @@
 #import <ChatControl/KOChatTableDelegate.h>
 #import <ChatControl/KOChatCellView.h>
 #import <ChatControl/KOChatEntryDelegate.h>
+#import <ChatControl/KOChatControlHelper.h>
 #import <EDHexColor/UIColor+EDHexColor.h>
 #import "KOViewController.h"
 #import "KOChatEntry.h"
@@ -18,6 +19,8 @@
 
 @property (nonatomic, strong) NSArray *entries;
 @property (nonatomic, strong) NSArray *bubbleColors;
+@property (nonatomic, strong) KOChatEntry *testEntry;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *testButton;
 
 @end
 
@@ -28,13 +31,21 @@
     [super viewDidLoad];
     
     self.entries = [self prepareChatEntries];
-    self.bubbleColors = @[@"def4c4", @"c4eaf5", @"ffffff"];
     
     KOChatViewController *chatVC = [[KOChatViewController alloc] init];
     chatVC.tableDelegate = self;
     chatVC.messageFormDelegate = self;
     chatVC.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    chatVC.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Test" style:UIBarButtonItemStyleDone target:self action:@selector(testButton:)];
     [self.navigationController pushViewController:chatVC animated:NO];
+}
+
+- (void) testButton:(id) sender {
+    if (self.testEntry.sendingStatus == koMessageStatusSending) {
+        self.testEntry.sendingStatus = koMessageStatusSuccessful;
+    } else {
+        self.testEntry.sendingStatus = koMessageStatusSending;
+    }
 }
 
 - (NSInteger ) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -47,27 +58,12 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"KOChatCellView" owner:self options:nil] firstObject];
     }
     cell.entry = self.entries[indexPath.row];
-    if (indexPath.row == 1) {
-        cell.isDateVisible = YES;
-    }
-    cell.bubbleColor = [UIColor colorWithHexString: self.bubbleColors[indexPath.row % 3]];
 
     return cell;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id<KOChatEntryDelegate> entry = self.entries[indexPath.row];
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
-    CGRect rect = [[entry text] boundingRectWithSize:CGSizeMake(240, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-    float cellHeight = rect.size.height + 48;
-    if (indexPath.row == 1) {
-        cellHeight += 16;
-    }
-
-    if ([[entry likesCount] integerValue] != 0 || [[entry dislikesCount] integerValue] != 0) {
-        cellHeight += 20;
-    }
-    return cellHeight;
+    return [KOChatControlHelper cellHeight:self.entries[indexPath.row]];
 }
 
 - (void) sendButtonTouched:(id)sender textField:(UITextView *)textField {
@@ -100,7 +96,7 @@
     KOChatEntry *entry2 = entry;
 
     entry = [KOChatEntry new];
-    entry.text = @"Hello.\nHow are you?";
+    entry.text = @"I found a contacts of your studio on the internetz. I'm looking for a a talents who will develop me an iOS application that will have a chat listing that will have a cell that will have a text view that will support various orientaton and handle text width correctly. That's it.";
     entry.isOutgoing = YES;
     entry.username = @"Kalys Osmonov";
     entry.time = @"11:30";
@@ -108,6 +104,7 @@
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
     entry.dislikesCount = @5;
     KOChatEntry *entry3 = entry;
+    self.testEntry = entry3;
     
     entry = [KOChatEntry new];
     entry.text = @"Hello.\nHow are you?";
@@ -116,8 +113,9 @@
     entry.time = @"11:30";
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.likesCount = @23;
-    entry.dislikesCount = @5;
+    entry.likesCount = @230;
+    entry.dislikesCount = @500;
+    entry.showDate = YES;
     KOChatEntry *entry4 = entry;
     
     entry = [KOChatEntry new];
@@ -127,13 +125,24 @@
     entry.time = @"11:30";
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.likesCount = @23;
+    entry.likesCount = @2;
     entry.dislikesCount = @5;
+    KOChatEntry *entry41 = entry;
+    
+    entry = [KOChatEntry new];
+    entry.text = @"Hello.\nHow are you?";
+    entry.isOutgoing = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    entry.likesCount = @0;
+    entry.dislikesCount = @50;
     entry.isSpamed = YES;
     KOChatEntry *entry5 = entry;
     
     //KOChatEntry *entry3 = [KOChatEntry new];
-    return @[entry1, entry2, entry3, entry4, entry5];//, entry2, entry3];
+    return @[entry1, entry2, entry3, entry4, entry41, entry5];//, entry2, entry3];
 }
 
 @end

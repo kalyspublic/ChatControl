@@ -29,7 +29,19 @@
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissInputControls)];
     [self.tableView addGestureRecognizer:gestureRecognizer];
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
 }
+
+- (void)orientationChanged:(NSNotification *)notification
+{
+    [self.tableView reloadData];
+}
+
 
 - (BOOL) canBecomeFirstResponder {
     return YES;
@@ -62,12 +74,21 @@
 }
 
 - (void) keyboardDidChangeFrame:(NSNotification *) aNotification {
+    CGFloat topPadding;
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
+    {
+        topPadding = 56;
+    } else {
+        topPadding = 68;
+    }
     NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    CGRect keyboardRect = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGRect convertedRect = [self.view convertRect:keyboardRect fromView:nil];
+    CGSize kbSize = convertedRect.size;
     
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(68.0, 0.0, kbSize.height - 38, 0.0);
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(topPadding, 0.0, kbSize.height - 38, 0.0);
     self.tableView.contentInset = contentInsets;
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0, 0.0, kbSize.height - 42, 0.0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(topPadding - 4, 0.0, kbSize.height - 42, 0.0);
     
     CGFloat yOffset = 0;
     

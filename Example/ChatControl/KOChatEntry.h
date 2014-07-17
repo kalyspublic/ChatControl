@@ -11,6 +11,7 @@
 
 @interface KOChatEntry : NSObject<KOChatEntryDelegate>
 
+@property (assign) KOChatEntryType *type;
 @property (strong) NSString *text;
 @property (strong) NSString *username;
 @property (strong) NSString *avatarPath;
@@ -21,8 +22,11 @@
 @property (assign) BOOL isLiked;
 @property (assign) BOOL isReported;
 @property (assign) BOOL isSpamed;
-@property (strong) NSString *sendingStatus;
+@property (assign) KOMessageStatus sendingStatus;
 @property (strong) NSNumber *likesCount;
 @property (strong) NSNumber *dislikesCount;
+@property (strong) NSString *photoURL;
+@property (strong) NSString *videoURL;
+@property (assign) BOOL showDate;
 
 @end
