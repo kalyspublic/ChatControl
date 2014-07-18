@@ -33,6 +33,26 @@
                         <rect key="frame" x="9" y="18" width="302" height="177"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXb-HZ-bQ8">
+                                <rect key="frame" x="46" y="30" width="240" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Message text." translatesAutoresizingMaskIntoConstraints="NO" id="4fQ-nt-XQJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="115"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="4fQ-nt-XQJ" firstAttribute="leading" secondItem="DXb-HZ-bQ8" secondAttribute="leading" id="9CA-3O-vDE"/>
+                                    <constraint firstAttribute="bottom" secondItem="4fQ-nt-XQJ" secondAttribute="bottom" id="Anf-5J-ws6"/>
+                                    <constraint firstItem="4fQ-nt-XQJ" firstAttribute="top" secondItem="DXb-HZ-bQ8" secondAttribute="top" id="cDk-U8-ZD8"/>
+                                    <constraint firstAttribute="trailing" secondItem="4fQ-nt-XQJ" secondAttribute="trailing" id="yoH-5p-HCq"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLN-8S-0ml" userLabel="Label Username">
                                 <rect key="frame" x="46" y="8" width="190" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -50,13 +70,6 @@
                                 <color key="textColor" red="0.69019607843137254" green="0.69019607843137254" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Message text." translatesAutoresizingMaskIntoConstraints="NO" id="4fQ-nt-XQJ">
-                                <rect key="frame" x="46" y="30" width="240" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X4z-bP-dj6">
                                 <rect key="frame" x="4" y="4" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -133,15 +146,15 @@
                             <constraint firstAttribute="bottom" secondItem="top-g9-Pye" secondAttribute="bottom" constant="6" id="MJM-9g-2v6"/>
                             <constraint firstAttribute="trailing" secondItem="dmO-eB-WeI" secondAttribute="trailing" constant="9" id="MhG-2w-PMt"/>
                             <constraint firstAttribute="bottom" secondItem="hvE-bc-JKe" secondAttribute="bottom" constant="6" id="W00-sw-bdz"/>
-                            <constraint firstItem="4fQ-nt-XQJ" firstAttribute="leading" secondItem="qZp-7h-Kjm" secondAttribute="leading" constant="46" id="ZNM-aP-iTZ"/>
+                            <constraint firstItem="DXb-HZ-bQ8" firstAttribute="leading" secondItem="qZp-7h-Kjm" secondAttribute="leading" constant="46" id="YTu-nf-PWw"/>
                             <constraint firstAttribute="trailing" secondItem="hnq-FI-lKv" secondAttribute="trailing" constant="27" id="bv6-MM-KxJ"/>
-                            <constraint firstAttribute="bottom" secondItem="4fQ-nt-XQJ" secondAttribute="bottom" constant="32" id="coS-w1-xim"/>
+                            <constraint firstAttribute="trailing" secondItem="DXb-HZ-bQ8" secondAttribute="trailing" constant="16" id="dMj-Cf-f6Q"/>
+                            <constraint firstAttribute="bottom" secondItem="DXb-HZ-bQ8" secondAttribute="bottom" constant="32" id="eXx-VI-iw9"/>
+                            <constraint firstItem="DXb-HZ-bQ8" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="30" id="hyk-NP-Tu4"/>
                             <constraint firstItem="xLN-8S-0ml" firstAttribute="leading" secondItem="qZp-7h-Kjm" secondAttribute="leading" constant="46" id="koh-Ih-L5m"/>
                             <constraint firstItem="xLN-8S-0ml" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="8" id="oxS-vW-L1y"/>
                             <constraint firstItem="Bmq-5z-GVl" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="12" id="pJP-12-oVh"/>
-                            <constraint firstItem="4fQ-nt-XQJ" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="30" id="svw-2i-gOM"/>
                             <constraint firstItem="TSq-iH-vUG" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="-1" id="uXN-rE-3O4"/>
-                            <constraint firstAttribute="trailing" secondItem="4fQ-nt-XQJ" secondAttribute="trailing" constant="16" id="x2E-xQ-OQX"/>
                         </constraints>
                     </view>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconSpaaam.png" translatesAutoresizingMaskIntoConstraints="NO" id="NPb-Xg-CwS">
@@ -185,6 +198,7 @@
                 <outlet property="bookmarkImageView" destination="TSq-iH-vUG" id="t0h-Ce-4Gq"/>
                 <outlet property="bubbleView" destination="qZp-7h-Kjm" id="o1l-6q-NY4"/>
                 <outlet property="bubbleViewTop" destination="mzB-hv-6UB" id="JUH-rO-BRF"/>
+                <outlet property="contentViewBottom" destination="eXx-VI-iw9" id="FGt-eI-GXZ"/>
                 <outlet property="dateLabel" destination="wyL-tM-rDA" id="0HW-31-kZi"/>
                 <outlet property="dislikesCountLabel" destination="4dU-cl-axx" id="4yT-oQ-ugk"/>
                 <outlet property="dislikesFrame" destination="hvE-bc-JKe" id="jEJ-Ok-vdJ"/>
@@ -192,7 +206,6 @@
                 <outlet property="likesCountLabel" destination="jhQ-gH-n9h" id="Amt-Bp-isA"/>
                 <outlet property="likesFrame" destination="top-g9-Pye" id="xHd-Pq-eIR"/>
                 <outlet property="messageTextView" destination="4fQ-nt-XQJ" id="NTe-nV-nA3"/>
-                <outlet property="messageTextViewBottom" destination="coS-w1-xim" id="J8u-KE-dAL"/>
                 <outlet property="spanIconImageView" destination="NPb-Xg-CwS" id="ZDP-8F-wuR"/>
                 <outlet property="spinner" destination="dmO-eB-WeI" id="KC7-1j-aaB"/>
                 <outlet property="successfulImageView" destination="Bmq-5z-GVl" id="u82-H0-aAe"/>

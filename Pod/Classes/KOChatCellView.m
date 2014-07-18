@@ -25,7 +25,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *timeLabelRight;
 @property (nonatomic, weak) IBOutlet UITextView *messageTextView;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *messageTextViewBottom;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentViewBottom;
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *bookmarkImageView;
@@ -93,7 +93,7 @@
         }
         
         if ([[entry likesCount] integerValue] != 0 || [[entry dislikesCount] integerValue] != 0) {
-            self.messageTextViewBottom.constant = 20.0;
+            self.contentViewBottom.constant = 20.0;
             self.dislikesFrameLeft.constant = 85.0;
             
             if ([[entry likesCount] integerValue] != 0) {
@@ -114,7 +114,7 @@
                 self.dislikesFrame.hidden = YES;
             }
         } else {
-            self.messageTextViewBottom.constant = 6.0;
+            self.contentViewBottom.constant = 6.0;
             self.likesFrame.hidden = YES;
             self.dislikesFrame.hidden = YES;
         }

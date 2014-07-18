@@ -113,7 +113,7 @@
     CGFloat keyboardTopInset;
     if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
     {
-        topInset = 54;
+        topInset = 52;
         self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 568, 38);
         self.tableView.tableFooterView.frame = CGRectMake(0, 0, 568, 64);
     } else {
