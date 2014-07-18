@@ -21,6 +21,13 @@ Add the following line to your Podfile:
   - ```delegate``` for receiving __Load more__ and __Join__ button events;
   - ```tableView.dataSource``` and ```tableView.delegate``` should point to your  data source instance. Example: MYChatDataSource.
 
+
+```KOChatViewController``` has several methods for showing and hiding __Load more__ and __Join__ buttons:
+
+    - (void) showLoadMore;
+    - (void) hideLoadMore;
+    - (void) showJoin;
+    - (void) hideJoin;
 ## License
 
 ChatControl is available under the MIT license. See the LICENSE file for more info.
