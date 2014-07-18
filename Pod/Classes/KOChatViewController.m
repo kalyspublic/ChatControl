@@ -97,6 +97,17 @@
     [self calculateTableViewInsets];
 }
 
+- (void) showJoin {
+    self.tableView.tableFooterView = (KOChatTableViewHeader *)[[[NSBundle mainBundle] loadNibNamed:@"KOChatTableViewFooter" owner:self options:nil] firstObject];
+    ((KOChatTableViewFooter *)self.tableView.tableFooterView).delegate = self;
+//    [self calculateTableViewInsets];
+}
+
+- (void) hideJoin {
+    self.tableView.tableFooterView = nil;
+//    [self calculateTableViewInsets];
+}
+
 - (void) calculateTableViewInsets {
     CGFloat topInset;
     CGFloat keyboardTopInset;
@@ -104,8 +115,10 @@
     {
         topInset = 54;
         self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 568, 38);
+        self.tableView.tableFooterView.frame = CGRectMake(0, 0, 568, 64);
     } else {
         self.tableView.tableHeaderView.frame = CGRectMake(0, 0, 320, 38);
+        self.tableView.tableFooterView.frame = CGRectMake(0, 0, 320, 64);
         topInset = 64;
     }
     keyboardTopInset = topInset;
@@ -121,6 +134,10 @@
 
 - (void) koChatTableViewHeader:(KOChatTableViewHeader *)koChatTableViewHeader loadMoreDidTap:(id)sender {
     [self.delegate koChatViewController:self loadMoreDidTap:sender];
+}
+
+- (void) koChatTableViewFooter:(KOChatTableViewFooter *)koChatTableViewFooter joinDidTap:(id)sender {
+    [self.delegate koChatViewController:self joinDidTap:sender];
 }
 
 @end

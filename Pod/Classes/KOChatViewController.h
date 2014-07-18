@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KOKeyboardAccessoryViewDelegate.h"
 #import "KOChatTableViewHeader.h"
+#import "KOChatTableViewFooter.h"
 
 @class KOChatViewController;
 
@@ -19,7 +20,7 @@
 
 @end
 
-@interface KOChatViewController : UIViewController<KOChatTableViewHeaderDelegate>
+@interface KOChatViewController : UIViewController<KOChatTableViewHeaderDelegate, KOChatTableViewFooterDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
@@ -28,4 +29,7 @@
 
 - (void) showLoadMore;
 - (void) hideLoadMore;
+
+- (void) showJoin;
+- (void) hideJoin;
 @end

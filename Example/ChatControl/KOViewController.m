@@ -52,9 +52,11 @@
     if (self.testEntry.sendingStatus == koMessageStatusSending) {
         self.testEntry.sendingStatus = koMessageStatusSuccessful;
         [self.chatVC showLoadMore];
+        [self.chatVC hideJoin];
     } else {
         self.testEntry.sendingStatus = koMessageStatusSending;
         [self.chatVC hideLoadMore];
+        [self.chatVC showJoin];
     }
     
 }
@@ -68,7 +70,7 @@
 }
 
 - (void) koChatViewController:(KOChatViewController *)koChatViewController joinDidTap:(id)sender {
-    
+    NSLog(@"Join tapped");
 }
 
 - (void) koChatViewController:(KOChatViewController *)koChatViewController loadMoreDidTap:(id)sender {
