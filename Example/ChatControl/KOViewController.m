@@ -117,7 +117,7 @@
     
     entry = [KOChatEntry new];
     entry.type = koChatEntryTypePhoto;
-    entry.photoURL = @"http://i.imgur.com/G5w2iCk.jpg";
+    entry.thumbnailURL = @"http://i.imgur.com/G5w2iCk.jpg";
     entry.username = @"Misha Sytchev";
     entry.time = @"11:30";
     entry.date = @"Today";
@@ -127,8 +127,8 @@
     KOChatEntry *entry4 = entry;
     
     entry = [KOChatEntry new];
-    entry.type = koChatEntryTypePhoto;
-    entry.photoURL = @"http://i.imgur.com/yBZozU4.jpg";
+    entry.type = koChatEntryTypeVideo;
+    entry.thumbnailURL = @"http://i.imgur.com/yBZozU4.jpg";
     entry.username = @"Misha Sytchev";
     entry.time = @"11:30";
     entry.date = @"Today";
@@ -161,9 +161,8 @@
     entry.dislikesCount = @50;
     entry.isSpamed = YES;
     KOChatEntry *entry5 = entry;
-    
-    //KOChatEntry *entry3 = [KOChatEntry new];
-    return @[entry1, entry2, entry3, entry4,entry405, entry41, entry5];//, entry2, entry3];
+
+    return @[entry1, entry2, entry3, entry4,entry405, entry41, entry5];
 }
 
 @end

@@ -26,7 +26,7 @@
         if ([entry showDate]) {
             cellHeight += 16;
         }
-    } else if ([entry type] ==koChatEntryTypePhoto) {
+    } else if ([entry type] == koChatEntryTypePhoto || [entry type] == koChatEntryTypeVideo) {
         cellHeight += 138 + 48;
     }
     

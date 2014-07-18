@@ -1,26 +1,25 @@
 # ChatControl
 
-[![CI Status](http://img.shields.io/travis/Kalys Osmonov/ChatControl.svg?style=flat)](https://travis-ci.org/Kalys Osmonov/ChatControl)
-[![Version](https://img.shields.io/cocoapods/v/ChatControl.svg?style=flat)](http://cocoadocs.org/docsets/ChatControl)
-[![License](https://img.shields.io/cocoapods/l/ChatControl.svg?style=flat)](http://cocoadocs.org/docsets/ChatControl)
-[![Platform](https://img.shields.io/cocoapods/p/ChatControl.svg?style=flat)](http://cocoadocs.org/docsets/ChatControl)
+## Installation
+
+Add the following line to your Podfile:
+
+    pod "ChatControl", git: "https://github.com/kalyspublic/ChatControl.git"
 
 ## Usage
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
-
-## Installation
-
-ChatControl is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-    pod "ChatControl"
-
-## Author
-
-Kalys Osmonov, kalys@osmonov.com
+- Create model with ```KOChatEntryDelegate```. Example: KOChatEntry.
+- Create dataSource class inherited on KOChatDataSource for tableView data provisioning. Example: MYChatDataSource.
+- Impletement the following methods in your data source class:
+  - ```- (NSInteger ) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section```
+  - ```- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath```
+  - ```- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath``` This method should contain:
+      ```return [KOChatControlHelper cellHeight:self.entries[indexPath.row]];```
+      
+- Instantiate KOChatViewController. Set the following delegates:
+  - ```messageFormDelegate``` for receiving __Send__ and __Camera__ button events;
+  - ```delegate``` for receiving __Load more__ and __Join__ button events;
+  - ```tableView.dataSource``` and ```tableView.delegate``` should point to your  data source instance. Example: MYChatDataSource.
 
 ## License
 

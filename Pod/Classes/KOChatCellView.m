@@ -27,6 +27,7 @@
 @property (nonatomic, weak) IBOutlet UITextView *messageTextView;
 @property (nonatomic, weak) IBOutlet UIImageView *messageImageView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentViewBottom;
+@property (nonatomic, weak) IBOutlet UIImageView *playButtonImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *bookmarkImageView;
@@ -72,6 +73,7 @@
         // default values
         self.timeLabelRight.constant = 9;
         self.successfulImageView.hidden = YES;
+        self.playButtonImageView.hidden = YES;
         
         self.usernameLabel.text = [entry username];
         self.timeLabel.text = [entry time];
@@ -88,10 +90,14 @@
             self.messageTextView.text = [entry text];
             self.messageTextView.textContainer.lineFragmentPadding = 0;
             self.messageTextView.textContainerInset = UIEdgeInsetsZero;
-        } else if ([entry type] == koChatEntryTypePhoto) {
+        } else if ([entry type] == koChatEntryTypePhoto || [entry type] == koChatEntryTypeVideo) {
             self.messageImageView.hidden = NO;
             self.messageTextView.hidden = YES;
-            [self.messageImageView setImageWithURL:[NSURL URLWithString:[entry photoURL]]];
+            [self.messageImageView setImageWithURL:[NSURL URLWithString:[entry thumbnailURL]]];
+            
+            if ([entry type] == koChatEntryTypeVideo) {
+                self.playButtonImageView.hidden = NO;
+            }
             
             for (UIGestureRecognizer *recognizer in self.messageImageView.gestureRecognizers) {
                 [self.messageImageView removeGestureRecognizer:recognizer];

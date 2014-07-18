@@ -48,6 +48,14 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnPlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="nuY-60-4od">
+                                        <rect key="frame" x="91" y="24" width="66" height="66"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="66" id="rWJ-9k-CjR"/>
+                                            <constraint firstAttribute="height" constant="66" id="sO6-tM-8Ih"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -55,8 +63,10 @@
                                     <constraint firstItem="4fQ-nt-XQJ" firstAttribute="leading" secondItem="DXb-HZ-bQ8" secondAttribute="leading" id="9CA-3O-vDE"/>
                                     <constraint firstItem="Jz9-La-gI8" firstAttribute="leading" secondItem="DXb-HZ-bQ8" secondAttribute="leading" id="AcQ-A5-JMw"/>
                                     <constraint firstAttribute="bottom" secondItem="4fQ-nt-XQJ" secondAttribute="bottom" id="Anf-5J-ws6"/>
+                                    <constraint firstAttribute="centerY" secondItem="nuY-60-4od" secondAttribute="centerY" id="GP0-BT-EUM"/>
                                     <constraint firstItem="4fQ-nt-XQJ" firstAttribute="top" secondItem="DXb-HZ-bQ8" secondAttribute="top" id="cDk-U8-ZD8"/>
                                     <constraint firstAttribute="trailing" secondItem="Jz9-La-gI8" secondAttribute="trailing" id="mog-gN-fA0"/>
+                                    <constraint firstAttribute="centerX" secondItem="nuY-60-4od" secondAttribute="centerX" id="rJc-Oy-rYO"/>
                                     <constraint firstItem="Jz9-La-gI8" firstAttribute="top" secondItem="DXb-HZ-bQ8" secondAttribute="top" id="u8r-wB-Oan"/>
                                     <constraint firstAttribute="trailing" secondItem="4fQ-nt-XQJ" secondAttribute="trailing" id="yoH-5p-HCq"/>
                                 </constraints>
@@ -215,6 +225,7 @@
                 <outlet property="likesFrame" destination="top-g9-Pye" id="xHd-Pq-eIR"/>
                 <outlet property="messageImageView" destination="Jz9-La-gI8" id="8fW-DW-E70"/>
                 <outlet property="messageTextView" destination="4fQ-nt-XQJ" id="NTe-nV-nA3"/>
+                <outlet property="playButtonImageView" destination="nuY-60-4od" id="GDL-OY-DbI"/>
                 <outlet property="spanIconImageView" destination="NPb-Xg-CwS" id="ZDP-8F-wuR"/>
                 <outlet property="spinner" destination="dmO-eB-WeI" id="KC7-1j-aaB"/>
                 <outlet property="successfulImageView" destination="Bmq-5z-GVl" id="u82-H0-aAe"/>
@@ -227,6 +238,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="btnPlay.png" width="66" height="66"/>
         <image name="iconBookmark.png" width="12" height="16"/>
         <image name="iconLike.png" width="12" height="10"/>
         <image name="iconSent.png" width="12" height="12"/>

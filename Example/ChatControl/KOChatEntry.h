@@ -25,8 +25,7 @@
 @property (assign) KOMessageStatus sendingStatus;
 @property (strong) NSNumber *likesCount;
 @property (strong) NSNumber *dislikesCount;
-@property (strong) NSString *photoURL;
-@property (strong) NSString *videoURL;
+@property (strong) NSString *thumbnailURL;
 @property (assign) BOOL showDate;
 
 @end
