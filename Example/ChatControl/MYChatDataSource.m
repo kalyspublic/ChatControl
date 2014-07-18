@@ -19,6 +19,7 @@
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     KOChatCellView *cell = (KOChatCellView *) [tableView dequeueReusableCellWithIdentifier:@"KOChatCell"];
     cell.entry = self.entries[indexPath.row];
+    cell.delegate = self.parentViewController;
     return cell;
 }
 

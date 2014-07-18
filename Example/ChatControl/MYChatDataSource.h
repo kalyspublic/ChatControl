@@ -7,9 +7,11 @@
 //
 
 #import "KOChatDataSource.h"
+#import "KOViewController.h"
 
 @interface MYChatDataSource : KOChatDataSource
 
 @property (nonatomic, strong) NSArray *entries;
+@property (nonatomic, weak) KOViewController *parentViewController;
 
 @end

@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Kalys Osmonov. All rights reserved.
 //
 
-#import <ChatControl/KOChatCellView.h>
 #import <ChatControl/KOChatEntryDelegate.h>
 #import <EDHexColor/UIColor+EDHexColor.h>
 #import "KOViewController.h"
@@ -30,6 +29,7 @@
     
     // dataSource has to be retained.
     self.chatDataSource = [MYChatDataSource new];
+    self.chatDataSource.parentViewController = self;
     self.chatDataSource.entries = [self prepareChatEntries];
     
     // chat VC init code
@@ -58,7 +58,6 @@
         [self.chatVC hideLoadMore];
         [self.chatVC showJoin];
     }
-    
 }
 
 - (void) sendButtonTouched:(id)sender textField:(UITextView *)textField {
@@ -77,8 +76,13 @@
     NSLog(@"Load more tapped");
 }
 
+- (void) koChatCellView:(KOChatCellView *)cell photoTap:(id<KOChatEntryDelegate>)model sender:(id)sender {
+    NSLog(@"%@", model);
+}
+
 - (NSArray *) prepareChatEntries {
     KOChatEntry *entry = [KOChatEntry new];
+    entry.type = koChatEntryTypeText;
     entry.text = @"Hello.\nHow are you?";
     entry.isOutgoing = YES;
     entry.username = @"Kalys Osmonov";
@@ -88,6 +92,7 @@
     KOChatEntry *entry1 = entry;
 
     entry = [KOChatEntry new];
+    entry.type = koChatEntryTypeText;
     entry.text = @"Hey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!";
     entry.isOutgoing = NO;
     entry.isBookmarked = YES;
@@ -99,6 +104,7 @@
     KOChatEntry *entry2 = entry;
 
     entry = [KOChatEntry new];
+    entry.type = koChatEntryTypeText;
     entry.text = @"I found a contacts of your studio on the internetz. I'm looking for a a talents who will develop me an iOS application that will have a chat listing that will have a cell that will have a text view that will support various orientaton and handle text width correctly. That's it.";
     entry.isOutgoing = YES;
     entry.username = @"Kalys Osmonov";
@@ -110,7 +116,8 @@
     self.testEntry = entry3;
     
     entry = [KOChatEntry new];
-    entry.text = @"Hello.\nHow are you?";
+    entry.type = koChatEntryTypePhoto;
+    entry.photoURL = @"http://i.imgur.com/G5w2iCk.jpg";
     entry.username = @"Misha Sytchev";
     entry.time = @"11:30";
     entry.date = @"Today";
@@ -120,6 +127,18 @@
     KOChatEntry *entry4 = entry;
     
     entry = [KOChatEntry new];
+    entry.type = koChatEntryTypePhoto;
+    entry.photoURL = @"http://i.imgur.com/yBZozU4.jpg";
+    entry.username = @"Misha Sytchev";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    entry.likesCount = @2;
+    entry.showDate = YES;
+    KOChatEntry *entry405 = entry;
+    
+    entry = [KOChatEntry new];
+    entry.type = koChatEntryTypeText;
     entry.text = @"Hello.\nHow are you?";
     entry.isOutgoing = YES;
     entry.username = @"Kalys Osmonov";
@@ -131,6 +150,7 @@
     KOChatEntry *entry41 = entry;
     
     entry = [KOChatEntry new];
+    entry.type = koChatEntryTypeText;
     entry.text = @"Hello.\nHow are you?";
     entry.isOutgoing = YES;
     entry.username = @"Kalys Osmonov";
@@ -143,7 +163,7 @@
     KOChatEntry *entry5 = entry;
     
     //KOChatEntry *entry3 = [KOChatEntry new];
-    return @[entry1, entry2, entry3, entry4, entry41, entry5];//, entry2, entry3];
+    return @[entry1, entry2, entry3, entry4,entry405, entry41, entry5];//, entry2, entry3];
 }
 
 @end

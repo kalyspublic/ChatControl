@@ -30,6 +30,12 @@
     self.messageTextField.layer.borderWidth = 1;
     self.messageTextField.layer.borderColor = [UIColor colorWithHexString:@"DCDCDC"].CGColor;
     self.messageTextField.layer.cornerRadius = 5;
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChanged:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
 }
 
 - (IBAction)sendMessage:(id)sender {
@@ -41,19 +47,48 @@
 }
 
 - (void) textViewDidChange:(UITextView *)textView {
-    NSString *text = [textView.text stringByAppendingString:@"\naeou"];
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0]};
-    CGRect rect = [text boundingRectWithSize:CGSizeMake(textView.frame.size.width, MAXFLOAT)
-                                      options:NSStringDrawingUsesLineFragmentOrigin
-                                   attributes:attributes
-                                      context:nil];
-    if (rect.size.height < 200) {
-        self.frame = CGRectMake(0, 0, self.frame.size.width, rect.size.height + 12);
-    }
+    [self calculateSelfFrame];
 }
 
 - (void) dismissInputControl {
     [self.messageTextField resignFirstResponder];
+}
+
+- (void)orientationChanged:(NSNotification *)notification
+{
+    [self calculateSelfFrame];
+}
+
+- (void) calculateSelfFrame {
+    NSString *text = [self.messageTextField.text stringByAppendingString:@"\naeou"];
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0]};
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(self.messageTextField.frame.size.width, MAXFLOAT)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:attributes
+                                     context:nil];
+    // detecting orientation
+    CGFloat limit;
+    if (self.messageTextField.frame.size.width > 215) {
+        limit = 100;
+    } else {
+        limit = 200;
+    }
+    
+    if (rect.size.height < limit) {
+        self.frame = CGRectMake(0, 0, self.frame.size.width, rect.size.height + 12);
+    } else {
+        self.frame = CGRectMake(0, 0, self.frame.size.width, limit);
+    }
+    
+    if (self.frame.size.height > limit) {
+        self.frame = CGRectMake(0, 0, self.frame.size.width, limit);
+    }
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIDeviceOrientationDidChangeNotification
+                                                  object:nil];
 }
 
 @end

@@ -11,7 +11,7 @@
 
 @interface KOChatEntry : NSObject<KOChatEntryDelegate>
 
-@property (assign) KOChatEntryType *type;
+@property (assign) KOChatEntryType type;
 @property (strong) NSString *text;
 @property (strong) NSString *username;
 @property (strong) NSString *avatarPath;

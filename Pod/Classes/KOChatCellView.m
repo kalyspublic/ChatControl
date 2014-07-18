@@ -25,6 +25,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *timeLabelRight;
 @property (nonatomic, weak) IBOutlet UITextView *messageTextView;
+@property (nonatomic, weak) IBOutlet UIImageView *messageImageView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentViewBottom;
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
@@ -81,9 +82,24 @@
         self.avatarImageView.layer.cornerRadius = 17;
         self.avatarImageView.layer.masksToBounds = YES;
         
-        self.messageTextView.text = [entry text];
-        self.messageTextView.textContainer.lineFragmentPadding = 0;
-        self.messageTextView.textContainerInset = UIEdgeInsetsZero;
+        if ([entry type] == koChatEntryTypeText) {
+            self.messageImageView.hidden = YES;
+            self.messageTextView.hidden = NO;
+            self.messageTextView.text = [entry text];
+            self.messageTextView.textContainer.lineFragmentPadding = 0;
+            self.messageTextView.textContainerInset = UIEdgeInsetsZero;
+        } else if ([entry type] == koChatEntryTypePhoto) {
+            self.messageImageView.hidden = NO;
+            self.messageTextView.hidden = YES;
+            [self.messageImageView setImageWithURL:[NSURL URLWithString:[entry photoURL]]];
+            
+            for (UIGestureRecognizer *recognizer in self.messageImageView.gestureRecognizers) {
+                [self.messageImageView removeGestureRecognizer:recognizer];
+            }
+            
+            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+            [self.messageImageView addGestureRecognizer:tapRecognizer];
+        }
         
         if ([entry isBookmarked]) {
             self.bookmarkImageView.hidden = NO;
@@ -165,6 +181,10 @@
         }];
     }];
 
+}
+
+- (void) imageTapped:(id) sender {
+    [self.delegate koChatCellView:self photoTap:self.entry sender:sender];
 }
 
 - (void) setMessageStatus:(KOMessageStatus) sendingStatus {
