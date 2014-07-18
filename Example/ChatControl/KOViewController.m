@@ -61,11 +61,11 @@
 }
 
 - (void) sendButtonTouched:(id)sender textField:(UITextView *)textField {
-    
+    NSLog(@"Send button %@", textField);
 }
 
 - (void) cameraButtonTouched:(id)sender {
-    
+    NSLog(@"Camera button tap");
 }
 
 - (void) koChatViewController:(KOChatViewController *)koChatViewController joinDidTap:(id)sender {

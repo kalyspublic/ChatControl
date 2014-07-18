@@ -39,7 +39,7 @@
 }
 
 - (IBAction)sendMessage:(id)sender {
-    [self.delegate sendButtonTouched:sender textField:nil];
+    [self.delegate sendButtonTouched:sender textField:self.messageTextField];
 }
 
 - (IBAction)showCameraOptions:(id)sender {
