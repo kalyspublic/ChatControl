@@ -12,6 +12,6 @@
 
 @interface KOChatControlHelper : NSObject
 
-+ (CGFloat) cellHeight:(id<KOChatEntryDelegate>) entry;
++ (CGFloat) cellHeight:(id<KOChatEntryProtocol>) entry;
 
 @end

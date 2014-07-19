@@ -14,6 +14,4 @@
 
 @property (nonatomic, weak) id<KOKeyboardAccessoryViewDelegate> delegate;
 
-- (void) dismissInputControl;
-
 @end

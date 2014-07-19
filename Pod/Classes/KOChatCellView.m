@@ -69,7 +69,7 @@
     self.spinner.transform = CGAffineTransformMakeScale(0.6, 0.6);
     self.bubbleView.layer.cornerRadius = 8;
     
-    [[RACObserve(self, entry) ignore:nil] subscribeNext:^(id<KOChatEntryDelegate> entry) {
+    [[RACObserve(self, entry) ignore:nil] subscribeNext:^(id<KOChatEntryProtocol> entry) {
         // default values
         self.timeLabelRight.constant = 9;
         self.successfulImageView.hidden = YES;

@@ -20,7 +20,7 @@
 
 @end
 
-@interface KOChatViewController : UIViewController<KOChatTableViewHeaderDelegate, KOChatTableViewFooterDelegate>
+@interface KOChatViewController : UIViewController<KOChatTableViewHeaderDelegate, KOChatTableViewFooterDelegate, UITextViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 

@@ -13,13 +13,13 @@
 
 @protocol  KOChatCellViewDelegate <NSObject>
 
-- (void) koChatCellView:(KOChatCellView *)cell photoTap:(id<KOChatEntryDelegate>)model sender:(id) sender;
+- (void) koChatCellView:(KOChatCellView *)cell photoTap:(id<KOChatEntryProtocol>)model sender:(id) sender;
 
 @end
 
 @interface KOChatCellView : UITableViewCell
 
-@property (nonatomic, strong) id<KOChatEntryDelegate> entry;
+@property (nonatomic, strong) id<KOChatEntryProtocol> entry;
 @property (nonatomic, weak) id<KOChatCellViewDelegate> delegate;
 
 @end

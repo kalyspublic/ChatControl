@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ChatControl/KOChatEntryDelegate.h>
 
-@interface KOChatEntry : NSObject<KOChatEntryDelegate>
+@interface KOChatEntry : NSObject<KOChatEntryProtocol>
 
 @property (assign) KOChatEntryType type;
 @property (strong) NSString *text;

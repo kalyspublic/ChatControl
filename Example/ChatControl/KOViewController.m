@@ -76,7 +76,7 @@
     NSLog(@"Load more tapped");
 }
 
-- (void) koChatCellView:(KOChatCellView *)cell photoTap:(id<KOChatEntryDelegate>)model sender:(id)sender {
+- (void) koChatCellView:(KOChatCellView *)cell photoTap:(id<KOChatEntryProtocol>)model sender:(id)sender {
     NSLog(@"%@", model);
 }
 

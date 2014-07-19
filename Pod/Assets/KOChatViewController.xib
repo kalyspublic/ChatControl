@@ -6,7 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KOChatViewController">
             <connections>
+                <outlet property="keyboardAccessoryView" destination="OjE-Dm-cWs" id="Fkk-Ao-6QC"/>
+                <outlet property="messageTextField" destination="9i8-tV-Nhn" id="Uvc-Zs-Pwl"/>
                 <outlet property="tableView" destination="o1T-Hb-FAw" id="zkN-zA-DZd"/>
+                <outlet property="tableViewBottom" destination="74L-Cd-6Qb" id="0r4-lY-Pyc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,16 +23,82 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OjE-Dm-cWs" userLabel="Keyboard View">
+                    <rect key="frame" x="0.0" y="526" width="320" height="42"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oy-0x-gfH">
+                            <rect key="frame" x="9" y="12" width="25" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="17" id="2yx-be-Itc"/>
+                                <constraint firstAttribute="width" constant="25" id="ebt-Ic-k5R"/>
+                            </constraints>
+                            <state key="normal" image="ko_camera_icon.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cameraTap:" destination="-1" eventType="touchUpInside" id="UM7-dx-ndT"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyu-bF-wuu">
+                            <rect key="frame" x="268" y="6" width="46" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="46" id="4Ut-fe-1Wg"/>
+                                <constraint firstAttribute="height" constant="30" id="BMW-qn-lik"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="Send">
+                                <color key="titleColor" red="0.69019607839999997" green="0.69019607839999997" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" red="0.69019607839999997" green="0.69019607839999997" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="sendtap:" destination="-1" eventType="touchUpInside" id="j4x-GB-8vf"/>
+                            </connections>
+                        </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9i8-tV-Nhn" customClass="GCPlaceholderTextView">
+                            <rect key="frame" x="43" y="6" width="215" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="9i8-tV-Nhn" secondAttribute="bottom" constant="6" id="3ud-Da-Zrg"/>
+                        <constraint firstAttribute="bottom" secondItem="7oy-0x-gfH" secondAttribute="bottom" constant="13" id="HbS-89-j9D"/>
+                        <constraint firstItem="7oy-0x-gfH" firstAttribute="leading" secondItem="OjE-Dm-cWs" secondAttribute="leading" constant="9" id="NY9-4X-U0Y"/>
+                        <constraint firstAttribute="bottom" secondItem="kyu-bF-wuu" secondAttribute="bottom" constant="6" id="UpV-7F-xMU"/>
+                        <constraint firstItem="kyu-bF-wuu" firstAttribute="leading" secondItem="9i8-tV-Nhn" secondAttribute="trailing" constant="10" id="WSC-af-8cG"/>
+                        <constraint firstAttribute="height" constant="42" id="ZNm-AG-1QI"/>
+                        <constraint firstAttribute="trailing" secondItem="kyu-bF-wuu" secondAttribute="trailing" constant="6" id="b4O-Ac-yVO"/>
+                        <constraint firstItem="9i8-tV-Nhn" firstAttribute="leading" secondItem="7oy-0x-gfH" secondAttribute="trailing" constant="9" id="cL8-p7-aIG"/>
+                        <constraint firstItem="9i8-tV-Nhn" firstAttribute="top" secondItem="OjE-Dm-cWs" secondAttribute="top" constant="6" id="cYu-OO-JYZ"/>
+                    </constraints>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="o1T-Hb-FAw" secondAttribute="bottom" constant="42" id="74L-Cd-6Qb"/>
                 <constraint firstAttribute="trailing" secondItem="o1T-Hb-FAw" secondAttribute="trailing" id="7TR-kn-qXL"/>
+                <constraint firstItem="OjE-Dm-cWs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Peg-eo-uUj"/>
+                <constraint firstAttribute="bottom" secondItem="OjE-Dm-cWs" secondAttribute="bottom" id="Q5u-w3-mye"/>
                 <constraint firstItem="o1T-Hb-FAw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bEO-Fc-9gn"/>
+                <constraint firstAttribute="trailing" secondItem="OjE-Dm-cWs" secondAttribute="trailing" id="pRb-SL-mnc"/>
                 <constraint firstItem="o1T-Hb-FAw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zxp-MS-ejC"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="ko_camera_icon.png" width="25" height="18"/>
+    </resources>
 </document>

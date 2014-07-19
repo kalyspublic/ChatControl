@@ -10,7 +10,7 @@
 
 @implementation KOChatControlHelper
 
-+ (CGFloat) cellHeight:(id<KOChatEntryDelegate>)entry {
++ (CGFloat) cellHeight:(id<KOChatEntryProtocol>)entry {
     float cellHeight = 0.0;
     if ([entry type] == koChatEntryTypeText) {
         UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
