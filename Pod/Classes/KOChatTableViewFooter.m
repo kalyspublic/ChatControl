@@ -20,6 +20,7 @@
 - (void) awakeFromNib {
     [super awakeFromNib];
     self.joinButton.layer.cornerRadius = 8;
+    self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 }
 
 - (IBAction) joinTap:(id)sender {

@@ -142,14 +142,15 @@
 - (void) showJoin {
     self.tableView.tableFooterView = (KOChatTableViewHeader *)[[[NSBundle mainBundle] loadNibNamed:@"KOChatTableViewFooter" owner:self options:nil] firstObject];
     ((KOChatTableViewFooter *)self.tableView.tableFooterView).delegate = self;
-    self.keyboardAccessoryView.hidden = YES;
+
+    self.keyboardAccessoryViewBottom.constant = -KOMessageFrameHeight;
 //    self.tableViewBottom.constant = 0.0;
 //    [self calculateTableViewInsets];
 }
 
 - (void) hideJoin {
     self.tableView.tableFooterView = nil;
-    self.keyboardAccessoryView.hidden = NO;
+    self.keyboardAccessoryViewBottom.constant = 0;
 //    self.tableViewBottom.constant = 42.0;
 //    [self calculateTableViewInsets];
 }
