@@ -10,6 +10,8 @@
 
 @interface KOChatTableViewHeader ()
 - (IBAction)loadMoreTap:(id)sender;
+@property (nonatomic, weak) IBOutlet UIView *bgView;
+@property (nonatomic, weak) IBOutlet UIButton *button;
 
 @end
 
@@ -17,6 +19,12 @@
 
 - (IBAction)loadMoreTap:(id)sender {
     [self.delegate koChatTableViewHeader:self loadMoreDidTap:sender];
+}
+
+- (void) awakeFromNib {
+    [super awakeFromNib];
+    
+    self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 }
 
 @end

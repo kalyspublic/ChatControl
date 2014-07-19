@@ -7,9 +7,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KOChatViewController">
             <connections>
                 <outlet property="keyboardAccessoryView" destination="OjE-Dm-cWs" id="Fkk-Ao-6QC"/>
+                <outlet property="keyboardAccessoryViewBottom" destination="Q5u-w3-mye" id="yOo-BX-y5F"/>
+                <outlet property="keyboardAccessoryViewHeight" destination="ZNm-AG-1QI" id="jZI-yI-E7E"/>
                 <outlet property="messageTextField" destination="9i8-tV-Nhn" id="Uvc-Zs-Pwl"/>
                 <outlet property="tableView" destination="o1T-Hb-FAw" id="zkN-zA-DZd"/>
-                <outlet property="tableViewBottom" destination="74L-Cd-6Qb" id="0r4-lY-Pyc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -86,11 +87,11 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="o1T-Hb-FAw" secondAttribute="bottom" constant="42" id="74L-Cd-6Qb"/>
                 <constraint firstAttribute="trailing" secondItem="o1T-Hb-FAw" secondAttribute="trailing" id="7TR-kn-qXL"/>
                 <constraint firstItem="OjE-Dm-cWs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Peg-eo-uUj"/>
                 <constraint firstAttribute="bottom" secondItem="OjE-Dm-cWs" secondAttribute="bottom" id="Q5u-w3-mye"/>
                 <constraint firstItem="o1T-Hb-FAw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bEO-Fc-9gn"/>
+                <constraint firstItem="OjE-Dm-cWs" firstAttribute="top" secondItem="o1T-Hb-FAw" secondAttribute="bottom" id="jhk-eG-ig8"/>
                 <constraint firstAttribute="trailing" secondItem="OjE-Dm-cWs" secondAttribute="trailing" id="pRb-SL-mnc"/>
                 <constraint firstItem="o1T-Hb-FAw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zxp-MS-ejC"/>
             </constraints>

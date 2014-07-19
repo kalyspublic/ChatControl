@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Osb-Fw-0iL">
+                <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Osb-Fw-0iL">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -29,19 +29,23 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.34000000000000002" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="centerX" secondItem="94O-nQ-gFM" secondAttribute="centerX" id="Yg1-7T-TGx"/>
-                        <constraint firstAttribute="centerY" secondItem="94O-nQ-gFM" secondAttribute="centerY" id="nAS-Xh-caz"/>
+                        <constraint firstAttribute="centerX" secondItem="94O-nQ-gFM" secondAttribute="centerX" id="Y8B-FZ-6Yp"/>
+                        <constraint firstAttribute="centerY" secondItem="94O-nQ-gFM" secondAttribute="centerY" id="cdu-Nx-SIh"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.1450980392" green="0.56470588239999997" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="Osb-Fw-0iL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RNN-2W-tg9"/>
-                <constraint firstAttribute="bottom" secondItem="Osb-Fw-0iL" secondAttribute="bottom" constant="4" id="a25-Sr-m7c"/>
-                <constraint firstAttribute="trailing" secondItem="Osb-Fw-0iL" secondAttribute="trailing" id="oq8-9X-533"/>
-                <constraint firstItem="Osb-Fw-0iL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sKO-XN-Ad7"/>
+                <constraint firstAttribute="trailing" secondItem="Osb-Fw-0iL" secondAttribute="trailing" id="4ey-ux-3bT"/>
+                <constraint firstItem="Osb-Fw-0iL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DG8-5q-S7N"/>
+                <constraint firstAttribute="bottom" secondItem="Osb-Fw-0iL" secondAttribute="bottom" constant="4" id="TcE-pb-boZ"/>
+                <constraint firstItem="Osb-Fw-0iL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nML-eb-68S"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bgView" destination="Osb-Fw-0iL" id="cZF-L5-eEI"/>
+                <outlet property="button" destination="94O-nQ-gFM" id="34f-zi-YC4"/>
+            </connections>
         </view>
     </objects>
 </document>
