@@ -22,10 +22,12 @@
 @property (assign) BOOL isLiked;
 @property (assign) BOOL isReported;
 @property (assign) BOOL isSpamed;
-@property (assign) KOMessageStatus sendingStatus;
+@property (assign, nonatomic) KOMessageStatus sendingStatus;
 @property (strong) NSNumber *likesCount;
 @property (strong) NSNumber *dislikesCount;
 @property (strong) NSString *thumbnailURL;
 @property (assign) BOOL showDate;
+
+@property (nonatomic, weak) id<KOChatEntryStatusDelegate> statusDelegate;
 
 @end

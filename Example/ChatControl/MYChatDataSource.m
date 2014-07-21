@@ -9,6 +9,7 @@
 #import "MYChatDataSource.h"
 #import <ChatControl/KOChatCellView.h>
 #import <ChatControl/KOChatControlHelper.h>
+#import "KOChatEntry.h"
 
 @implementation MYChatDataSource
 
@@ -18,8 +19,11 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     KOChatCellView *cell = (KOChatCellView *) [tableView dequeueReusableCellWithIdentifier:@"KOChatCell"];
-    cell.entry = self.entries[indexPath.row];
+    KOChatEntry *entry = self.entries[indexPath.row];
+    cell.entry = entry;
+    entry.statusDelegate = cell;
     cell.delegate = self.parentViewController;
+
     return cell;
 }
 

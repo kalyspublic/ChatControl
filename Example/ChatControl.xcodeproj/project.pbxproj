@@ -27,6 +27,7 @@
 		EE1B87231972459000F2542B /* KOChatEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1B87221972459000F2542B /* KOChatEntry.m */; };
 		EE1B8725197371B700F2542B /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = EE1B8724197371B700F2542B /* avatar.png */; };
 		EE1B87271973761A00F2542B /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE1B87261973761A00F2542B /* bg@2x.png */; };
+		EE678718197CE5B7000B4670 /* KOOloloViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE678717197CE5B7000B4670 /* KOOloloViewController.m */; };
 		EE73B1941977D4C20061CAC0 /* MYChatDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EE73B1931977D4C20061CAC0 /* MYChatDataSource.m */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,8 @@
 		EE1B87221972459000F2542B /* KOChatEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOChatEntry.m; sourceTree = "<group>"; };
 		EE1B8724197371B700F2542B /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
 		EE1B87261973761A00F2542B /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
+		EE678716197CE5B7000B4670 /* KOOloloViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOOloloViewController.h; sourceTree = "<group>"; };
+		EE678717197CE5B7000B4670 /* KOOloloViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOOloloViewController.m; sourceTree = "<group>"; };
 		EE73B1921977D4C20061CAC0 /* MYChatDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYChatDataSource.h; sourceTree = "<group>"; };
 		EE73B1931977D4C20061CAC0 /* MYChatDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYChatDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +158,8 @@
 				EE73B1931977D4C20061CAC0 /* MYChatDataSource.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				EE678716197CE5B7000B4670 /* KOOloloViewController.h */,
+				EE678717197CE5B7000B4670 /* KOOloloViewController.m */,
 			);
 			path = ChatControl;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE678718197CE5B7000B4670 /* KOOloloViewController.m in Sources */,
 				6003F59E195388D20070C39A /* KOAppDelegate.m in Sources */,
 				EE1B87231972459000F2542B /* KOChatEntry.m in Sources */,
 				6003F5A7195388D20070C39A /* KOViewController.m in Sources */,

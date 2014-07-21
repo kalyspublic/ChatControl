@@ -11,6 +11,7 @@
 #import "KOViewController.h"
 #import "KOChatEntry.h"
 #import "MYChatDataSource.h"
+#import "KOOloloViewController.h"
 
 @interface KOViewController ()
 
@@ -33,7 +34,7 @@
     self.chatDataSource.entries = [self prepareChatEntries];
     
     // chat VC init code
-    self.chatVC = [[KOChatViewController alloc] init];
+    self.chatVC = [[KOOloloViewController alloc] initWithNibName:@"KOChatViewController" bundle:nil];
     self.chatVC.messageFormDelegate = self;
     self.chatVC.delegate = self;
 

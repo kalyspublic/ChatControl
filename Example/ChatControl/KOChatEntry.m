@@ -10,4 +10,13 @@
 
 @implementation KOChatEntry
 
+@synthesize sendingStatus = _sendingStatus;
+
+- (void) setSendingStatus:(KOMessageStatus)sendingStatus {
+    if (self.statusDelegate) {
+        [self.statusDelegate statusUpdate:sendingStatus];
+    }
+    _sendingStatus = sendingStatus;
+}
+
 @end

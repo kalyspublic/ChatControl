@@ -178,19 +178,16 @@
         
         [self setMessageStatus:[entry sendingStatus]];
         
+        /*
         self.statusSignal = RACObserve(entry, sendingStatus);
         
         [[self.statusSignal filter:^BOOL(id value) {
             return [value integerValue] > 0;
         }] subscribeNext:^(NSNumber *sendingStatus) {
             [self setMessageStatus:[sendingStatus integerValue]];
-        }];
+        }];*/
     }];
 
-}
-
-- (void) imageTapped:(id) sender {
-    [self.delegate koChatCellView:self photoTap:self.entry sender:sender];
 }
 
 - (void) setMessageStatus:(KOMessageStatus) sendingStatus {
@@ -204,6 +201,16 @@
         [self.spinner stopAnimating];
         self.successfulImageView.hidden = NO;
     }
+}
+
+/* media image tap recognizer */
+- (void) imageTapped:(id) sender {
+    [self.delegate koChatCellView:self photoTap:self.entry sender:sender];
+}
+
+/* KOChatEntryStatusDelegate */
+- (void) statusUpdate:(KOMessageStatus)status {
+    [self setMessageStatus:status];
 }
 
 @end

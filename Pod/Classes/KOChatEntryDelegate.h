@@ -20,6 +20,12 @@ typedef enum {
     koMessageStatusError = 3
 } KOMessageStatus;
 
+@protocol KOChatEntryStatusDelegate <NSObject>
+
+- (void) statusUpdate:(KOMessageStatus) status;
+
+@end
+
 @protocol KOChatEntryProtocol <NSObject>
 
 @required
