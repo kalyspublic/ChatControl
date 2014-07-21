@@ -30,7 +30,7 @@
         cellHeight += 138 + 48;
     }
     
-    if ([[entry likesCount] integerValue] != 0 || [[entry dislikesCount] integerValue] != 0) {
+    if ([entry likesCount] != 0 || [entry dislikesCount] != 0) {
         cellHeight += 20;
     }
     return cellHeight;

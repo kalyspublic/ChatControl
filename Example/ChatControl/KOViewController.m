@@ -100,7 +100,7 @@
     entry.username = @"Misha Sytchev";
     entry.date = @"Today";
     entry.time = @"12:44";
-    entry.likesCount = @10;
+    entry.likesCount = 10;
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
     KOChatEntry *entry2 = entry;
 
@@ -112,7 +112,7 @@
     entry.time = @"11:30";
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.dislikesCount = @5;
+    entry.dislikesCount = 5;
     KOChatEntry *entry3 = entry;
     self.testEntry = entry3;
     
@@ -123,7 +123,7 @@
     entry.time = @"11:30";
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.likesCount = @2;
+    entry.likesCount = 2;
     entry.showDate = YES;
     KOChatEntry *entry4 = entry;
     
@@ -134,7 +134,7 @@
     entry.time = @"11:30";
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.likesCount = @2;
+    entry.likesCount = 2;
     entry.showDate = YES;
     KOChatEntry *entry405 = entry;
     
@@ -146,8 +146,8 @@
     entry.time = @"11:30";
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.likesCount = @230;
-    entry.dislikesCount = @5;
+    entry.likesCount = 230;
+    entry.dislikesCount = 5;
     KOChatEntry *entry41 = entry;
     
     entry = [KOChatEntry new];
@@ -158,8 +158,8 @@
     entry.time = @"11:30";
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.likesCount = @0;
-    entry.dislikesCount = @50;
+    entry.likesCount = 0;
+    entry.dislikesCount = 50;
     entry.isSpamed = YES;
     KOChatEntry *entry5 = entry;
 

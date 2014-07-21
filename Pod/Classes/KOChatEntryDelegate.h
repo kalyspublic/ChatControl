@@ -43,8 +43,8 @@ typedef enum {
 @property (readonly) BOOL isLiked;
 @property (readonly) BOOL isReported;
 @property (readonly) BOOL isSpamed;
-@property (readonly) KOMessageStatus sendingStatus;
-@property (readonly) NSNumber *likesCount;
-@property (readonly) NSNumber *dislikesCount;
+@property (readonly, nonatomic) KOMessageStatus sendingStatus;
+@property (readonly) NSInteger likesCount;
+@property (readonly) NSInteger dislikesCount;
 
 @end

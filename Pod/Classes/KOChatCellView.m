@@ -114,22 +114,22 @@
             self.bookmarkImageView.hidden = YES;
         }
         
-        if ([[entry likesCount] integerValue] != 0 || [[entry dislikesCount] integerValue] != 0) {
+        if ([entry likesCount] != 0 || [entry dislikesCount] != 0) {
             self.contentViewBottom.constant = 20.0;
             self.dislikesFrameLeft.constant = 85.0;
             
-            if ([[entry likesCount] integerValue] != 0) {
+            if ([entry likesCount] != 0) {
                 self.likesFrame.hidden = NO;
-                self.likesCountLabel.text = [[entry likesCount] stringValue];
+                self.likesCountLabel.text = [[NSNumber numberWithInteger: [entry likesCount]] stringValue];
             } else {
                 self.likesFrame.hidden = YES;
             }
             
-            if ([[entry dislikesCount] integerValue] != 0) {
+            if ([entry dislikesCount] != 0) {
                 self.dislikesFrame.hidden = NO;
-                self.dislikesCountLabel.text = [[entry dislikesCount] stringValue];
+                self.dislikesCountLabel.text = [[NSNumber numberWithInteger: [entry dislikesCount]] stringValue];
                 
-                if ([[entry likesCount] integerValue] == 0) {
+                if ([entry likesCount] == 0) {
                     self.dislikesFrameLeft.constant = 46.0;
                 }
             } else {
@@ -160,7 +160,7 @@
         } else {
             self.tailGreenImageView.hidden = YES;
             self.tailLeftImaveView.hidden = NO;
-            if ([[entry likesCount] integerValue] >= koManyLikesCount) {
+            if ([entry likesCount] >= koManyLikesCount) {
                 self.bubbleView.backgroundColor = [UIColor colorWithHexString:koBlueBubbleColor];
                 self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_blue"];
             } else {

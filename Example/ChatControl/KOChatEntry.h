@@ -23,8 +23,8 @@
 @property (assign) BOOL isReported;
 @property (assign) BOOL isSpamed;
 @property (assign, nonatomic) KOMessageStatus sendingStatus;
-@property (strong) NSNumber *likesCount;
-@property (strong) NSNumber *dislikesCount;
+@property (assign) NSInteger likesCount;
+@property (assign) NSInteger dislikesCount;
 @property (strong) NSString *thumbnailURL;
 @property (assign) BOOL showDate;
 
