@@ -159,8 +159,8 @@
     // table view insets depend on orientation, 'load more' visibility, 'join' visibility
     CGFloat topInset, bottomInset = 2, keyboardTopInset = 0.0, keyboardBottomInset = 2;
     
-    CGRect navBarRect = self.navigationController.navigationBar.frame;
-    keyboardTopInset = topInset = navBarRect.origin.y + navBarRect.size.height;
+    // CGRect navBarRect = self.navigationController.navigationBar.frame;
+    keyboardTopInset = topInset = 0; //navBarRect.origin.y + navBarRect.size.height;
     
     if (!self.isLoadMoreVisible) {
         topInset += 4;
