@@ -14,6 +14,7 @@
 @protocol  KOChatCellViewDelegate <NSObject>
 
 - (void) koChatCellView:(KOChatCellView *)cell photoTap:(id<KOChatEntryProtocol>)model sender:(id) sender;
+- (void) koChatCellView:(KOChatCellView *)cell errorCellTap:(id<KOChatEntryProtocol>)model sender:(id) sender;
 
 @end
 

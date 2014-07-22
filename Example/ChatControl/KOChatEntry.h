@@ -27,6 +27,4 @@
 @property (nonatomic, assign) NSInteger dislikesCount;
 @property (nonatomic, strong) NSString *thumbnailURL;
 
-@property (nonatomic, weak) id<KOChatEntryStatusDelegate> statusDelegate;
-
 @end

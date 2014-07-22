@@ -21,6 +21,10 @@
 
 @property (nonatomic, weak) IBOutlet UIView *bubbleView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *bubbleViewTop;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *bubbleViewRight;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *bubbleViewBottom;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *bubbleViewLeft;
+
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *timeLabelRight;
@@ -44,6 +48,12 @@
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, weak) IBOutlet UIImageView *successfulImageView;
 
+@property (nonatomic, weak) IBOutlet UIView *errorWhiteOverlay;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *errorWhiteOverlayTop;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *errorWhiteOverlayRight;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *errorWhiteOverlayBottom;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *errorWhiteOverlayLeft;
+
 @property (nonatomic, weak) IBOutlet UIImageView *tailGreenImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *tailLeftImaveView;
 
@@ -53,18 +63,12 @@
 
 @implementation KOChatCellView
 
-- (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    return [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-}
-
-- (instancetype) initWithCoder:(NSCoder *)aDecoder {
-    return [super initWithCoder:aDecoder];
-}
-
 - (void) prepareForReuse {
     [super prepareForReuse];
     self.isDateVisible = NO;
     self.isOutgoing = NO;
+    self.errorWhiteOverlay.hidden = YES;
+    [self.spinner stopAnimating];
 }
 
 - (void)awakeFromNib
@@ -82,6 +86,13 @@
     
     self.spinner.transform = CGAffineTransformMakeScale(0.6, 0.6);
     self.bubbleView.layer.cornerRadius = 8;
+    self.errorWhiteOverlay.layer.cornerRadius = 8;
+    self.tailGreenImageView.image = [UIImage imageNamed:@"tail_green"];
+    RAC(self.errorWhiteOverlayTop, constant) = RACObserve(self.bubbleViewTop, constant);
+    RAC(self.errorWhiteOverlayBottom, constant) = RACObserve(self.bubbleViewBottom, constant);
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(errorOverlayTap:)];
+    [self.errorWhiteOverlay addGestureRecognizer:tapRecognizer];
     
     [[RACObserve(self, entry) ignore:nil] subscribeNext:^(id<KOChatEntryProtocol> entry) {
         // default values
@@ -182,6 +193,7 @@
             KOMessageStatus sendingStatus = [sendingStatusObj integerValue];
             [self setMessageStatus:sendingStatus];
         }];
+
     }];
     
     RAC(self.bubbleViewTop, constant) = [RACObserve(self, isDateVisible) map:^id(id isDateVisible) {
@@ -210,6 +222,8 @@
         [self.spinner startAnimating];
     } else if (sendingStatus == koMessageStatusError) {
         [self.spinner stopAnimating];
+        self.errorWhiteOverlay.hidden = NO;
+        self.tailGreenImageView.image = [UIImage imageNamed:@"tail_whiteError"];
     } else if (sendingStatus == koMessageStatusSuccessful) {
         self.timeLabelRight.constant = 27;
         [self.spinner stopAnimating];
@@ -222,4 +236,10 @@
     [self.delegate koChatCellView:self photoTap:self.entry sender:sender];
 }
 
+
+- (void) errorOverlayTap:(id)sender {
+    if ([self.entry sendingStatus] == koMessageStatusError) {
+        [self.delegate koChatCellView:self errorCellTap:self.entry sender:sender];
+    }
+}
 @end

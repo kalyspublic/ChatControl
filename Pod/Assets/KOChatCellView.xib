@@ -175,6 +175,28 @@
                             <constraint firstItem="TSq-iH-vUG" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="-1" id="uXN-rE-3O4"/>
                         </constraints>
                     </view>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mB0-Rx-Mgg" userLabel="View White overlay" customClass="UIControl">
+                        <rect key="frame" x="9" y="18" width="302" height="177"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconError.png" translatesAutoresizingMaskIntoConstraints="NO" id="OiY-eS-dVr">
+                                <rect key="frame" x="135" y="73" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="Ava-NQ-gds"/>
+                                    <constraint firstAttribute="height" constant="32" id="Gcy-7w-yNv"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="OiY-eS-dVr" secondAttribute="centerY" id="HuT-YN-V9p"/>
+                            <constraint firstAttribute="centerX" secondItem="OiY-eS-dVr" secondAttribute="centerX" id="uec-9n-mOH"/>
+                        </constraints>
+                        <connections>
+                            <action selector="errorOverlayTap:" destination="KIa-wn-MLD" eventType="valueChanged" id="NYv-ZU-vng"/>
+                        </connections>
+                    </view>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconSpaaam.png" translatesAutoresizingMaskIntoConstraints="NO" id="NPb-Xg-CwS">
                         <rect key="frame" x="146" y="86" width="28" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -196,8 +218,11 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="mB0-Rx-Mgg" secondAttribute="trailing" constant="9" id="9s4-Ff-5OY"/>
                     <constraint firstItem="wyL-tM-rDA" firstAttribute="top" secondItem="c2m-tH-O7k" secondAttribute="top" id="BSF-PQ-b64"/>
                     <constraint firstAttribute="bottom" secondItem="XDS-Mm-p2g" secondAttribute="bottom" constant="14" id="CMH-XF-LKg"/>
+                    <constraint firstAttribute="bottom" secondItem="mB0-Rx-Mgg" secondAttribute="bottom" constant="4" id="Cvq-5Z-oVs"/>
+                    <constraint firstItem="mB0-Rx-Mgg" firstAttribute="top" secondItem="c2m-tH-O7k" secondAttribute="top" constant="18" id="DH3-GO-n5u"/>
                     <constraint firstAttribute="centerX" secondItem="NPb-Xg-CwS" secondAttribute="centerX" id="FnX-8W-CQs"/>
                     <constraint firstItem="JKv-Ks-xgk" firstAttribute="leading" secondItem="c2m-tH-O7k" secondAttribute="leading" constant="3" id="GPb-tf-K6E"/>
                     <constraint firstAttribute="bottom" secondItem="JKv-Ks-xgk" secondAttribute="bottom" constant="14" id="H8u-w7-Hxx"/>
@@ -208,6 +233,7 @@
                     <constraint firstAttribute="centerX" secondItem="wyL-tM-rDA" secondAttribute="centerX" id="eWe-BW-nNG"/>
                     <constraint firstItem="qZp-7h-Kjm" firstAttribute="top" secondItem="c2m-tH-O7k" secondAttribute="top" constant="18" id="mzB-hv-6UB"/>
                     <constraint firstItem="qZp-7h-Kjm" firstAttribute="leading" secondItem="c2m-tH-O7k" secondAttribute="leading" constant="9" id="uOc-AE-DZ0"/>
+                    <constraint firstItem="mB0-Rx-Mgg" firstAttribute="leading" secondItem="c2m-tH-O7k" secondAttribute="leading" constant="9" id="wmG-xy-b7H"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -215,12 +241,20 @@
                 <outlet property="avatarImageView" destination="X4z-bP-dj6" id="iui-Mn-XLA"/>
                 <outlet property="bookmarkImageView" destination="TSq-iH-vUG" id="t0h-Ce-4Gq"/>
                 <outlet property="bubbleView" destination="qZp-7h-Kjm" id="o1l-6q-NY4"/>
+                <outlet property="bubbleViewBottom" destination="Jzj-49-QCI" id="fJ0-gc-OSr"/>
+                <outlet property="bubbleViewLeft" destination="uOc-AE-DZ0" id="2Bo-zm-7rb"/>
+                <outlet property="bubbleViewRight" destination="X1N-BX-PtQ" id="bRb-13-I49"/>
                 <outlet property="bubbleViewTop" destination="mzB-hv-6UB" id="JUH-rO-BRF"/>
                 <outlet property="contentViewBottom" destination="eXx-VI-iw9" id="FGt-eI-GXZ"/>
                 <outlet property="dateLabel" destination="wyL-tM-rDA" id="0HW-31-kZi"/>
                 <outlet property="dislikesCountLabel" destination="4dU-cl-axx" id="4yT-oQ-ugk"/>
                 <outlet property="dislikesFrame" destination="hvE-bc-JKe" id="jEJ-Ok-vdJ"/>
                 <outlet property="dislikesFrameLeft" destination="ID2-pz-elu" id="RtB-en-SWB"/>
+                <outlet property="errorWhiteOverlay" destination="mB0-Rx-Mgg" id="fSt-4x-1K2"/>
+                <outlet property="errorWhiteOverlayBottom" destination="Cvq-5Z-oVs" id="gId-dS-Pn3"/>
+                <outlet property="errorWhiteOverlayLeft" destination="wmG-xy-b7H" id="QI4-wd-Fxc"/>
+                <outlet property="errorWhiteOverlayRight" destination="9s4-Ff-5OY" id="ubR-OJ-tCj"/>
+                <outlet property="errorWhiteOverlayTop" destination="DH3-GO-n5u" id="BO0-RU-g68"/>
                 <outlet property="likesCountLabel" destination="jhQ-gH-n9h" id="Amt-Bp-isA"/>
                 <outlet property="likesFrame" destination="top-g9-Pye" id="xHd-Pq-eIR"/>
                 <outlet property="messageImageView" destination="Jz9-La-gI8" id="8fW-DW-E70"/>
@@ -240,6 +274,7 @@
     <resources>
         <image name="btnPlay.png" width="66" height="66"/>
         <image name="iconBookmark.png" width="12" height="16"/>
+        <image name="iconError.png" width="32" height="32"/>
         <image name="iconLike.png" width="12" height="10"/>
         <image name="iconSent.png" width="12" height="12"/>
         <image name="iconSpaaam.png" width="28" height="28"/>

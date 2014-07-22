@@ -52,12 +52,14 @@
 - (void) testButton:(id) sender {
     if (self.testEntry.sendingStatus == koMessageStatusSending) {
         self.testEntry.sendingStatus = koMessageStatusSuccessful;
-        [self.chatVC showLoadMore];
-        [self.chatVC hideJoin];
+        //[self.chatVC showLoadMore];
+        //[self.chatVC hideJoin];
+    } else if (self.testEntry.sendingStatus == koMessageStatusSuccessful) {
+        self.testEntry.sendingStatus = koMessageStatusError;
+        //[self.chatVC hideLoadMore];
+        //[self.chatVC showJoin];
     } else {
         self.testEntry.sendingStatus = koMessageStatusSending;
-        [self.chatVC hideLoadMore];
-        [self.chatVC showJoin];
     }
 }
 
@@ -79,6 +81,10 @@
 
 - (void) koChatCellView:(KOChatCellView *)cell photoTap:(id<KOChatEntryProtocol>)model sender:(id)sender {
     NSLog(@"%@", model);
+}
+
+- (void) koChatCellView:(KOChatCellView *)cell errorCellTap:(id<KOChatEntryProtocol>)model sender:(id)sender {
+    NSLog(@"error cell tap %@", cell);
 }
 
 - (NSArray *) prepareChatEntries {
