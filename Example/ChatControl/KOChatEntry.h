@@ -26,7 +26,6 @@
 @property (assign) NSInteger likesCount;
 @property (assign) NSInteger dislikesCount;
 @property (strong) NSString *thumbnailURL;
-@property (assign) BOOL showDate;
 
 @property (nonatomic, weak) id<KOChatEntryStatusDelegate> statusDelegate;
 

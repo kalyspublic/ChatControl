@@ -124,7 +124,6 @@
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
     entry.likesCount = 2;
-    entry.showDate = YES;
     KOChatEntry *entry4 = entry;
     
     entry = [KOChatEntry new];
@@ -135,7 +134,6 @@
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
     entry.likesCount = 2;
-    entry.showDate = YES;
     KOChatEntry *entry405 = entry;
     
     entry = [KOChatEntry new];

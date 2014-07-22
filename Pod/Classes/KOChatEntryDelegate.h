@@ -31,7 +31,6 @@ typedef enum {
 @required
 
 @property (readonly) KOChatEntryType type;
-@property (readonly) BOOL showDate;
 @property (readonly) NSString *text;
 @property (readonly) NSString *thumbnailURL;
 @property (readonly) NSString *username;

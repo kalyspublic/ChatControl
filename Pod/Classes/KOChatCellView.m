@@ -169,25 +169,16 @@
             }
         }
         
-        self.dateLabel.hidden = ![entry showDate];
-        if ([entry showDate]) {
-            self.bubbleViewTop.constant = 20;
-        } else {
-            self.bubbleViewTop.constant = 4;
-        }
-        
         [self setMessageStatus:[entry sendingStatus]];
-        
-        /*
-        self.statusSignal = RACObserve(entry, sendingStatus);
-        
-        [[self.statusSignal filter:^BOOL(id value) {
-            return [value integerValue] > 0;
-        }] subscribeNext:^(NSNumber *sendingStatus) {
-            [self setMessageStatus:[sendingStatus integerValue]];
-        }];*/
     }];
-
+    
+    RAC(self.bubbleViewTop, constant) = [RACObserve(self, isDateVisible) map:^id(id isDateVisible) {
+        return [isDateVisible boolValue] ? @(20) : @(4);
+    }];
+    
+    RAC(self.dateLabel, hidden) = [RACObserve(self, isDateVisible) map:^id(id isDateVisible) {
+        return @(![isDateVisible boolValue]);
+    }];
 }
 
 - (void) setMessageStatus:(KOMessageStatus) sendingStatus {

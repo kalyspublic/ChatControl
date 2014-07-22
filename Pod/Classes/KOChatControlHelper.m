@@ -10,7 +10,7 @@
 
 @implementation KOChatControlHelper
 
-+ (CGFloat) cellHeight:(id<KOChatEntryProtocol>)entry {
++ (CGFloat) cellHeight:(id<KOChatEntryProtocol>)entry dateVisible:(BOOL)dateVisible  {
     float cellHeight = 0.0;
     if ([entry type] == koChatEntryTypeText) {
         UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
@@ -23,7 +23,7 @@
         NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
         CGRect rect = [[entry text] boundingRectWithSize:CGSizeMake(textViewWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
         cellHeight += rect.size.height + 48;
-        if ([entry showDate]) {
+        if (dateVisible) {
             cellHeight += 16;
         }
     } else if ([entry type] == koChatEntryTypePhoto || [entry type] == koChatEntryTypeVideo) {

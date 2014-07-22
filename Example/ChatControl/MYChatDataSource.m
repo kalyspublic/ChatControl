@@ -23,12 +23,17 @@
     cell.entry = entry;
     entry.statusDelegate = cell;
     cell.delegate = self.parentViewController;
+    
+    if (indexPath.row == 2) {
+        cell.isDateVisible = YES;
+    }
 
     return cell;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [KOChatControlHelper cellHeight:self.entries[indexPath.row]];
+    BOOL dateVisible = indexPath.row == 2;
+    return [KOChatControlHelper cellHeight:self.entries[indexPath.row] dateVisible:dateVisible];
 }
 
 @end
