@@ -27,6 +27,10 @@
     if (indexPath.row == 2) {
         cell.isDateVisible = YES;
     }
+    
+    if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 5 || indexPath.row == 6) {
+        cell.isOutgoing = YES;
+    }
 
     return cell;
 }

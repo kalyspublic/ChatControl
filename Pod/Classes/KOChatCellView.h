@@ -22,5 +22,6 @@
 @property (nonatomic, strong) id<KOChatEntryProtocol> entry;
 @property (nonatomic, weak) id<KOChatCellViewDelegate> delegate;
 @property (nonatomic, assign) BOOL isDateVisible;
+@property (nonatomic, assign) BOOL isOutgoing;
 
 @end

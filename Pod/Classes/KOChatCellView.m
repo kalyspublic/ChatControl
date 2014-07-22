@@ -53,6 +53,20 @@
 
 @implementation KOChatCellView
 
+- (instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    return [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+}
+
+- (instancetype) initWithCoder:(NSCoder *)aDecoder {
+    return [super initWithCoder:aDecoder];
+}
+
+- (void) prepareForReuse {
+    [super prepareForReuse];
+    self.isDateVisible = NO;
+    self.isOutgoing = NO;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -153,20 +167,13 @@
             self.spanIconImageView.hidden = YES;
         }
         
-        if ([entry isOutgoing]) {
-            self.bubbleView.backgroundColor = [UIColor colorWithHexString:koGreenBubbleColor];
-            self.tailGreenImageView.hidden = NO;
-            self.tailLeftImaveView.hidden = YES;
+
+        if ([entry likesCount] >= koManyLikesCount) {
+            self.bubbleView.backgroundColor = [UIColor colorWithHexString:koBlueBubbleColor];
+            self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_blue"];
         } else {
-            self.tailGreenImageView.hidden = YES;
-            self.tailLeftImaveView.hidden = NO;
-            if ([entry likesCount] >= koManyLikesCount) {
-                self.bubbleView.backgroundColor = [UIColor colorWithHexString:koBlueBubbleColor];
-                self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_blue"];
-            } else {
-                self.bubbleView.backgroundColor = [UIColor colorWithHexString:koWhiteBubbleColor];
-                self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_white"];
-            }
+            self.bubbleView.backgroundColor = [UIColor colorWithHexString:koWhiteBubbleColor];
+            self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_white"];
         }
         
         [self setMessageStatus:[entry sendingStatus]];
@@ -178,6 +185,17 @@
     
     RAC(self.dateLabel, hidden) = [RACObserve(self, isDateVisible) map:^id(id isDateVisible) {
         return @(![isDateVisible boolValue]);
+    }];
+    
+    [RACObserve(self, isOutgoing) subscribeNext:^(id isOutgoing) {
+        if ([isOutgoing boolValue]) {
+            self.bubbleView.backgroundColor = [UIColor colorWithHexString:koGreenBubbleColor];
+            self.tailGreenImageView.hidden = NO;
+            self.tailLeftImaveView.hidden = YES;
+        } else {
+            self.tailGreenImageView.hidden = YES;
+            self.tailLeftImaveView.hidden = NO;
+        }
     }];
 }
 
