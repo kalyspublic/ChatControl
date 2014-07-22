@@ -11,21 +11,21 @@
 
 @interface KOChatEntry : NSObject<KOChatEntryProtocol>
 
-@property (assign) KOChatEntryType type;
-@property (strong) NSString *text;
-@property (strong) NSString *username;
-@property (strong) NSString *avatarPath;
-@property (strong) NSString *date;
-@property (strong) NSString *time;
-@property (assign) BOOL isOutgoing;
-@property (assign) BOOL isBookmarked;
-@property (assign) BOOL isLiked;
-@property (assign) BOOL isReported;
-@property (assign) BOOL isSpamed;
-@property (assign, nonatomic) KOMessageStatus sendingStatus;
-@property (assign) NSInteger likesCount;
-@property (assign) NSInteger dislikesCount;
-@property (strong) NSString *thumbnailURL;
+@property (nonatomic, assign) KOChatEntryType type;
+@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *avatarPath;
+@property (nonatomic, strong) NSString *date;
+@property (nonatomic, strong) NSString *time;
+@property (nonatomic, assign) BOOL isOutgoing;
+@property (nonatomic, assign) BOOL isBookmarked;
+@property (nonatomic, assign) BOOL isLiked;
+@property (nonatomic, assign) BOOL isReported;
+@property (nonatomic, assign) BOOL isSpamed;
+@property (nonatomic, assign, nonatomic) KOMessageStatus sendingStatus;
+@property (nonatomic, assign) NSInteger likesCount;
+@property (nonatomic, assign) NSInteger dislikesCount;
+@property (nonatomic, strong) NSString *thumbnailURL;
 
 @property (nonatomic, weak) id<KOChatEntryStatusDelegate> statusDelegate;
 

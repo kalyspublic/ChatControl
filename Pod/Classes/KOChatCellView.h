@@ -17,7 +17,7 @@
 
 @end
 
-@interface KOChatCellView : UITableViewCell<KOChatEntryStatusDelegate>
+@interface KOChatCellView : UITableViewCell
 
 @property (nonatomic, strong) id<KOChatEntryProtocol> entry;
 @property (nonatomic, weak) id<KOChatCellViewDelegate> delegate;

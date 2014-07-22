@@ -8,7 +8,7 @@
         <scene sceneID="Imo-3o-iht">
             <objects>
                 <navigationController definesPresentationContext="YES" id="8aK-Jm-YU6" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="6uy-5m-KkG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="6uy-5m-KkG">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -28,7 +28,7 @@
                         <viewControllerLayoutGuide type="bottom" id="xEB-Dn-PHP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VZU-Vz-lxh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

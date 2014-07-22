@@ -177,6 +177,11 @@
         }
         
         [self setMessageStatus:[entry sendingStatus]];
+        
+        [[RACObserve(entry, sendingStatus) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id sendingStatusObj) {
+            KOMessageStatus sendingStatus = [sendingStatusObj integerValue];
+            [self setMessageStatus:sendingStatus];
+        }];
     }];
     
     RAC(self.bubbleViewTop, constant) = [RACObserve(self, isDateVisible) map:^id(id isDateVisible) {
@@ -215,11 +220,6 @@
 /* media image tap recognizer */
 - (void) imageTapped:(id) sender {
     [self.delegate koChatCellView:self photoTap:self.entry sender:sender];
-}
-
-/* KOChatEntryStatusDelegate */
-- (void) statusUpdate:(KOMessageStatus)status {
-    [self setMessageStatus:status];
 }
 
 @end
