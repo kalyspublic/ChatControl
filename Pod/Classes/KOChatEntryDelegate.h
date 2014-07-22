@@ -30,20 +30,20 @@ typedef enum {
 
 @required
 
-@property (readonly) KOChatEntryType type;
-@property (readonly) NSString *text;
-@property (readonly) NSString *thumbnailURL;
-@property (readonly) NSString *username;
-@property (readonly) NSString *avatarPath;
-@property (readonly) NSString *time;
-@property (readonly) NSString *date;
-@property (readonly) BOOL isOutgoing;
-@property (readonly) BOOL isBookmarked;
-@property (readonly) BOOL isLiked;
-@property (readonly) BOOL isReported;
-@property (readonly) BOOL isSpamed;
-@property (readonly, nonatomic) KOMessageStatus sendingStatus;
-@property (readonly) NSInteger likesCount;
-@property (readonly) NSInteger dislikesCount;
+@property (nonatomic, readonly) KOChatEntryType type;
+@property (nonatomic, readonly) NSString *text;
+@property (nonatomic, readonly) NSString *thumbnailURL;
+@property (nonatomic, readonly) NSString *username;
+@property (nonatomic, readonly) NSString *avatarPath;
+@property (nonatomic, readonly) NSString *time;
+@property (nonatomic, readonly) NSString *date;
+@property (nonatomic, readonly) BOOL isOutgoing;
+@property (nonatomic, readonly) BOOL isBookmarked;
+@property (nonatomic, readonly) BOOL isLiked;
+@property (nonatomic, readonly) BOOL isReported;
+@property (nonatomic, readonly) BOOL isSpamed;
+@property (nonatomic, readonly) KOMessageStatus sendingStatus;
+@property (nonatomic, readonly) NSInteger likesCount;
+@property (nonatomic, readonly) NSInteger dislikesCount;
 
 @end
