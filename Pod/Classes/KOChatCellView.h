@@ -25,6 +25,7 @@
 - (void) koChatCellView:(KOChatCellView *)cell spamItem:(id) sender;
 - (void) koChatCellView:(KOChatCellView *)cell unspamItem:(id) sender;
 - (void) koChatCellView:(KOChatCellView *)cell replyItem:(id) sender;
+- (void) koChatCellView:(KOChatCellView *)cell copyItem:(id) sender;
 
 @end
 
@@ -42,5 +43,6 @@
 - (void) spamItem:(id) sender;
 - (void) unspamAction:(id) sender;
 - (void) replyAction:(id) sender;
+- (void) copy:(id)sender;
 
 @end

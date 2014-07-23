@@ -284,6 +284,10 @@
     [self.delegate koChatCellView:self replyItem:sender];
 }
 
+- (void) copy:(id)sender {
+    [self.delegate koChatCellView:self copyItem:sender];
+}
+
 
 
 @end
