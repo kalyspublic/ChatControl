@@ -94,6 +94,10 @@
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(errorOverlayTap:)];
     [self.errorWhiteOverlay addGestureRecognizer:tapRecognizer];
     
+    UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
+    
+    [self addGestureRecognizer:longPressGestureRecognizer];
+    
     [[RACObserve(self, entry) ignore:nil] subscribeNext:^(id<KOChatEntryProtocol> entry) {
         // default values
         self.timeLabelRight.constant = 9;
@@ -214,6 +218,14 @@
             self.tailLeftImaveView.hidden = NO;
         }
     }];
+}
+
+- (void) didLongPress:(id) sender {
+    [self.delegate koChatCellView:self didLongPress:self.entry sender:sender];
+}
+
+- (BOOL) canPerformAction:(SEL)action withSender:(id)sender {
+    return [self.delegate koChatCellView:self canPerformAction:action withSender:sender];
 }
 
 - (void) setMessageStatus:(KOMessageStatus) sendingStatus {

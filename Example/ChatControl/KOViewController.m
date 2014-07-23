@@ -87,6 +87,15 @@
     NSLog(@"error cell tap %@", cell);
 }
 
+- (void) koChatCellView:(KOChatCellView *)cell didLongPress:(id<KOChatEntryProtocol>)model sender:(id)sender {
+    NSLog(@"Long tap");
+}
+
+- (BOOL) koChatCellView:(KOChatCellView *)cell canPerformAction:(SEL)action withSender:(id)sender {
+    NSLog(@"can perform action");
+    return YES;
+}
+
 - (NSArray *) prepareChatEntries {
     KOChatEntry *entry = [KOChatEntry new];
     entry.type = koChatEntryTypeText;
