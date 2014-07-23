@@ -260,31 +260,27 @@
 }
 
 //  @[likeItem, dislikeItem, saveItem, deleteSaveItem, spamItem, unspamItem, replyItem];
-- (void) likeItem:(id) sender {
+- (void) likeAction:(id) sender {
     [self.delegate koChatCellView:self likeItem:sender];
 }
 
-- (void) dislikeItem:(id) sender {
+- (void) dislikeAction:(id) sender {
     [self.delegate koChatCellView:self dislikeItem:sender];
 }
 
-- (void) saveItem:(id) sender {
+- (void) saveAction:(id) sender {
     [self.delegate koChatCellView:self saveItem:sender];
 }
 
-- (void) deleteSaveItem:(id) sender {
-    [self.delegate koChatCellView:self deleteSaveItem:sender];
-}
-
-- (void) spamItem:(id) sender {
+- (void) spamAction:(id) sender {
     [self.delegate koChatCellView:self spamItem:sender];
 }
 
-- (void) unspamItem:(id) sender {
+- (void) unspamAction:(id) sender {
     [self.delegate koChatCellView:self unspamItem:sender];
 }
 
-- (void) replyItem:(id) sender {
+- (void) replyAction:(id) sender {
     [self.delegate koChatCellView:self replyItem:sender];
 }
 

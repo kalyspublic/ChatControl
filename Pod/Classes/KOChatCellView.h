@@ -35,12 +35,12 @@
 @property (nonatomic, assign) BOOL isDateVisible;
 @property (nonatomic, assign) BOOL isOutgoing;
 
-- (void) likeItem:(id) sender;
-- (void) dislikeItem:(id) sender;
-- (void) saveItem:(id) sender;
-- (void) deleteSaveItem:(id) sender;
+- (void) likeAction:(id) sender;
+- (void) dislikeAction:(id) sender;
+- (void) saveAction:(id) sender;
+- (void) spanAction:(id) sender;
 - (void) spamItem:(id) sender;
-- (void) unspamItem:(id) sender;
-- (void) replyItem:(id) sender;
+- (void) unspamAction:(id) sender;
+- (void) replyAction:(id) sender;
 
 @end
