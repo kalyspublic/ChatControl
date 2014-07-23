@@ -228,6 +228,10 @@
     return [self.delegate koChatCellView:self canPerformAction:action withSender:sender];
 }
 
+-(BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
 - (void) setMessageStatus:(KOMessageStatus) sendingStatus {
     if (sendingStatus == koMessageStatusSending) {
         self.timeLabelRight.constant = 27;
