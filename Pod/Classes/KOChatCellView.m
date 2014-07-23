@@ -258,4 +258,36 @@
         [self.delegate koChatCellView:self errorCellTap:self.entry sender:sender];
     }
 }
+
+//  @[likeItem, dislikeItem, saveItem, deleteSaveItem, spamItem, unspamItem, replyItem];
+- (void) likeItem:(id) sender {
+    [self.delegate koChatCellView:self likeItem:sender];
+}
+
+- (void) dislikeItem:(id) sender {
+    [self.delegate koChatCellView:self dislikeItem:sender];
+}
+
+- (void) saveItem:(id) sender {
+    [self.delegate koChatCellView:self saveItem:sender];
+}
+
+- (void) deleteSaveItem:(id) sender {
+    [self.delegate koChatCellView:self deleteSaveItem:sender];
+}
+
+- (void) spamItem:(id) sender {
+    [self.delegate koChatCellView:self spamItem:sender];
+}
+
+- (void) unspamItem:(id) sender {
+    [self.delegate koChatCellView:self unspamItem:sender];
+}
+
+- (void) replyItem:(id) sender {
+    [self.delegate koChatCellView:self replyItem:sender];
+}
+
+
+
 @end
