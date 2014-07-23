@@ -7,6 +7,7 @@
 //
 
 #import "KOOloloViewController.h"
+#import "SPLMChatCell.h"
 
 @interface KOOloloViewController ()
 
@@ -26,7 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    //[self.tableView registerClass:[SPLMChatCell class] forCellReuseIdentifier:@"KOChatCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"KOChatCellView" bundle:nil] forCellReuseIdentifier:@"KOChatCell"];
 }
 
 - (void)didReceiveMemoryWarning

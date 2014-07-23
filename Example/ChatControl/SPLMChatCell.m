@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Kalys Osmonov. All rights reserved.
 //
 
-#import "MYChatCellView.h"
+#import "SPLMChatCell.h"
 
-@implementation MYChatCellView
+@implementation SPLMChatCell
 
 - (id)initWithFrame:(CGRect)frame
 {

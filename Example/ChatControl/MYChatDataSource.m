@@ -10,7 +10,7 @@
 #import <ChatControl/KOChatCellView.h>
 #import <ChatControl/KOChatControlHelper.h>
 #import "KOChatEntry.h"
-#import "MYChatCellView.h"
+#import "SPLMChatCell.h"
 
 @implementation MYChatDataSource
 
@@ -19,7 +19,7 @@
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MYChatCellView *cell = (MYChatCellView *) [tableView dequeueReusableCellWithIdentifier:@"KOChatCell"];
+    SPLMChatCell *cell = (SPLMChatCell *) [tableView dequeueReusableCellWithIdentifier:@"KOChatCell"];
     KOChatEntry *entry = self.entries[indexPath.row];
     cell.entry = entry;
     cell.delegate = self.parentViewController;

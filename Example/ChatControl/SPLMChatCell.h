@@ -8,6 +8,6 @@
 
 #import "KOChatCellView.h"
 
-@interface MYChatCellView : KOChatCellView
+@interface SPLMChatCell : KOChatCellView
 
 @end
