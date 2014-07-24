@@ -69,6 +69,7 @@
     self.isOutgoing = NO;
     self.errorWhiteOverlay.hidden = YES;
     [self.spinner stopAnimating];
+    self.tailGreenImageView.image = [UIImage imageNamed:@"tail_green"];
 }
 
 - (void)awakeFromNib
@@ -87,7 +88,6 @@
     self.spinner.transform = CGAffineTransformMakeScale(0.6, 0.6);
     self.bubbleView.layer.cornerRadius = 8;
     self.errorWhiteOverlay.layer.cornerRadius = 8;
-    self.tailGreenImageView.image = [UIImage imageNamed:@"tail_green"];
     RAC(self.errorWhiteOverlayTop, constant) = RACObserve(self.bubbleViewTop, constant);
     RAC(self.errorWhiteOverlayBottom, constant) = RACObserve(self.bubbleViewBottom, constant);
     
@@ -190,14 +190,20 @@
             self.bubbleView.backgroundColor = [UIColor colorWithHexString:koWhiteBubbleColor];
             self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_white"];
         }
+    }];
+    
+    [[RACSignal combineLatest:@[[RACObserve(self, entry) ignore:nil], RACObserve(self, isOutgoing)]] subscribeNext:^(RACTuple *tuple) {
+        id<KOChatEntryProtocol> entry = tuple.first;
+        id isOutgoing = tuple.second;
         
-        [self setMessageStatus:[entry sendingStatus]];
-        
-        [[RACObserve(entry, sendingStatus) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id sendingStatusObj) {
-            KOMessageStatus sendingStatus = [sendingStatusObj integerValue];
-            [self setMessageStatus:sendingStatus];
-        }];
-
+        if ([isOutgoing boolValue]) {
+            [self setMessageStatus:[entry sendingStatus]];
+            
+            [[RACObserve(entry, sendingStatus) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id sendingStatusObj) {
+                KOMessageStatus sendingStatus = [sendingStatusObj integerValue];
+                [self setMessageStatus:sendingStatus];
+            }];
+        }
     }];
     
     RAC(self.bubbleViewTop, constant) = [RACObserve(self, isDateVisible) map:^id(id isDateVisible) {
@@ -244,6 +250,12 @@
         self.timeLabelRight.constant = 27;
         [self.spinner stopAnimating];
         self.successfulImageView.hidden = NO;
+    } else {
+        [self.spinner stopAnimating];
+        self.successfulImageView.hidden = YES;
+        self.errorWhiteOverlay.hidden = YES;
+        self.tailGreenImageView.image = [UIImage imageNamed:@"tail_green"];
+        self.timeLabelRight.constant = 9;
     }
 }
 

@@ -146,6 +146,7 @@
     entry.type = koChatEntryTypeVideo;
     entry.thumbnailURL = @"http://i.imgur.com/yBZozU4.jpg";
     entry.username = @"Misha Sytchev";
+    entry.sendingStatus = koMessageStatusSuccessful;
     entry.time = @"11:30";
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
