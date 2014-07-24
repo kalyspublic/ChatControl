@@ -94,6 +94,9 @@
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(errorOverlayTap:)];
     [self.errorWhiteOverlay addGestureRecognizer:tapRecognizer];
     
+    UITapGestureRecognizer *avatarTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(avatarTap:)];
+    [self.avatarImageView addGestureRecognizer:avatarTapRecognizer];
+    
     UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
     
     [self addGestureRecognizer:longPressGestureRecognizer];
@@ -224,6 +227,10 @@
             self.tailLeftImaveView.hidden = NO;
         }
     }];
+}
+
+- (void) avatarTap:(id) sender {
+    [self.delegate koChatCellView:self avatarTap:self.entry sender:sender];
 }
 
 - (void) didLongPress:(id) sender {

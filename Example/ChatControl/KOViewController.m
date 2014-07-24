@@ -63,6 +63,10 @@
     }
 }
 
+- (void) koChatCellView:(KOChatCellView *)cell avatarTap:(id<KOChatEntryProtocol>)model sender:(id)sender {
+    NSLog(@"avatar tap");
+}
+
 - (void) sendButtonTouched:(id)sender textField:(UITextView *)textField {
     NSLog(@"Send button %@", textField);
     [self.chatVC finishSending];
