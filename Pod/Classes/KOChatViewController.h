@@ -32,4 +32,6 @@
 
 - (void) showJoin;
 - (void) hideJoin;
+
+- (void) finishSending;
 @end

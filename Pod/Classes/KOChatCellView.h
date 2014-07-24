@@ -39,10 +39,10 @@
 - (void) likeAction:(id) sender;
 - (void) dislikeAction:(id) sender;
 - (void) saveAction:(id) sender;
-- (void) spanAction:(id) sender;
-- (void) spamItem:(id) sender;
+- (void) spamAction:(id) sender;
 - (void) unspamAction:(id) sender;
 - (void) replyAction:(id) sender;
+- (void) deleteSaveAction:(id) sender;
 - (void) copy:(id)sender;
 
 @end

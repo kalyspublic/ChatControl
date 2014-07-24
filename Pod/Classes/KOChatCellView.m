@@ -288,6 +288,10 @@
     [self.delegate koChatCellView:self copyItem:sender];
 }
 
+- (void) deleteSaveAction:(id)sender {
+    [self.delegate koChatCellView:self deleteSaveItem:sender];
+}
+
 
 
 @end

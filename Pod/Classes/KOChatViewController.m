@@ -8,7 +8,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <QuartzCore/QuartzCore.h>
 #import <EDHexColor/UIColor+EDHexColor.h>
-#import <GCPlaceholderTextView/GCPlaceholderTextView.h>
+#import "GCPlaceholderTextView.h"
 
 #import "KOChatViewController.h"
 
@@ -34,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.messageTextField.placeholder = @"Write a comment";
     [self.tableView registerNib:[UINib nibWithNibName:@"KOChatCellView"
                                                bundle:nil] forCellReuseIdentifier:@"KOChatCell"];
     self.messageTextField.delegate = self;
@@ -230,6 +231,11 @@
                          [self.view layoutIfNeeded];
                      }
                      completion:nil];
+}
+
+- (void) finishSending {
+    self.messageTextField.text = @"";
+    [self setTextViewFrame:self.interfaceOrientation];
 }
 
 

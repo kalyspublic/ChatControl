@@ -29,7 +29,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Pod/Classes'
   s.resources = 'Pod/Assets/*.{png,xib}'
-  s.dependency 'GCPlaceholderTextView', '~> 1.0'
   s.dependency 'ReactiveCocoa', '~> 2.3'
   s.dependency 'AFNetworking', '~> 2.2'
   s.dependency 'EDHexColor', '~> 0.0'

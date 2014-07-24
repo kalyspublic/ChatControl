@@ -65,6 +65,7 @@
 
 - (void) sendButtonTouched:(id)sender textField:(UITextView *)textField {
     NSLog(@"Send button %@", textField);
+    [self.chatVC finishSending];
 }
 
 - (void) cameraButtonTouched:(id)sender {
