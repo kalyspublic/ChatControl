@@ -24,6 +24,11 @@
 
 @implementation KOViewController
 
+- (void) viewDidAppear:(BOOL)animated {
+    self.chatVC = nil;
+    [super viewDidAppear:animated];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

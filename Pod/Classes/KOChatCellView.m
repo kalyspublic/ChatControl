@@ -11,6 +11,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <EDHexColor/UIColor+EDHexColor.h>
+#import <libextobjc/EXTScope.h>
 
 #define koGreenBubbleColor @"def4c4"
 #define koBlueBubbleColor @"c4eaf5"
@@ -57,8 +58,6 @@
 @property (nonatomic, weak) IBOutlet UIImageView *tailGreenImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *tailLeftImaveView;
 
-@property (nonatomic, strong) RACSignal *statusSignal;
-
 @end
 
 @implementation KOChatCellView
@@ -85,6 +84,7 @@
 
 - (void) configureCell {
     
+    @weakify(self);
     self.spinner.transform = CGAffineTransformMakeScale(0.6, 0.6);
     self.bubbleView.layer.cornerRadius = 8;
     self.errorWhiteOverlay.layer.cornerRadius = 8;
@@ -102,6 +102,7 @@
     [self addGestureRecognizer:longPressGestureRecognizer];
     
     [[RACObserve(self, entry) ignore:nil] subscribeNext:^(id<KOChatEntryProtocol> entry) {
+        @strongify(self);
         // default values
         self.timeLabelRight.constant = 9;
         self.successfulImageView.hidden = YES;
@@ -196,13 +197,15 @@
     }];
     
     [[RACSignal combineLatest:@[[RACObserve(self, entry) ignore:nil], RACObserve(self, isOutgoing)]] subscribeNext:^(RACTuple *tuple) {
+        @strongify(self);
         id<KOChatEntryProtocol> entry = tuple.first;
         id isOutgoing = tuple.second;
         
         if ([isOutgoing boolValue]) {
             [self setMessageStatus:[entry sendingStatus]];
-            
+            @weakify(self);
             [[RACObserve(entry, sendingStatus) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id sendingStatusObj) {
+                @strongify(self);
                 KOMessageStatus sendingStatus = [sendingStatusObj integerValue];
                 [self setMessageStatus:sendingStatus];
             }];
@@ -218,6 +221,7 @@
     }];
     
     [RACObserve(self, isOutgoing) subscribeNext:^(id isOutgoing) {
+        @strongify(self);
         if ([isOutgoing boolValue]) {
             self.bubbleView.backgroundColor = [UIColor colorWithHexString:koGreenBubbleColor];
             self.tailGreenImageView.hidden = NO;
@@ -310,7 +314,5 @@
 - (void) deleteSaveAction:(id)sender {
     [self.delegate koChatCellView:self deleteSaveItem:sender];
 }
-
-
 
 @end

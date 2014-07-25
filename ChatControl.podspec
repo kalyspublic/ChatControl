@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
   s.dependency 'ReactiveCocoa', '~> 2.3'
   s.dependency 'AFNetworking', '~> 2.2'
   s.dependency 'EDHexColor', '~> 0.0'
+  s.dependency 'libextobjc'
   # s.dependency 'MBAutoGrowingTextView', '~> 0.1.0'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
