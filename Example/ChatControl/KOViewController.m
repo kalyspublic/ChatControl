@@ -52,6 +52,7 @@
 - (void) testButton:(id) sender {
     if (self.testEntry.sendingStatus == koMessageStatusSending) {
         self.testEntry.sendingStatus = koMessageStatusSuccessful;
+        [self.chatVC showInput];
         //[self.chatVC showLoadMore];
         //[self.chatVC hideJoin];
     } else if (self.testEntry.sendingStatus == koMessageStatusSuccessful) {
@@ -60,6 +61,7 @@
         //[self.chatVC showJoin];
     } else {
         self.testEntry.sendingStatus = koMessageStatusSending;
+        [self.chatVC hideInput];
     }
 }
 

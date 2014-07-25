@@ -156,6 +156,14 @@
 //    [self calculateTableViewInsets];
 }
 
+- (void) showInput {
+    self.keyboardAccessoryViewBottom.constant = 0;
+}
+
+- (void) hideInput {
+    self.keyboardAccessoryViewBottom.constant = -KOMessageFrameHeight;
+}
+
 - (void) calculateTableViewInsets {
     // table view insets depend on orientation, 'load more' visibility, 'join' visibility
     CGFloat topInset, bottomInset = 2, keyboardTopInset = 0.0, keyboardBottomInset = 2;

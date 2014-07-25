@@ -33,5 +33,8 @@
 - (void) showJoin;
 - (void) hideJoin;
 
+- (void) showInput;
+- (void) hideInput;
+
 - (void) finishSending;
 @end
