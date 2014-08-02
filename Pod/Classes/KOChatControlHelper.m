@@ -22,17 +22,23 @@
         }
         NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
         CGRect rect = [[entry text] boundingRectWithSize:CGSizeMake(textViewWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-        cellHeight += rect.size.height + 48;
+        cellHeight += rect.size.height + 34;
+        
         if (dateVisible) {
-            cellHeight += 16;
+            cellHeight += 18;
+        } else {
+            cellHeight += 4;
         }
     } else if ([entry type] == koChatEntryTypePhoto || [entry type] == koChatEntryTypeVideo) {
         cellHeight += 138 + 48;
     }
     
     if ([entry likesCount] != 0 || [entry dislikesCount] != 0) {
-        cellHeight += 20;
+        cellHeight += 22;
+    } else {
+        cellHeight += 6;
     }
+
     return cellHeight;
 }
 

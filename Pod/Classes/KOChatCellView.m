@@ -31,6 +31,7 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *timeLabelRight;
 @property (nonatomic, weak) IBOutlet UITextView *messageTextView;
 @property (nonatomic, weak) IBOutlet UIImageView *messageImageView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *messageImageViewBottom;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentViewBottom;
 @property (nonatomic, weak) IBOutlet UIImageView *playButtonImageView;
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
@@ -119,12 +120,14 @@
         
         if ([entry type] == koChatEntryTypeText) {
             self.messageImageView.hidden = YES;
+            self.messageImageViewBottom.constant = 0.0;
             self.messageTextView.hidden = NO;
             self.messageTextView.text = [entry text];
             self.messageTextView.textContainer.lineFragmentPadding = 0;
             self.messageTextView.textContainerInset = UIEdgeInsetsZero;
         } else if ([entry type] == koChatEntryTypePhoto || [entry type] == koChatEntryTypeVideo) {
             self.messageImageView.hidden = NO;
+            self.messageImageViewBottom.constant = 5.0;
             self.messageTextView.hidden = YES;
             [self.messageImageView setImageWithURL:[NSURL URLWithString:[entry thumbnailURL]]];
             
@@ -148,7 +151,7 @@
         }
         
         if ([entry likesCount] != 0 || [entry dislikesCount] != 0) {
-            self.contentViewBottom.constant = 20.0;
+            self.contentViewBottom.constant = 22.0;
             self.dislikesFrameLeft.constant = 85.0;
             
             if ([entry likesCount] != 0) {
@@ -185,7 +188,6 @@
             self.tailGreenImageView.alpha = 1;
             self.spanIconImageView.hidden = YES;
         }
-        
 
         if ([entry likesCount] >= koManyLikesCount) {
             self.bubbleView.backgroundColor = [UIColor colorWithHexString:koBlueBubbleColor];
@@ -213,7 +215,7 @@
     }];
     
     RAC(self.bubbleViewTop, constant) = [RACObserve(self, isDateVisible) map:^id(id isDateVisible) {
-        return [isDateVisible boolValue] ? @(20) : @(4);
+        return [isDateVisible boolValue] ? @(18) : @(4);
     }];
     
     RAC(self.dateLabel, hidden) = [RACObserve(self, isDateVisible) map:^id(id isDateVisible) {
