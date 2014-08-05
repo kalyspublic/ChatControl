@@ -20,9 +20,19 @@
         } else {
             textViewWidth = 255;
         }
-        NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
-        CGRect rect = [[entry text] boundingRectWithSize:CGSizeMake(textViewWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-        cellHeight += rect.size.height + 34;
+        
+        for (id element in [entry content]) {
+            if ([element isKindOfClass:[NSString class]]) {
+                NSString *text = element;
+                NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+                CGRect rect = [text boundingRectWithSize:CGSizeMake(textViewWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+                cellHeight += rect.size.height;
+            } else if ([element isKindOfClass:[UIImage class]]) {
+                cellHeight += 100;
+            }
+        }
+        
+        cellHeight += 34;
         
         if (dateVisible) {
             cellHeight += 18;

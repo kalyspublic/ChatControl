@@ -8,10 +8,13 @@
 
 #import "KOChatCellView.h"
 #import <QuartzCore/QuartzCore.h>
+#import <CoreText/CoreText.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <EDHexColor/UIColor+EDHexColor.h>
 #import <libextobjc/EXTScope.h>
+#import <UIImage-Resize/UIImage+Resize.h>
+#import "KOTextAttachment.h"
 
 #define koGreenBubbleColor @"def4c4"
 #define koBlueBubbleColor @"c4eaf5"
@@ -122,9 +125,43 @@
             self.messageImageView.hidden = YES;
             self.messageImageViewBottom.constant = 0.0;
             self.messageTextView.hidden = NO;
-            self.messageTextView.text = [entry text];
+            // self.messageTextView.text = [entry text];
             self.messageTextView.textContainer.lineFragmentPadding = 0;
             self.messageTextView.textContainerInset = UIEdgeInsetsZero;
+            
+            BOOL firstString = YES;
+            
+            NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] init];
+            for (id element in [entry content]) {
+                if ([element isKindOfClass:[NSString class]]) {
+                    NSString *textString;
+                    if (firstString) {
+                        firstString = NO;
+                        textString = element;
+                    } else {
+                        textString = [NSString stringWithFormat:@"\n%@", element];
+                    }
+                    NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:textString attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]}];
+                    [attrString appendAttributedString:textAttrString];
+                } else if ([element isKindOfClass:[UIImage class]]) {
+                    NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]}];
+                    [attrString appendAttributedString:textAttrString];
+                    
+                    
+                    UIImage *image = element;
+                    NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
+                    textAttachment.image = [image resizedImageToFitInSize:CGSizeMake(247, 100) scaleIfSmaller:NO];
+                    NSMutableAttributedString *imageAttrString = [[NSAttributedString attributedStringWithAttachment:textAttachment] mutableCopy];
+                    
+                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init] ;
+                    
+                    // [paragraphStyle setAlignment:NSTextAlignmentCenter];
+                    [imageAttrString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [imageAttrString length])];
+                    [attrString appendAttributedString:imageAttrString];
+                }
+            }
+            self.messageTextView.attributedText = attrString;
+            
         } else if ([entry type] == koChatEntryTypePhoto || [entry type] == koChatEntryTypeVideo) {
             self.messageImageView.hidden = NO;
             self.messageImageViewBottom.constant = 5.0;
@@ -208,7 +245,7 @@
             @weakify(self);
             [[RACObserve(entry, sendingStatus) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id sendingStatusObj) {
                 @strongify(self);
-                KOMessageStatus sendingStatus = [sendingStatusObj integerValue];
+                KOMessageStatus sendingStatus = (KOMessageStatus)[sendingStatusObj integerValue];
                 [self setMessageStatus:sendingStatus];
             }];
         }

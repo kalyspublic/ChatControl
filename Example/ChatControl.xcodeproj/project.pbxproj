@@ -17,16 +17,17 @@
 		6003F59E195388D20070C39A /* KOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* KOAppDelegate.m */; };
 		6003F5A1195388D20070C39A /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6003F59F195388D20070C39A /* Main_iPhone.storyboard */; };
 		6003F5A4195388D20070C39A /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A2195388D20070C39A /* Main_iPad.storyboard */; };
-		6003F5A7195388D20070C39A /* KOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* KOViewController.m */; };
+		6003F5A7195388D20070C39A /* MYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* MYViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		EE1B87231972459000F2542B /* KOChatEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1B87221972459000F2542B /* KOChatEntry.m */; };
+		EE1B87231972459000F2542B /* MYChatEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1B87221972459000F2542B /* MYChatEntry.m */; };
 		EE1B8725197371B700F2542B /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = EE1B8724197371B700F2542B /* avatar.png */; };
 		EE1B87271973761A00F2542B /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EE1B87261973761A00F2542B /* bg@2x.png */; };
+		EE3D0B63198E991400F4E0C1 /* photo1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EE3D0B62198E991400F4E0C1 /* photo1.jpg */; };
 		EE678718197CE5B7000B4670 /* KOOloloViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE678717197CE5B7000B4670 /* KOOloloViewController.m */; };
 		EE67871C197E696E000B4670 /* MYChatCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE67871B197E696E000B4670 /* MYChatCellView.m */; };
 		EE73B1941977D4C20061CAC0 /* MYChatDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EE73B1931977D4C20061CAC0 /* MYChatDataSource.m */; };
@@ -57,8 +58,8 @@
 		6003F59D195388D20070C39A /* KOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KOAppDelegate.m; sourceTree = "<group>"; };
 		6003F5A0195388D20070C39A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		6003F5A3195388D20070C39A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* KOViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KOViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* KOViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KOViewController.m; sourceTree = "<group>"; };
+		6003F5A5195388D20070C39A /* MYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYViewController.h; sourceTree = "<group>"; };
+		6003F5A6195388D20070C39A /* MYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MYViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -71,10 +72,11 @@
 		AAAB46ED7CD844668B0A227F /* libPods-ChatControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChatControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C82082E0193C4C478A9AC9BF /* Pods-Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.xcconfig"; path = "Pods/Pods-Tests.xcconfig"; sourceTree = "<group>"; };
 		D21EF63500F04C0CADB63649 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		EE1B87211972459000F2542B /* KOChatEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOChatEntry.h; sourceTree = "<group>"; };
-		EE1B87221972459000F2542B /* KOChatEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOChatEntry.m; sourceTree = "<group>"; };
+		EE1B87211972459000F2542B /* MYChatEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYChatEntry.h; sourceTree = "<group>"; };
+		EE1B87221972459000F2542B /* MYChatEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYChatEntry.m; sourceTree = "<group>"; };
 		EE1B8724197371B700F2542B /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
 		EE1B87261973761A00F2542B /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
+		EE3D0B62198E991400F4E0C1 /* photo1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo1.jpg; sourceTree = "<group>"; };
 		EE678716197CE5B7000B4670 /* KOOloloViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOOloloViewController.h; sourceTree = "<group>"; };
 		EE678717197CE5B7000B4670 /* KOOloloViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOOloloViewController.m; sourceTree = "<group>"; };
 		EE67871A197E696E000B4670 /* MYChatCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYChatCellView.h; sourceTree = "<group>"; };
@@ -147,14 +149,15 @@
 		6003F593195388D20070C39A /* ChatControl */ = {
 			isa = PBXGroup;
 			children = (
+				EE3D0B62198E991400F4E0C1 /* photo1.jpg */,
 				EE1B87261973761A00F2542B /* bg@2x.png */,
 				EE1B8724197371B700F2542B /* avatar.png */,
 				6003F59F195388D20070C39A /* Main_iPhone.storyboard */,
 				6003F5A2195388D20070C39A /* Main_iPad.storyboard */,
-				6003F5A5195388D20070C39A /* KOViewController.h */,
-				6003F5A6195388D20070C39A /* KOViewController.m */,
-				EE1B87211972459000F2542B /* KOChatEntry.h */,
-				EE1B87221972459000F2542B /* KOChatEntry.m */,
+				6003F5A5195388D20070C39A /* MYViewController.h */,
+				6003F5A6195388D20070C39A /* MYViewController.m */,
+				EE1B87211972459000F2542B /* MYChatEntry.h */,
+				EE1B87221972459000F2542B /* MYChatEntry.m */,
 				6003F59C195388D20070C39A /* KOAppDelegate.h */,
 				6003F59D195388D20070C39A /* KOAppDelegate.m */,
 				EE73B1921977D4C20061CAC0 /* MYChatDataSource.h */,
@@ -296,6 +299,7 @@
 				6003F5A4195388D20070C39A /* Main_iPad.storyboard in Resources */,
 				EE1B8725197371B700F2542B /* avatar.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				EE3D0B63198E991400F4E0C1 /* photo1.jpg in Resources */,
 				EE1B87271973761A00F2542B /* bg@2x.png in Resources */,
 				6003F5A1195388D20070C39A /* Main_iPhone.storyboard in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -383,8 +387,8 @@
 				EE678718197CE5B7000B4670 /* KOOloloViewController.m in Sources */,
 				EE67871C197E696E000B4670 /* MYChatCellView.m in Sources */,
 				6003F59E195388D20070C39A /* KOAppDelegate.m in Sources */,
-				EE1B87231972459000F2542B /* KOChatEntry.m in Sources */,
-				6003F5A7195388D20070C39A /* KOViewController.m in Sources */,
+				EE1B87231972459000F2542B /* MYChatEntry.m in Sources */,
+				6003F5A7195388D20070C39A /* MYViewController.m in Sources */,
 				EE73B1941977D4C20061CAC0 /* MYChatDataSource.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);

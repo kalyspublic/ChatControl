@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ChatControl"
-  s.version          = "0.1.0"
+  s.version          = "1.0.0"
   s.summary          = "A short description of ChatControl."
   s.description      = <<-DESC
                        An optional longer description of ChatControl
@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
   s.dependency 'ReactiveCocoa', '~> 2.3'
   s.dependency 'AFNetworking', '~> 2.2'
   s.dependency 'EDHexColor', '~> 0.0'
+  s.dependency 'UIImage-Resize'
   s.dependency 'libextobjc'
   # s.dependency 'MBAutoGrowingTextView', '~> 0.1.0'
 

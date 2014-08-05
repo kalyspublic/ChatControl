@@ -7,22 +7,24 @@
 //
 
 #import <ChatControl/KOChatEntryDelegate.h>
+#import <ChatControl/KOChatControlHelper.h>
+#import <ChatControl/KOTextAttachment.h>
 #import <EDHexColor/UIColor+EDHexColor.h>
-#import "KOViewController.h"
-#import "KOChatEntry.h"
+#import "MYViewController.h"
+#import "MYChatEntry.h"
 #import "MYChatDataSource.h"
 #import "KOOloloViewController.h"
 
-@interface KOViewController ()
+@interface MYViewController ()
 
 @property (nonatomic, strong) NSArray *entries;
 @property (nonatomic, strong) NSArray *bubbleColors;
-@property (nonatomic, strong) KOChatEntry *testEntry;
+@property (nonatomic, strong) MYChatEntry *testEntry;
 @property (nonatomic, strong) MYChatDataSource *chatDataSource;
 @property (nonatomic, strong) KOChatViewController *chatVC;
 @end
 
-@implementation KOViewController
+@implementation MYViewController
 
 - (void) viewDidAppear:(BOOL)animated {
     self.chatVC = nil;
@@ -40,7 +42,6 @@
     
     // chat VC init code
     self.chatVC = [[KOOloloViewController alloc] initWithNibName:@"KOChatViewController" bundle:nil];
-    self.chatVC.messageFormDelegate = self;
     self.chatVC.delegate = self;
 
     self.chatVC.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
@@ -74,12 +75,17 @@
     NSLog(@"avatar tap");
 }
 
-- (void) sendButtonTouched:(id)sender textField:(UITextView *)textField {
+- (void) koChatViewController:(KOChatViewController *)koChatViewController sendButtonTouched:(id)sender textField:(UITextView *)textField {
     NSLog(@"Send button %@", textField);
-    [self.chatVC finishSending];
+    NSArray *elements = koChatViewController.textViewElements;
+    NSLog(@"%@", elements);
+    UIImage *originalImage = elements.lastObject;
+    [koChatViewController finishSending];
 }
 
-- (void) cameraButtonTouched:(id)sender {
+- (void) koChatViewController:(KOChatViewController *)koChatViewController cameraButtonTouched:(id)sender textField:(UITextView *)textField {
+    [koChatViewController appendImageToTextView:[UIImage imageNamed:@"photo1.jpg"] withImageIdentifier:@"ololo"];
+    [textField becomeFirstResponder];
     NSLog(@"Camera button tap");
 }
 
@@ -109,87 +115,78 @@
 }
 
 - (NSArray *) prepareChatEntries {
-    KOChatEntry *entry = [KOChatEntry new];
+    MYChatEntry *entry = [MYChatEntry new];
     entry.type = koChatEntryTypeText;
-    entry.text = @"Hello.\nHow are you?";
+    entry.content = @[@"Hello.\nHow are you?", [UIImage imageNamed:@"photo1.jpg"], @"Lol.", @"It works"];
     entry.isOutgoing = YES;
     entry.username = @"Kalys Osmonov";
     entry.time = @"11:30";
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    KOChatEntry *entry1 = entry;
+    MYChatEntry *entry1 = entry;
+    
+    entry = [MYChatEntry new];
+    entry.type = koChatEntryTypeText;
+    entry.content = @[@"Hello.\nHow are you?", [UIImage imageNamed:@"photo1.jpg"], @"Lol.", @"It works"];
+    entry.isOutgoing = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    MYChatEntry *entry2 = entry;
+    
+    entry = [MYChatEntry new];
+    entry.type = koChatEntryTypeText;
+    entry.content = @[@"Hello.\nHow are you?", [UIImage imageNamed:@"photo1.jpg"], @"Lol.", @"It works"];
+    entry.isOutgoing = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    MYChatEntry *entry3 = entry;
+    
+    entry = [MYChatEntry new];
+    entry.type = koChatEntryTypeText;
+    entry.content = @[@"Hello.\nHow are you?", [UIImage imageNamed:@"photo1.jpg"], @"Lol.", @"It works"];
+    entry.isOutgoing = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    MYChatEntry *entry4 = entry;
+    
+    entry = [MYChatEntry new];
+    entry.type = koChatEntryTypeText;
+    entry.content = @[@"Hello.\nHow are you?", [UIImage imageNamed:@"photo1.jpg"], @"Lol.", @"It works"];
+    entry.isOutgoing = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    MYChatEntry *entry5 = entry;
+    
+    entry = [MYChatEntry new];
+    entry.type = koChatEntryTypeText;
+    entry.content = @[@"Hello.\nHow are you?", [UIImage imageNamed:@"photo1.jpg"], @"Lol.", @"It works"];
+    entry.isOutgoing = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    MYChatEntry *entry6 = entry;
+    
+    entry = [MYChatEntry new];
+    entry.type = koChatEntryTypeText;
+    entry.content = @[@"Hello.\nHow are you?", [UIImage imageNamed:@"photo1.jpg"], @"Lol.", @"It works"];
+    entry.isOutgoing = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    MYChatEntry *entry7 = entry;
+    
 
-    entry = [KOChatEntry new];
-    entry.type = koChatEntryTypeText;
-    entry.text = @"Hey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!\nHey!";
-    entry.isOutgoing = NO;
-    entry.isBookmarked = YES;
-    entry.username = @"Misha Sytchev";
-    entry.date = @"Today";
-    entry.time = @"12:44";
-    entry.likesCount = 10;
-    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    KOChatEntry *entry2 = entry;
-
-    entry = [KOChatEntry new];
-    entry.type = koChatEntryTypeText;
-    entry.text = @"I found a contacts of your studio on the internetz. I'm looking for a a talents who will develop me an iOS application that will have a chat listing that will have a cell that will have a text view that will support various orientaton and handle text width correctly. That's it.";
-    entry.isOutgoing = YES;
-    entry.username = @"Kalys Osmonov";
-    entry.time = @"11:30";
-    entry.date = @"Today";
-    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.dislikesCount = 5;
-    KOChatEntry *entry3 = entry;
-    self.testEntry = entry3;
-    
-    entry = [KOChatEntry new];
-    entry.type = koChatEntryTypePhoto;
-    entry.thumbnailURL = @"http://i.imgur.com/G5w2iCk.jpg";
-    entry.username = @"Misha Sytchev";
-    entry.time = @"11:30";
-    entry.date = @"Today";
-    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.likesCount = 2;
-    KOChatEntry *entry4 = entry;
-    
-    entry = [KOChatEntry new];
-    entry.type = koChatEntryTypeVideo;
-    entry.thumbnailURL = @"http://i.imgur.com/yBZozU4.jpg";
-    entry.username = @"Misha Sytchev";
-    entry.sendingStatus = koMessageStatusSuccessful;
-    entry.time = @"11:30";
-    entry.date = @"Today";
-    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.likesCount = 2;
-    KOChatEntry *entry405 = entry;
-    
-    entry = [KOChatEntry new];
-    entry.type = koChatEntryTypeText;
-    entry.text = @"Hello.\nHow are you?";
-    entry.isOutgoing = YES;
-    entry.username = @"Kalys Osmonov";
-    entry.time = @"11:30";
-    entry.date = @"Today";
-    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.likesCount = 230;
-    entry.dislikesCount = 5;
-    KOChatEntry *entry41 = entry;
-    
-    entry = [KOChatEntry new];
-    entry.type = koChatEntryTypeText;
-    entry.text = @"Hello.\nHow are you?";
-    entry.isOutgoing = YES;
-    entry.username = @"Kalys Osmonov";
-    entry.time = @"11:30";
-    entry.date = @"Today";
-    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
-    entry.likesCount = 0;
-    entry.dislikesCount = 50;
-    entry.isSpamed = YES;
-    KOChatEntry *entry5 = entry;
-
-    return @[entry1, entry2, entry3, entry4,entry405, entry41, entry5];
+    return @[entry1, entry2, entry3, entry4, entry5, entry6, entry7];
 }
 
 @end

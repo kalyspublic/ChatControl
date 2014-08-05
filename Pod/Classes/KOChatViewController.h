@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KOKeyboardAccessoryViewDelegate.h"
 #import "KOChatTableViewHeader.h"
 #import "KOChatTableViewFooter.h"
 
@@ -17,6 +16,8 @@
 
 - (void) koChatViewController:(KOChatViewController *)koChatViewController loadMoreDidTap:(id) sender;
 - (void) koChatViewController:(KOChatViewController *)koChatViewController joinDidTap:(id) sender;
+- (void) koChatViewController:(KOChatViewController *)koChatViewController cameraButtonTouched:(id) sender textField:(UITextView *)textField;
+- (void) koChatViewController:(KOChatViewController *)koChatViewController sendButtonTouched:(id) sender textField:(UITextView *)textField;
 
 @end
 
@@ -24,7 +25,6 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
-@property (nonatomic, weak) id<KOKeyboardAccessoryViewDelegate> messageFormDelegate;
 @property (nonatomic, weak) id<KOChatViewControllerDelegate> delegate;
 
 - (void) showLoadMore;
@@ -37,4 +37,8 @@
 - (void) hideInput;
 
 - (void) finishSending;
+- (void) updateTextFieldFrameWithDelay;
+
+- (NSArray *) textViewElements;
+- (void) appendImageToTextView:(UIImage *)image withImageIdentifier:(NSString *)identifier;
 @end

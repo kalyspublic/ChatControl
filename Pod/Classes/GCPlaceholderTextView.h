@@ -17,4 +17,6 @@
 - (void) beginEditing:(NSNotification*) notification;
 - (void) endEditing:(NSNotification*) notification;
 
+- (void) clearPlaceholder;
+
 @end

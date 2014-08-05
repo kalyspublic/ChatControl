@@ -39,5 +39,5 @@ typedef enum {
 @property (nonatomic, readonly) KOMessageStatus sendingStatus;
 @property (nonatomic, readonly) NSInteger likesCount;
 @property (nonatomic, readonly) NSInteger dislikesCount;
-
+@property (nonatomic, readonly) NSArray *content;
 @end

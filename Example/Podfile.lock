@@ -20,11 +20,12 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - ChatControl (0.1.0):
+  - ChatControl (1.0.0):
     - AFNetworking (~> 2.2)
     - EDHexColor (~> 0.0)
     - libextobjc
     - ReactiveCocoa (~> 2.3)
+    - UIImage-Resize
   - EDHexColor (0.0.1)
   - Expecta (0.3.1)
   - EXPMatchers+FBSnapshotTest (1.1.0):
@@ -74,6 +75,7 @@ PODS:
   - ReactiveCocoa/UI (2.3.1):
     - ReactiveCocoa/Core
   - Specta (0.2.1)
+  - UIImage-Resize (1.0.1)
 
 DEPENDENCIES:
   - ChatControl (from `../`)
@@ -88,7 +90,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  ChatControl: 90a3d9a0d853464e9e39f623cd72d6fdb164cb51
+  ChatControl: 3d19d6222044fe799c3ee08d71e716b1369a1860
   EDHexColor: 1593003ed93fdd7680949fa6206212ce05ad58a5
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   EXPMatchers+FBSnapshotTest: 3c48e8a29a445476fe2d72d7da45dfdd765b5f55
@@ -96,5 +98,6 @@ SPEC CHECKSUMS:
   libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
   Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
+  UIImage-Resize: fc57263eed2cd98f74e5ba4848bedae979a0bdf0
 
 COCOAPODS: 0.33.1

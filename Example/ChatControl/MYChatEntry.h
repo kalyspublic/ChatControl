@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ChatControl/KOChatEntryDelegate.h>
 
-@interface KOChatEntry : NSObject<KOChatEntryProtocol>
+@interface MYChatEntry : NSObject<KOChatEntryProtocol>
 
 @property (nonatomic, assign) KOChatEntryType type;
 @property (nonatomic, strong) NSString *text;
@@ -26,5 +26,6 @@
 @property (nonatomic, assign) NSInteger likesCount;
 @property (nonatomic, assign) NSInteger dislikesCount;
 @property (nonatomic, strong) NSString *thumbnailURL;
+@property (nonatomic, strong) NSArray *content;
 
 @end

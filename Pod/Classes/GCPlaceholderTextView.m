@@ -106,6 +106,12 @@
     }
 }
 
+- (void) clearPlaceholder {
+    if ([self.realText isEqualToString:self.placeholder]) {
+        self.text = @"";
+    }
+}
+
 #pragma mark -
 #pragma mark Dealloc
 

@@ -8,7 +8,9 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <QuartzCore/QuartzCore.h>
 #import <EDHexColor/UIColor+EDHexColor.h>
+#import <UIImage-Resize/UIImage+Resize.h>
 #import "GCPlaceholderTextView.h"
+#import "KOTextAttachment.h"
 
 #import "KOChatViewController.h"
 
@@ -188,11 +190,11 @@
 }
 
 - (IBAction)cameraTap:(id)sender {
-    [self.messageFormDelegate cameraButtonTouched:sender];
+    [self.delegate koChatViewController:self cameraButtonTouched:sender textField:self.messageTextField];
 }
 
 - (IBAction)sendtap:(id)sender {
-    [self.messageFormDelegate sendButtonTouched:sender textField:self.messageTextField];
+    [self.delegate koChatViewController:self sendButtonTouched:sender textField:self.messageTextField];
 }
 
 - (void) textViewDidChange:(UITextView *)textView {
@@ -200,12 +202,7 @@
 }
 
 - (void) setTextViewFrame:(UIInterfaceOrientation) orientation {
-    NSString *text = [self.messageTextField.text stringByAppendingString:@"\naeou"];
-    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0]};
-    CGRect rect = [text boundingRectWithSize:CGSizeMake(self.messageTextField.frame.size.width, MAXFLOAT)
-                                     options:NSStringDrawingUsesLineFragmentOrigin
-                                  attributes:attributes
-                                     context:nil];
+    CGSize textViewContentSize = self.messageTextField.contentSize;
 
     CGFloat limit, newHeight;
     if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
@@ -214,8 +211,8 @@
         limit = 200;
     }
     
-    if (rect.size.height < limit) {
-        newHeight = rect.size.height + 12;
+    if (textViewContentSize.height < limit) {
+        newHeight = textViewContentSize.height + 12;
     } else {
         newHeight = limit;
     }
@@ -243,7 +240,7 @@
 
 - (void) finishSending {
     self.messageTextField.text = @"";
-    [self setTextViewFrame:self.interfaceOrientation];
+    [self updateTextFieldFrameWithDelay];
 }
 
 
@@ -261,6 +258,51 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardDidHideNotification
                                                   object:nil];
+}
+
+- (void) updateTextFieldFrame {
+    [self setTextViewFrame:self.interfaceOrientation];
+}
+
+- (void) updateTextFieldFrameWithDelay {
+    [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(updateTextFieldFrame) userInfo:nil repeats:NO];
+}
+
+- (NSArray *) textViewElements {
+    NSAttributedString *attributedString = self.messageTextField.attributedText;
+    
+    NSMutableArray *elements = [NSMutableArray new];
+    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:0 usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
+        if (![[[attributedString string] substringWithRange:range] isEqualToString:@"\n"]) {
+            if ([attrs.allKeys containsObject:@"NSAttachment"]) {
+                KOTextAttachment *textAttachment = [attrs objectForKey:@"NSAttachment"];
+                [elements addObject: textAttachment.originalImage];
+            } else {
+                [elements addObject:[[attributedString string] substringWithRange:range]];
+            }
+        }
+    }];
+    return elements;
+}
+
+- (void) appendImageToTextView:(UIImage *)image withImageIdentifier:(NSString *)identifier {
+    [self.messageTextField clearPlaceholder];
+    
+    NSMutableAttributedString *attrString = [self.messageTextField.attributedText mutableCopy];
+    
+    if (![self.messageTextField.text isEqualToString:@""]) {
+        NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: [UIFont     systemFontOfSize:14.0]}];
+        [attrString appendAttributedString:textAttrString];
+    }
+    
+    KOTextAttachment *textAttachment = [[KOTextAttachment alloc] init];
+    textAttachment.originalImage = image;
+    textAttachment.image = [image resizedImageToFitInSize:CGSizeMake(247, 100) scaleIfSmaller:NO];
+    NSMutableAttributedString *imageAttrString = [[NSAttributedString attributedStringWithAttachment:textAttachment] mutableCopy];
+    
+    [attrString appendAttributedString:imageAttrString];
+    self.messageTextField.attributedText = attrString;
+    [self updateTextFieldFrameWithDelay];
 }
 
 @end

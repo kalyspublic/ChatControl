@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Kalys Osmonov. All rights reserved.
 //
 
-#import "KOChatEntry.h"
+#import "MYChatEntry.h"
 
-@implementation KOChatEntry
+@implementation MYChatEntry
 
 @end

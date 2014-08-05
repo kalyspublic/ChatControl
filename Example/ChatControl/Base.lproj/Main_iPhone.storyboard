@@ -22,7 +22,7 @@
         <!--View Controller-->
         <scene sceneID="Idn-2T-aCx">
             <objects>
-                <viewController id="g9y-oY-3xW" customClass="KOViewController" sceneMemberID="viewController">
+                <viewController id="g9y-oY-3xW" customClass="MYViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QfM-G0-MuO"/>
                         <viewControllerLayoutGuide type="bottom" id="xEB-Dn-PHP"/>
