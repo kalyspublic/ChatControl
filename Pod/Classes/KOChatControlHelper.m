@@ -7,40 +7,38 @@
 //
 
 #import "KOChatControlHelper.h"
+#import "KOChatElementsView.h"
 
 @implementation KOChatControlHelper
 
 + (CGFloat) cellHeight:(id<KOChatEntryProtocol>)entry dateVisible:(BOOL)dateVisible  {
     float cellHeight = 0.0;
-    if ([entry type] == koChatEntryTypeText) {
-        UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-        CGFloat textViewWidth;
-        if (UIDeviceOrientationIsLandscape(deviceOrientation)) {
-            textViewWidth = 565;
-        } else {
-            textViewWidth = 255;
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    CGFloat textViewWidth;
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+    if (UIDeviceOrientationIsLandscape(deviceOrientation)) {
+        textViewWidth = 565;
+    } else {
+        textViewWidth = 255;
+    }
+    
+    
+    for (id<KOChatElementProtocol> element in [entry content]) {
+        if ([element type] == koChatEntryTypeText) {
+            CGRect textFrame = [[element text] boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+            cellHeight += textFrame.size.height;
+        } else if ([element type] == koChatEntryTypePhoto || [element type] == koChatEntryTypeVideo) {
+            cellHeight += koMediaElementHeight;
+            cellHeight += koMediaElementBottomPadding;
         }
-        
-        for (id element in [entry content]) {
-            if ([element isKindOfClass:[NSString class]]) {
-                NSString *text = element;
-                NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
-                CGRect rect = [text boundingRectWithSize:CGSizeMake(textViewWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-                cellHeight += rect.size.height;
-            } else if ([element isKindOfClass:[UIImage class]]) {
-                cellHeight += 100;
-            }
-        }
-        
-        cellHeight += 34;
-        
-        if (dateVisible) {
-            cellHeight += 18;
-        } else {
-            cellHeight += 4;
-        }
-    } else if ([entry type] == koChatEntryTypePhoto || [entry type] == koChatEntryTypeVideo) {
-        cellHeight += 138 + 48;
+    }
+    
+    cellHeight += 34;
+    
+    if (dateVisible) {
+        cellHeight += 18;
+    } else {
+        cellHeight += 4;
     }
     
     if ([entry likesCount] != 0 || [entry dislikesCount] != 0) {

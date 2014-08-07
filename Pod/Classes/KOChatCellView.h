@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "KOChatEntryDelegate.h"
+#import "KOChatElementsView.h"
 
 @class KOChatCellView;
 
 @protocol  KOChatCellViewDelegate <NSObject>
 
-- (void) koChatCellView:(KOChatCellView *)cell photoTap:(id<KOChatEntryProtocol>)model sender:(id) sender;
+- (void) koChatCellView:(KOChatCellView *)cell mediaTapOnElement:(id<KOChatElementProtocol>)element model:(id<KOChatEntryProtocol>)model sender:(id)sender;
 - (void) koChatCellView:(KOChatCellView *)cell errorCellTap:(id<KOChatEntryProtocol>)model sender:(id) sender;
 - (void) koChatCellView:(KOChatCellView *)cell didLongPress:(id<KOChatEntryProtocol>)model sender:(id)sender;
 - (BOOL) koChatCellView:(KOChatCellView *)cell canPerformAction:(SEL)action withSender:(id)sender;
@@ -30,7 +31,7 @@
 
 @end
 
-@interface KOChatCellView : UITableViewCell
+@interface KOChatCellView : UITableViewCell<KOChatElementsViewDelegate>
 
 @property (nonatomic, strong) id<KOChatEntryProtocol> entry;
 @property (nonatomic, weak) id<KOChatCellViewDelegate> delegate;

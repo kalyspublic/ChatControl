@@ -31,6 +31,8 @@
 		EE678718197CE5B7000B4670 /* KOOloloViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE678717197CE5B7000B4670 /* KOOloloViewController.m */; };
 		EE67871C197E696E000B4670 /* MYChatCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE67871B197E696E000B4670 /* MYChatCellView.m */; };
 		EE73B1941977D4C20061CAC0 /* MYChatDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EE73B1931977D4C20061CAC0 /* MYChatDataSource.m */; };
+		EEA895CD1992613100E7B67E /* MYChatEntryElement.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA895CC1992613100E7B67E /* MYChatEntryElement.m */; };
+		EEA895D7199385A800E7B67E /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EEA895D6199385A800E7B67E /* test@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,9 @@
 		EE67871B197E696E000B4670 /* MYChatCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYChatCellView.m; sourceTree = "<group>"; };
 		EE73B1921977D4C20061CAC0 /* MYChatDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYChatDataSource.h; sourceTree = "<group>"; };
 		EE73B1931977D4C20061CAC0 /* MYChatDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYChatDataSource.m; sourceTree = "<group>"; };
+		EEA895CB1992613100E7B67E /* MYChatEntryElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYChatEntryElement.h; sourceTree = "<group>"; };
+		EEA895CC1992613100E7B67E /* MYChatEntryElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYChatEntryElement.m; sourceTree = "<group>"; };
+		EEA895D6199385A800E7B67E /* test@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +154,7 @@
 		6003F593195388D20070C39A /* ChatControl */ = {
 			isa = PBXGroup;
 			children = (
+				EEA895D6199385A800E7B67E /* test@2x.png */,
 				EE3D0B62198E991400F4E0C1 /* photo1.jpg */,
 				EE1B87261973761A00F2542B /* bg@2x.png */,
 				EE1B8724197371B700F2542B /* avatar.png */,
@@ -158,6 +164,8 @@
 				6003F5A6195388D20070C39A /* MYViewController.m */,
 				EE1B87211972459000F2542B /* MYChatEntry.h */,
 				EE1B87221972459000F2542B /* MYChatEntry.m */,
+				EEA895CB1992613100E7B67E /* MYChatEntryElement.h */,
+				EEA895CC1992613100E7B67E /* MYChatEntryElement.m */,
 				6003F59C195388D20070C39A /* KOAppDelegate.h */,
 				6003F59D195388D20070C39A /* KOAppDelegate.m */,
 				EE73B1921977D4C20061CAC0 /* MYChatDataSource.h */,
@@ -296,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEA895D7199385A800E7B67E /* test@2x.png in Resources */,
 				6003F5A4195388D20070C39A /* Main_iPad.storyboard in Resources */,
 				EE1B8725197371B700F2542B /* avatar.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
@@ -385,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE678718197CE5B7000B4670 /* KOOloloViewController.m in Sources */,
+				EEA895CD1992613100E7B67E /* MYChatEntryElement.m in Sources */,
 				EE67871C197E696E000B4670 /* MYChatCellView.m in Sources */,
 				6003F59E195388D20070C39A /* KOAppDelegate.m in Sources */,
 				EE1B87231972459000F2542B /* MYChatEntry.m in Sources */,

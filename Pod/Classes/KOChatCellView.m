@@ -32,11 +32,10 @@
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *timeLabelRight;
-@property (nonatomic, weak) IBOutlet UITextView *messageTextView;
-@property (nonatomic, weak) IBOutlet UIImageView *messageImageView;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *messageImageViewBottom;
+
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentViewBottom;
-@property (nonatomic, weak) IBOutlet UIImageView *playButtonImageView;
+@property (nonatomic, weak) IBOutlet KOChatElementsView *elementsView;
+
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *bookmarkImageView;
@@ -87,7 +86,7 @@
 }
 
 - (void) configureCell {
-    
+    self.elementsView.elementsViewDelegate = self;
     @weakify(self);
     self.spinner.transform = CGAffineTransformMakeScale(0.6, 0.6);
     self.bubbleView.layer.cornerRadius = 8;
@@ -110,7 +109,6 @@
         // default values
         self.timeLabelRight.constant = 9;
         self.successfulImageView.hidden = YES;
-        self.playButtonImageView.hidden = YES;
         
         self.usernameLabel.text = [entry username];
         self.timeLabel.text = [entry time];
@@ -121,64 +119,7 @@
         self.avatarImageView.layer.cornerRadius = 17;
         self.avatarImageView.layer.masksToBounds = YES;
         
-        if ([entry type] == koChatEntryTypeText) {
-            self.messageImageView.hidden = YES;
-            self.messageImageViewBottom.constant = 0.0;
-            self.messageTextView.hidden = NO;
-            // self.messageTextView.text = [entry text];
-            self.messageTextView.textContainer.lineFragmentPadding = 0;
-            self.messageTextView.textContainerInset = UIEdgeInsetsZero;
-            
-            BOOL firstString = YES;
-            
-            NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] init];
-            for (id element in [entry content]) {
-                if ([element isKindOfClass:[NSString class]]) {
-                    NSString *textString;
-                    if (firstString) {
-                        firstString = NO;
-                        textString = element;
-                    } else {
-                        textString = [NSString stringWithFormat:@"\n%@", element];
-                    }
-                    NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:textString attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]}];
-                    [attrString appendAttributedString:textAttrString];
-                } else if ([element isKindOfClass:[UIImage class]]) {
-                    NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]}];
-                    [attrString appendAttributedString:textAttrString];
-                    
-                    
-                    UIImage *image = element;
-                    NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
-                    textAttachment.image = [image resizedImageToFitInSize:CGSizeMake(247, 100) scaleIfSmaller:NO];
-                    NSMutableAttributedString *imageAttrString = [[NSAttributedString attributedStringWithAttachment:textAttachment] mutableCopy];
-                    
-                    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init] ;
-                    
-                    // [paragraphStyle setAlignment:NSTextAlignmentCenter];
-                    [imageAttrString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [imageAttrString length])];
-                    [attrString appendAttributedString:imageAttrString];
-                }
-            }
-            self.messageTextView.attributedText = attrString;
-            
-        } else if ([entry type] == koChatEntryTypePhoto || [entry type] == koChatEntryTypeVideo) {
-            self.messageImageView.hidden = NO;
-            self.messageImageViewBottom.constant = 5.0;
-            self.messageTextView.hidden = YES;
-            [self.messageImageView setImageWithURL:[NSURL URLWithString:[entry thumbnailURL]]];
-            
-            if ([entry type] == koChatEntryTypeVideo) {
-                self.playButtonImageView.hidden = NO;
-            }
-            
-            for (UIGestureRecognizer *recognizer in self.messageImageView.gestureRecognizers) {
-                [self.messageImageView removeGestureRecognizer:recognizer];
-            }
-            
-            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
-            [self.messageImageView addGestureRecognizer:tapRecognizer];
-        }
+        self.elementsView.elements = [entry content];
         
         if ([entry isBookmarked]) {
             self.bookmarkImageView.hidden = NO;
@@ -225,7 +166,7 @@
             self.tailGreenImageView.alpha = 1;
             self.spanIconImageView.hidden = YES;
         }
-
+        
         if ([entry likesCount] >= koManyLikesCount) {
             self.bubbleView.backgroundColor = [UIColor colorWithHexString:koBlueBubbleColor];
             self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_blue"];
@@ -309,12 +250,6 @@
     }
 }
 
-/* media image tap recognizer */
-- (void) imageTapped:(id) sender {
-    [self.delegate koChatCellView:self photoTap:self.entry sender:sender];
-}
-
-
 - (void) errorOverlayTap:(id)sender {
     if ([self.entry sendingStatus] == koMessageStatusError) {
         [self.delegate koChatCellView:self errorCellTap:self.entry sender:sender];
@@ -352,6 +287,10 @@
 
 - (void) deleteSaveAction:(id)sender {
     [self.delegate koChatCellView:self deleteSaveItem:sender];
+}
+
+- (void) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element sender:(id)sender {
+    [self.delegate koChatCellView:self mediaTapOnElement:element model:self.entry sender:sender];
 }
 
 @end

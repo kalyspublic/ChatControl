@@ -10,6 +10,6 @@
 
 @interface KOTextAttachment : NSTextAttachment
 
-@property (nonatomic, strong) UIImage *originalImage;
+@property (nonatomic, strong) id element;
 
 @end

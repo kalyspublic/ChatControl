@@ -20,13 +20,20 @@ typedef enum {
     koMessageStatusError = 3
 } KOMessageStatus;
 
-@protocol KOChatEntryProtocol <NSObject>
-
-@required
+@protocol KOChatElementProtocol <NSObject>
 
 @property (nonatomic, readonly) KOChatEntryType type;
 @property (nonatomic, readonly) NSString *text;
 @property (nonatomic, readonly) NSString *thumbnailURL;
+@property (nonatomic, readonly) NSString *imageURL;
+@property (nonatomic, readonly) NSString *videoURL;
+
+@end
+
+@protocol KOChatEntryProtocol <NSObject>
+
+@required
+
 @property (nonatomic, readonly) NSString *username;
 @property (nonatomic, readonly) NSString *avatarPath;
 @property (nonatomic, readonly) NSString *time;

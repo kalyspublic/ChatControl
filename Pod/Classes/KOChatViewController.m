@@ -11,6 +11,7 @@
 #import <UIImage-Resize/UIImage+Resize.h>
 #import "GCPlaceholderTextView.h"
 #import "KOTextAttachment.h"
+#import "KOChatEntryElement.h"
 
 #import "KOChatViewController.h"
 
@@ -276,28 +277,30 @@
         if (![[[attributedString string] substringWithRange:range] isEqualToString:@"\n"]) {
             if ([attrs.allKeys containsObject:@"NSAttachment"]) {
                 KOTextAttachment *textAttachment = [attrs objectForKey:@"NSAttachment"];
-                [elements addObject: textAttachment.originalImage];
+                
+                [elements addObject: textAttachment.element];
             } else {
-                [elements addObject:[[attributedString string] substringWithRange:range]];
+                [elements addObject:[KOChatEntryElement elementWithText:[[attributedString string] substringWithRange:range]]];
             }
         }
     }];
     return elements;
 }
 
-- (void) appendImageToTextView:(UIImage *)image withImageIdentifier:(NSString *)identifier {
+- (void) appendImageElementToTextView:(id<KOChatElementProtocol>)element withThumbnail:(UIImage *)image {
     [self.messageTextField clearPlaceholder];
     
     NSMutableAttributedString *attrString = [self.messageTextField.attributedText mutableCopy];
     
     if (![self.messageTextField.text isEqualToString:@""]) {
-        NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: [UIFont     systemFontOfSize:14.0]}];
+        NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]}];
         [attrString appendAttributedString:textAttrString];
     }
     
     KOTextAttachment *textAttachment = [[KOTextAttachment alloc] init];
-    textAttachment.originalImage = image;
-    textAttachment.image = [image resizedImageToFitInSize:CGSizeMake(247, 100) scaleIfSmaller:NO];
+    
+    textAttachment.image = [image resizedImageToFitInSize:CGSizeMake(205, 114) scaleIfSmaller:NO];
+    textAttachment.element = element;
     NSMutableAttributedString *imageAttrString = [[NSAttributedString attributedStringWithAttachment:textAttachment] mutableCopy];
     
     [attrString appendAttributedString:imageAttrString];

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KOChatTableViewHeader.h"
 #import "KOChatTableViewFooter.h"
+#import "KOChatEntryDelegate.h"
 
 @class KOChatViewController;
 
@@ -40,5 +41,5 @@
 - (void) updateTextFieldFrameWithDelay;
 
 - (NSArray *) textViewElements;
-- (void) appendImageToTextView:(UIImage *)image withImageIdentifier:(NSString *)identifier;
+- (void) appendImageElementToTextView:(id<KOChatElementProtocol>)element withThumbnail:(UIImage *)image;
 @end

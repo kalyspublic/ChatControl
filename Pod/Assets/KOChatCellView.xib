@@ -33,42 +33,21 @@
                         <rect key="frame" x="9" y="18" width="302" height="177"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXb-HZ-bQ8">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXb-HZ-bQ8" userLabel="Content View">
                                 <rect key="frame" x="46" y="30" width="247" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jz9-La-gI8">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9C8-yp-UIc" customClass="KOChatElementsView">
                                         <rect key="frame" x="0.0" y="0.0" width="247" height="125"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Message text." translatesAutoresizingMaskIntoConstraints="NO" id="4fQ-nt-XQJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="247" height="125"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnPlay.png" translatesAutoresizingMaskIntoConstraints="NO" id="nuY-60-4od">
-                                        <rect key="frame" x="91" y="30" width="66" height="66"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="66" id="rWJ-9k-CjR"/>
-                                            <constraint firstAttribute="height" constant="66" id="sO6-tM-8Ih"/>
-                                        </constraints>
-                                    </imageView>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Jz9-La-gI8" secondAttribute="bottom" id="5Re-BL-A4q"/>
-                                    <constraint firstItem="4fQ-nt-XQJ" firstAttribute="leading" secondItem="DXb-HZ-bQ8" secondAttribute="leading" id="9CA-3O-vDE"/>
-                                    <constraint firstItem="Jz9-La-gI8" firstAttribute="leading" secondItem="DXb-HZ-bQ8" secondAttribute="leading" id="AcQ-A5-JMw"/>
-                                    <constraint firstAttribute="bottom" secondItem="4fQ-nt-XQJ" secondAttribute="bottom" id="Anf-5J-ws6"/>
-                                    <constraint firstAttribute="centerY" secondItem="nuY-60-4od" secondAttribute="centerY" id="GP0-BT-EUM"/>
-                                    <constraint firstItem="4fQ-nt-XQJ" firstAttribute="top" secondItem="DXb-HZ-bQ8" secondAttribute="top" id="cDk-U8-ZD8"/>
-                                    <constraint firstAttribute="trailing" secondItem="Jz9-La-gI8" secondAttribute="trailing" id="mog-gN-fA0"/>
-                                    <constraint firstAttribute="centerX" secondItem="nuY-60-4od" secondAttribute="centerX" id="rJc-Oy-rYO"/>
-                                    <constraint firstItem="Jz9-La-gI8" firstAttribute="top" secondItem="DXb-HZ-bQ8" secondAttribute="top" id="u8r-wB-Oan"/>
-                                    <constraint firstAttribute="trailing" secondItem="4fQ-nt-XQJ" secondAttribute="trailing" id="yoH-5p-HCq"/>
+                                    <constraint firstAttribute="bottom" secondItem="9C8-yp-UIc" secondAttribute="bottom" id="6q7-ke-it9"/>
+                                    <constraint firstItem="9C8-yp-UIc" firstAttribute="top" secondItem="DXb-HZ-bQ8" secondAttribute="top" id="p5I-bP-Zjc"/>
+                                    <constraint firstAttribute="trailing" secondItem="9C8-yp-UIc" secondAttribute="trailing" id="pM3-6c-9u7"/>
+                                    <constraint firstItem="9C8-yp-UIc" firstAttribute="leading" secondItem="DXb-HZ-bQ8" secondAttribute="leading" id="qcU-UB-nhj"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLN-8S-0ml" userLabel="Label Username">
@@ -250,6 +229,7 @@
                 <outlet property="dislikesCountLabel" destination="4dU-cl-axx" id="4yT-oQ-ugk"/>
                 <outlet property="dislikesFrame" destination="hvE-bc-JKe" id="jEJ-Ok-vdJ"/>
                 <outlet property="dislikesFrameLeft" destination="ID2-pz-elu" id="RtB-en-SWB"/>
+                <outlet property="elementsView" destination="9C8-yp-UIc" id="5bD-8d-yeF"/>
                 <outlet property="errorWhiteOverlay" destination="mB0-Rx-Mgg" id="fSt-4x-1K2"/>
                 <outlet property="errorWhiteOverlayBottom" destination="Cvq-5Z-oVs" id="gId-dS-Pn3"/>
                 <outlet property="errorWhiteOverlayLeft" destination="wmG-xy-b7H" id="QI4-wd-Fxc"/>
@@ -257,9 +237,6 @@
                 <outlet property="errorWhiteOverlayTop" destination="DH3-GO-n5u" id="BO0-RU-g68"/>
                 <outlet property="likesCountLabel" destination="jhQ-gH-n9h" id="Amt-Bp-isA"/>
                 <outlet property="likesFrame" destination="top-g9-Pye" id="xHd-Pq-eIR"/>
-                <outlet property="messageImageView" destination="Jz9-La-gI8" id="8fW-DW-E70"/>
-                <outlet property="messageTextView" destination="4fQ-nt-XQJ" id="NTe-nV-nA3"/>
-                <outlet property="playButtonImageView" destination="nuY-60-4od" id="GDL-OY-DbI"/>
                 <outlet property="spanIconImageView" destination="NPb-Xg-CwS" id="ZDP-8F-wuR"/>
                 <outlet property="spinner" destination="dmO-eB-WeI" id="KC7-1j-aaB"/>
                 <outlet property="successfulImageView" destination="Bmq-5z-GVl" id="u82-H0-aAe"/>
@@ -272,7 +249,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="btnPlay.png" width="66" height="66"/>
         <image name="iconBookmark.png" width="12" height="16"/>
         <image name="iconError.png" width="32" height="32"/>
         <image name="iconLike.png" width="12" height="10"/>
