@@ -195,7 +195,7 @@
 }
 
 - (IBAction)sendtap:(id)sender {
-    [self.delegate koChatViewController:self sendButtonTouched:sender textField:self.messageTextField];
+    [self.delegate koChatViewController:self sendButtonTouched:sender textViewElements:[self textViewElements]];
 }
 
 - (void) textViewDidChange:(UITextView *)textView {

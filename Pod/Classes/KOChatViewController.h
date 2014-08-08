@@ -18,7 +18,7 @@
 - (void) koChatViewController:(KOChatViewController *)koChatViewController loadMoreDidTap:(id) sender;
 - (void) koChatViewController:(KOChatViewController *)koChatViewController joinDidTap:(id) sender;
 - (void) koChatViewController:(KOChatViewController *)koChatViewController cameraButtonTouched:(id) sender textField:(UITextView *)textField;
-- (void) koChatViewController:(KOChatViewController *)koChatViewController sendButtonTouched:(id) sender textField:(UITextView *)textField;
+- (void) koChatViewController:(KOChatViewController *)koChatViewController sendButtonTouched:(id) sender textViewElements:(NSArray *)elements;
 
 @end
 
@@ -40,6 +40,5 @@
 - (void) finishSending;
 - (void) updateTextFieldFrameWithDelay;
 
-- (NSArray *) textViewElements;
 - (void) appendImageElementToTextView:(id<KOChatElementProtocol>)element withThumbnail:(UIImage *)image;
 @end

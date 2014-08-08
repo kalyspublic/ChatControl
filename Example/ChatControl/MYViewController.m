@@ -76,9 +76,7 @@
     NSLog(@"avatar tap");
 }
 
-- (void) koChatViewController:(KOChatViewController *)koChatViewController sendButtonTouched:(id)sender textField:(UITextView *)textField {
-    NSLog(@"Send button %@", textField);
-    NSArray *elements = koChatViewController.textViewElements;
+- (void) koChatViewController:(KOChatViewController *)koChatViewController sendButtonTouched:(id)sender textViewElements:(NSArray *)elements {
     NSLog(@"%@", elements);
     [koChatViewController finishSending];
 }
