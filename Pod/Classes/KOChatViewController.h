@@ -36,6 +36,7 @@
 
 - (void) showInput;
 - (void) hideInput;
+- (void) focusInput;
 
 - (void) finishSending;
 - (void) updateTextFieldFrameWithDelay;

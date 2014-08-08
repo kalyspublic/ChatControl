@@ -308,4 +308,8 @@
     [self updateTextFieldFrameWithDelay];
 }
 
+- (void) focusInput {
+    [self.messageTextField becomeFirstResponder];
+}
+
 @end
