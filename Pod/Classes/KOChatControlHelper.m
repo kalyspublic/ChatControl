@@ -17,9 +17,9 @@
     CGFloat textViewWidth;
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
     if (UIDeviceOrientationIsLandscape(deviceOrientation)) {
-        textViewWidth = 565;
+        textViewWidth = koContentWidthLandscape;
     } else {
-        textViewWidth = 255;
+        textViewWidth = koContentWidthPortrait;
     }
     
     

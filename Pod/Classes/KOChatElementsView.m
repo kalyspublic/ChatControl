@@ -36,9 +36,9 @@
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
     if (UIDeviceOrientationIsLandscape(deviceOrientation)) {
-        textViewWidth = 565;
+        textViewWidth = koContentWidthLandscape;
     } else {
-        textViewWidth = 255;
+        textViewWidth = koContentWidthPortrait;
     }
     CGRect textFrame = [[element text] boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, yOffset, textViewWidth, textFrame.size.height)];

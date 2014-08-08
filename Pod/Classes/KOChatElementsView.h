@@ -12,6 +12,8 @@
 #define koMediaElementWidth 247.0
 #define koMediaElementHeight 138.0
 #define koMediaElementBottomPadding 5.0
+#define koContentWidthLandscape 490.0
+#define koContentWidthPortrait 245.0
 
 @class KOChatElementsView;
 

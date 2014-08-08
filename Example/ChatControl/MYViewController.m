@@ -121,7 +121,7 @@
     MYChatEntry *entry = [MYChatEntry new];
     entry.content = @[
         [MYChatEntryElement elementWithText: @"Hello.\nHow are you?"],
-        [MYChatEntryElement elementWithText: @"Hey.\nI'm fine."],
+        [MYChatEntryElement elementWithText: @"Hey.\nI'm fine. And here go very long text. A superconducting version of the EmDrive, would, in principle, generate thousands of times more thrust. And because it does not require energy just to hold things up (just as a chair does not require power to keep you off the ground), in theory you could have a hoverboard which does not require energy to float in the air."],
         [MYChatEntryElement elementWithImageURL:@"http://i.imgur.com/krDidy9.png" andThumbnailURL:@"http://i.imgur.com/krDidy9.png"],
          [MYChatEntryElement elementWithVideoURL:@"http://i.imgur.com/krDidy9.png" andThumbnailURL:@"http://i.imgur.com/krDidy9.png"]
     ];
