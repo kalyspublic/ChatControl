@@ -72,6 +72,8 @@
     self.errorWhiteOverlay.hidden = YES;
     [self.spinner stopAnimating];
     self.tailGreenImageView.image = [UIImage imageNamed:@"tail_green"];
+    self.usernameLabel.text = @"";
+    [self.avatarImageView setImage:nil];
 }
 
 - (void)awakeFromNib

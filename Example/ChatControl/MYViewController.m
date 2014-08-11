@@ -15,6 +15,7 @@
 #import "MYChatDataSource.h"
 #import "KOOloloViewController.h"
 #import "MYChatEntryElement.h"
+#import "MYTestViewController.h"
 
 @interface MYViewController ()
 
@@ -57,6 +58,9 @@
 }
 
 - (void) testButton:(id) sender {
+    MYTestViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"testVC"];
+    [self presentViewController:vc animated:YES completion:nil];
+    /*
     if (self.testEntry.sendingStatus == koMessageStatusSending) {
         self.testEntry.sendingStatus = koMessageStatusSuccessful;
         [self.chatVC showInput];
@@ -69,7 +73,7 @@
     } else {
         self.testEntry.sendingStatus = koMessageStatusSending;
         [self.chatVC hideInput];
-    }
+    }*/
 }
 
 - (void) koChatCellView:(KOChatCellView *)cell avatarTap:(id<KOChatEntryProtocol>)model sender:(id)sender {

@@ -7,6 +7,7 @@
 //
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <QuartzCore/QuartzCore.h>
 #import "KOChatElementsView.h"
 #import "KOImageView.h"
 
@@ -57,6 +58,11 @@
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnImage:)];
     [imageView addGestureRecognizer:tapRecognizer];
     imageView.userInteractionEnabled = YES;
+    
+    imageView.layer.cornerRadius = 5.0f;
+    imageView.layer.masksToBounds = YES;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    
     [self addSubview:imageView];
     
     if ([element type] == koChatEntryTypeVideo) {
