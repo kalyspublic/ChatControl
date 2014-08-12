@@ -40,6 +40,7 @@
 
 - (void) finishSending;
 - (void) updateTextFieldFrameWithDelay;
+- (void) updateTextFieldFrame;
 
 - (void) appendImageElementToTextView:(id<KOChatElementProtocol>)element withThumbnail:(UIImage *)image;
 @end

@@ -116,7 +116,13 @@
     NSDictionary *userInfo = [notification userInfo];
     CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     CGRect keyboardRect = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+
     CGRect convertedRect = [self.view convertRect:keyboardRect fromView:nil];
+    
+    if (convertedRect.origin.y == 568) {
+        convertedRect.origin.y = 504;
+    }
+    
     NSInteger animationCurveOption = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue] << 16;
     self.keyboardAccessoryViewBottom.constant = self.view.frame.size.height - convertedRect.origin.y;
     [self.view setNeedsUpdateConstraints];
@@ -191,6 +197,7 @@
 }
 
 - (IBAction)cameraTap:(id)sender {
+    //[self unregiserKeyboardNotifications];
     [self.delegate koChatViewController:self cameraButtonTouched:sender textField:self.messageTextField];
 }
 
@@ -244,8 +251,7 @@
     [self updateTextFieldFrameWithDelay];
 }
 
-
-- (void) dealloc {
+- (void) unregiserKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillShowNotification
                                                   object:nil];
@@ -259,6 +265,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardDidHideNotification
                                                   object:nil];
+}
+
+- (void) dealloc {
+    [self unregiserKeyboardNotifications];
 }
 
 - (void) updateTextFieldFrame {

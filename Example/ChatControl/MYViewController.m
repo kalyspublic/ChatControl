@@ -57,9 +57,24 @@
     [self.navigationController pushViewController:self.chatVC animated:NO];
 }
 
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *selectedImage = info[UIImagePickerControllerEditedImage];
+    [self.chatVC appendImageElementToTextView:[MYChatEntryElement elementWithImageURL:@"http://i.imgur.com/krDidy9.png" andThumbnailURL:@"http://i.imgur.com/krDidy9.png   "] withThumbnail:selectedImage];
+
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [self.chatVC updateTextFieldFrame];
+        //[self.chatVC showInput];
+        //[self.chatVC focusInput];
+    }];
+}
+
+- (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void) testButton:(id) sender {
-    MYTestViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"testVC"];
-    [self presentViewController:vc animated:YES completion:nil];
+    //MYTestViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"testVC"];
+    //[self presentViewController:vc animated:YES completion:nil];
     /*
     if (self.testEntry.sendingStatus == koMessageStatusSending) {
         self.testEntry.sendingStatus = koMessageStatusSuccessful;
@@ -86,9 +101,16 @@
 }
 
 - (void) koChatViewController:(KOChatViewController *)koChatViewController cameraButtonTouched:(id)sender textField:(UITextView *)textField {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:NULL];
+    /*
     [koChatViewController appendImageElementToTextView:[MYChatEntryElement elementWithImageURL:@"http://i.imgur.com/krDidy9.png" andThumbnailURL:@"http://i.imgur.com/krDidy9.png   "] withThumbnail:[UIImage imageNamed:@"test"]];
     [textField becomeFirstResponder];
     NSLog(@"Camera button tap");
+     */
 }
 
 - (void) koChatViewController:(KOChatViewController *)koChatViewController joinDidTap:(id)sender {
@@ -135,8 +157,6 @@
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
     MYChatEntry *entry1 = entry;
-
-
 
     return @[entry1];
 }

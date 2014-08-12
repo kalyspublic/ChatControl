@@ -10,6 +10,6 @@
 #import <ChatControl/KOChatViewController.h>
 #import <ChatControl/KOChatCellView.h>
 
-@interface MYViewController : UIViewController<KOChatViewControllerDelegate, KOChatCellViewDelegate>
+@interface MYViewController : UIViewController<KOChatViewControllerDelegate, KOChatCellViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
