@@ -42,5 +42,8 @@
 - (void) updateTextFieldFrameWithDelay;
 - (void) updateTextFieldFrame;
 
+- (void) disableSendButton;
+- (void) enableSendButton;
+
 - (void) appendImageElementToTextView:(id<KOChatElementProtocol>)element withThumbnail:(UIImage *)image;
 @end

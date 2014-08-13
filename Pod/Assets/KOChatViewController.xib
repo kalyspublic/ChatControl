@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -10,6 +10,7 @@
                 <outlet property="keyboardAccessoryViewBottom" destination="Q5u-w3-mye" id="yOo-BX-y5F"/>
                 <outlet property="keyboardAccessoryViewHeight" destination="ZNm-AG-1QI" id="jZI-yI-E7E"/>
                 <outlet property="messageTextField" destination="9i8-tV-Nhn" id="Uvc-Zs-Pwl"/>
+                <outlet property="sendButton" destination="kyu-bF-wuu" id="8Tp-gd-0st"/>
                 <outlet property="tableView" destination="o1T-Hb-FAw" id="zkN-zA-DZd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -26,6 +26,7 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *keyboardAccessoryViewHeight;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *keyboardAccessoryViewBottom;
 @property (nonatomic, weak) IBOutlet GCPlaceholderTextView *messageTextField;
+@property (nonatomic, weak) IBOutlet UIButton *sendButton;
 
 @property (assign) BOOL isLoadMoreVisible;
 @property (assign) BOOL isJoinVisible;
@@ -320,6 +321,14 @@
 
 - (void) focusInput {
     [self.messageTextField becomeFirstResponder];
+}
+
+- (void) enableSendButton {
+    self.sendButton.enabled = YES;
+}
+
+- (void) disableSendButton {
+    self.sendButton.enabled = NO;
 }
 
 @end
