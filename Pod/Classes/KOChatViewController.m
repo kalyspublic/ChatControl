@@ -315,6 +315,8 @@
     NSMutableAttributedString *imageAttrString = [[NSAttributedString attributedStringWithAttachment:textAttachment] mutableCopy];
     
     [attrString appendAttributedString:imageAttrString];
+    NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]}];
+    [attrString appendAttributedString:textAttrString];
     self.messageTextField.attributedText = attrString;
     [self updateTextFieldFrameWithDelay];
 }
