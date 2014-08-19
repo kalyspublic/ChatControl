@@ -16,9 +16,12 @@
 #import <UIImage-Resize/UIImage+Resize.h>
 #import "KOTextAttachment.h"
 
-#define koGreenBubbleColor @"def4c4"
+#define koGreenBubbleColor @"e8ffcd"
 #define koBlueBubbleColor @"c4eaf5"
 #define koWhiteBubbleColor @"ffffff"
+
+#define koOutgoingTimeColor @"a2b092"
+#define koDefaultTimeColor @"B0B0B0"
 #define koManyLikesCount 10
 
 @interface KOChatCellView ()
@@ -208,7 +211,9 @@
             self.bubbleView.backgroundColor = [UIColor colorWithHexString:koGreenBubbleColor];
             self.tailGreenImageView.hidden = NO;
             self.tailLeftImaveView.hidden = YES;
+            self.timeLabel.textColor = [UIColor colorWithHexString:koOutgoingTimeColor];
         } else {
+            self.timeLabel.textColor = [UIColor colorWithHexString:koDefaultTimeColor];
             self.tailGreenImageView.hidden = YES;
             self.tailLeftImaveView.hidden = NO;
         }
