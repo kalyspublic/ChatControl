@@ -26,7 +26,7 @@
     for (id<KOChatElementProtocol> element in [entry content]) {
         if ([element type] == koChatEntryTypeText) {
             CGRect textFrame = [[element text] boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-            cellHeight += textFrame.size.height;
+            cellHeight += textFrame.size.height + 10;
         } else if ([element type] == koChatEntryTypePhoto || [element type] == koChatEntryTypeVideo) {
             cellHeight += koMediaElementHeight;
             cellHeight += koMediaElementBottomPadding;

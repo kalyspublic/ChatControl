@@ -48,7 +48,7 @@
     label.font = [UIFont systemFontOfSize:14.0];
     label.text = [element text];
     [self addSubview:label];
-    return textFrame.size.height;
+    return textFrame.size.height + 10;
 }
 
 - (CGFloat ) appendMediaElement:(id<KOChatElementProtocol>)element yOffset:(CGFloat)yOffset {
