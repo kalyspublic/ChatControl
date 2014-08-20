@@ -161,4 +161,8 @@
     return @[entry1];
 }
 
+- (void) koChatCellView:(KOChatCellView *)cell usernameTap:(id<KOChatEntryProtocol>)model sender:(id)sender {
+    NSLog(@"username tap");
+}
+
 @end

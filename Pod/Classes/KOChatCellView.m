@@ -105,6 +105,9 @@
     UITapGestureRecognizer *avatarTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(avatarTap:)];
     [self.avatarImageView addGestureRecognizer:avatarTapRecognizer];
     
+    UITapGestureRecognizer *usernameTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(usernameTap:)];
+    [self.usernameLabel addGestureRecognizer:usernameTapRecognizer];
+    
     UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
     
     [self addGestureRecognizer:longPressGestureRecognizer];
@@ -222,6 +225,10 @@
 
 - (void) avatarTap:(id) sender {
     [self.delegate koChatCellView:self avatarTap:self.entry sender:sender];
+}
+
+- (void) usernameTap:(id) sender {
+    [self.delegate koChatCellView:self usernameTap:self.entry sender:sender];
 }
 
 - (void) didLongPress:(id) sender {
