@@ -11,7 +11,6 @@
 @interface GCPlaceholderTextView () 
 
 @property (nonatomic, retain) UIColor* realTextColor;
-@property (nonatomic, readonly) NSString* realText;
 
 @end
 

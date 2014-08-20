@@ -27,6 +27,7 @@
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *keyboardAccessoryViewBottom;
 @property (nonatomic, weak) IBOutlet GCPlaceholderTextView *messageTextField;
 @property (nonatomic, weak) IBOutlet UIButton *sendButton;
+@property (nonatomic, strong) RACSubject *messageTextFieldUpdateSignal;
 
 @property (assign) BOOL isLoadMoreVisible;
 @property (assign) BOOL isJoinVisible;
@@ -38,15 +39,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.messageTextField.placeholder = @"Write a comment";
+
     [self.tableView registerNib:[UINib nibWithNibName:@"KOChatCellView"
                                                bundle:nil] forCellReuseIdentifier:@"KOChatCell"];
-    self.messageTextField.delegate = self;
     
-    self.messageTextField.layer.borderWidth = 1;
-    self.messageTextField.layer.borderColor = [UIColor colorWithHexString:@"DCDCDC"].CGColor;
-    self.messageTextField.layer.cornerRadius = 5;
-
+    self.messageTextField.placeholder = @"Write a comment";
+    self.messageTextField.delegate = self;
+    [self configureMessageTextField];
+    self.messageTextFieldUpdateSignal = [RACSubject subject];
+    
+    RACSignal *messageTextFieldUpdated = [RACSignal merge:@[self.messageTextField.rac_textSignal, self.messageTextFieldUpdateSignal]];
+    RAC(self.sendButton, enabled) = [messageTextFieldUpdated map:^id(NSString *value) {
+        return @(![value isEqualToString:@""] && ![value isEqualToString:@"Write a comment"]);
+    }];
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissInputControls)];
     [self.tableView addGestureRecognizer:gestureRecognizer];
@@ -249,6 +254,7 @@
 
 - (void) finishSending {
     self.messageTextField.text = @"";
+    [self.messageTextFieldUpdateSignal sendNext:@""];
     [self updateTextFieldFrameWithDelay];
 }
 
@@ -270,6 +276,7 @@
 
 - (void) dealloc {
     [self unregiserKeyboardNotifications];
+    [self.messageTextFieldUpdateSignal sendCompleted];
 }
 
 - (void) updateTextFieldFrame {
@@ -318,6 +325,7 @@
     NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]}];
     [attrString appendAttributedString:textAttrString];
     self.messageTextField.attributedText = attrString;
+    [self.messageTextFieldUpdateSignal sendNext:@"append photo"];
     [self updateTextFieldFrameWithDelay];
 }
 
@@ -331,6 +339,12 @@
 
 - (void) disableSendButton {
     self.sendButton.enabled = NO;
+}
+
+- (void) configureMessageTextField {
+    self.messageTextField.layer.borderWidth = 1;
+    self.messageTextField.layer.borderColor = [UIColor colorWithHexString:@"DCDCDC"].CGColor;
+    self.messageTextField.layer.cornerRadius = 5;
 }
 
 @end

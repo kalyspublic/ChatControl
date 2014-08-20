@@ -13,6 +13,7 @@
 
 @property(nonatomic, strong) NSString *placeholder;
 @property (nonatomic, strong) UIColor *placeholderColor;
+@property (nonatomic, readonly) NSString* realText;
 
 - (void) beginEditing:(NSNotification*) notification;
 - (void) endEditing:(NSNotification*) notification;
