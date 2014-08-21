@@ -50,7 +50,9 @@
     
     RACSignal *messageTextFieldUpdated = [RACSignal merge:@[self.messageTextField.rac_textSignal, self.messageTextFieldUpdateSignal]];
     RAC(self.sendButton, enabled) = [messageTextFieldUpdated map:^id(NSString *value) {
-        return @(![value isEqualToString:@""] && ![value isEqualToString:@"Write a comment"]);
+        NSString *trimmedString = [value stringByTrimmingCharactersInSet:
+                                   [NSCharacterSet whitespaceCharacterSet]];
+        return @(![trimmedString isEqualToString:@""] && ![value isEqualToString:@"Write a comment"]);
     }];
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissInputControls)];
