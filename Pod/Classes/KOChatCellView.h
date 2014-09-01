@@ -47,5 +47,6 @@
 - (void) replyAction:(id) sender;
 - (void) deleteSaveAction:(id) sender;
 - (void) copy:(id)sender;
+- (void) setAvatarByURL:(NSString *)avatarPath;
 
 @end

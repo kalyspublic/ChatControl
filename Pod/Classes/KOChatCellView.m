@@ -307,4 +307,8 @@
     [self.delegate koChatCellView:self mediaTapOnElement:element model:self.entry sender:sender];
 }
 
+- (void) setAvatarByURL:(NSString *)avatarPath {
+    [self.avatarImageView setImageWithURL:[NSURL URLWithString:avatarPath]];
+}
+
 @end
