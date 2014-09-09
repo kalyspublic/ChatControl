@@ -7,7 +7,6 @@
 //
 
 #import <ChatControl/KOChatEntryDelegate.h>
-#import <ChatControl/KOChatControlHelper.h>
 #import <ChatControl/KOTextAttachment.h>
 #import <EDHexColor/UIColor+EDHexColor.h>
 #import "MYViewController.h"
@@ -63,8 +62,6 @@
 
     [picker dismissViewControllerAnimated:YES completion:^{
         [self.chatVC updateTextFieldFrame];
-        //[self.chatVC showInput];
-        //[self.chatVC focusInput];
     }];
 }
 
@@ -157,12 +154,32 @@
     entry.date = @"Today";
     entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
     MYChatEntry *entry1 = entry;
+    
+    entry = [MYChatEntry new];
+    entry.content = @[
+                      [MYChatEntryElement elementWithImageURL:@"http://i.imgur.com/krDidy9.png" andThumbnailURL:@"http://i.imgur.com/krDidy9.png"],
+                      [MYChatEntryElement elementWithText: @"Hello.\nHow are you?"],
+                      [MYChatEntryElement elementWithText: @"Hey.\nI'm fine. And here go very long text. A superconducting version of the EmDrive, would, in principle, generate thousands of times more thrust. And because it does not require energy just to hold things up (just as a chair does not require power to keep you off the ground), in theory you could have a hoverboard which does not require energy to float in the air."],
 
-    return @[entry1];
+                      [MYChatEntryElement elementWithVideoURL:@"http://i.imgur.com/krDidy9.png" andThumbnailURL:@"http://i.imgur.com/krDidy9.png"]
+                      ];
+    entry.isSpamed = YES;
+    entry.username = @"Kalys Osmonov";
+    entry.time = @"11:30";
+    entry.date = @"Today";
+    entry.avatarPath = @"http://i.imgur.com/Nc8CsUI.png";
+    entry.likesCount = 50;
+    MYChatEntry *entry2 = entry;
+
+    return @[entry1, entry2];
 }
 
 - (void) koChatCellView:(KOChatCellView *)cell usernameTap:(id<KOChatEntryProtocol>)model sender:(id)sender {
     NSLog(@"username tap");
+}
+
+- (void) koChatCellView:(KOChatCellView *)cell expandOrCollapseSpammedMessage:(id<KOChatEntryProtocol>)model {
+    [self.chatDataSource tableView:self.chatVC.tableView expandOrCollapseCell:cell];
 }
 
 @end

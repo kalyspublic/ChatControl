@@ -108,6 +108,9 @@
     UITapGestureRecognizer *usernameTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(usernameTap:)];
     [self.usernameLabel addGestureRecognizer:usernameTapRecognizer];
     
+    UITapGestureRecognizer *bubbleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bubbleTap:)];
+    [self.bubbleView addGestureRecognizer:bubbleTapRecognizer];
+    
     UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
     
     [self addGestureRecognizer:longPressGestureRecognizer];
@@ -174,6 +177,8 @@
             self.tailGreenImageView.alpha = 1;
             self.spanIconImageView.hidden = YES;
         }
+        self.avatarImageView.userInteractionEnabled = ![entry isSpamed];
+        self.usernameLabel.userInteractionEnabled = ![entry isSpamed];
         
         if ([entry likesCount] >= koManyLikesCount) {
             self.bubbleView.backgroundColor = [UIColor colorWithHexString:koBlueBubbleColor];
@@ -301,6 +306,10 @@
 
 - (void) deleteSaveAction:(id)sender {
     [self.delegate koChatCellView:self deleteSaveItem:sender];
+}
+
+- (void) bubbleTap:(id) sender {
+    [self.delegate koChatCellView:self expandOrCollapseSpammedMessage:self.entry];
 }
 
 - (void) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element sender:(id)sender {

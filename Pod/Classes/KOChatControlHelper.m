@@ -11,7 +11,7 @@
 
 @implementation KOChatControlHelper
 
-+ (CGFloat) cellHeight:(id<KOChatEntryProtocol>)entry dateVisible:(BOOL)dateVisible  {
++ (CGFloat) cellHeight:(id<KOChatEntryProtocol>)entry dateVisible:(BOOL)dateVisible spamExpanded:(BOOL)spamExpanded {
     float cellHeight = 0.0;
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
     CGFloat textViewWidth;
@@ -22,14 +22,17 @@
         textViewWidth = koContentWidthPortrait;
     }
     
-    
-    for (id<KOChatElementProtocol> element in [entry content]) {
-        if ([element type] == koChatEntryTypeText) {
-            CGRect textFrame = [[element text] boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-            cellHeight += textFrame.size.height + 10;
-        } else if ([element type] == koChatEntryTypePhoto || [element type] == koChatEntryTypeVideo) {
-            cellHeight += koMediaElementHeight;
-            cellHeight += koMediaElementBottomPadding;
+    if ([entry isSpamed] && !spamExpanded) {
+        cellHeight += 16;
+    } else {
+        for (id<KOChatElementProtocol> element in [entry content]) {
+            if ([element type] == koChatEntryTypeText) {
+                CGRect textFrame = [[element text] boundingRectWithSize:CGSizeMake(textViewWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+                cellHeight += textFrame.size.height + 10;
+            } else if ([element type] == koChatEntryTypePhoto || [element type] == koChatEntryTypeVideo) {
+                cellHeight += koMediaElementHeight;
+                cellHeight += koMediaElementBottomPadding;
+            }
         }
     }
     

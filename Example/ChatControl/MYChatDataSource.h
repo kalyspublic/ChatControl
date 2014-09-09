@@ -14,4 +14,6 @@
 @property (nonatomic, strong) NSArray *entries;
 @property (nonatomic, weak) MYViewController *parentViewController;
 
+- (void) tableView:(UITableView *)tableView expandOrCollapseCell:(KOChatCellView *)cell;
+
 @end

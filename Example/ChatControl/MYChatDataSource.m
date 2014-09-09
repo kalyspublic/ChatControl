@@ -12,8 +12,19 @@
 #import "MYChatEntry.h"
 #import "MYChatCellView.h"
 
+@interface MYChatDataSource ()
+@property (nonatomic, strong) NSMutableArray *expandedCellIndexPaths;
+@end
+
 @implementation MYChatDataSource
 
+- (instancetype) init {
+    self = [super init];
+    if (self) {
+        self.expandedCellIndexPaths = [NSMutableArray new];
+    }
+    return self;
+}
 - (NSInteger ) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.entries count];
 }
@@ -37,7 +48,20 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     BOOL dateVisible = indexPath.row == 2;
-    return [KOChatControlHelper cellHeight:self.entries[indexPath.row] dateVisible:dateVisible];
+    BOOL spamExpanded = [self.expandedCellIndexPaths containsObject:indexPath];
+    return [KOChatControlHelper cellHeight:self.entries[indexPath.row] dateVisible:dateVisible spamExpanded:spamExpanded];
+}
+
+- (void) tableView:(UITableView *)tableView expandOrCollapseCell:(KOChatCellView *)cell {
+    NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+    if([cell.entry isSpamed]) {
+        if ([self.expandedCellIndexPaths containsObject:indexPath]) {
+            [self.expandedCellIndexPaths removeObject:indexPath];
+        } else {
+            [self.expandedCellIndexPaths addObject:indexPath];
+        }
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 @end

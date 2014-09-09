@@ -12,6 +12,6 @@
 
 @interface KOChatControlHelper : NSObject
 
-+ (CGFloat) cellHeight:(id<KOChatEntryProtocol>) entry dateVisible:(BOOL)dateVisible;
++ (CGFloat) cellHeight:(id<KOChatEntryProtocol>) entry dateVisible:(BOOL)dateVisible spamExpanded:(BOOL) spamExpanded;
 
 @end

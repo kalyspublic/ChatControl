@@ -30,6 +30,8 @@
 - (void) koChatCellView:(KOChatCellView *)cell replyItem:(id) sender;
 - (void) koChatCellView:(KOChatCellView *)cell copyItem:(id) sender;
 
+- (void) koChatCellView:(KOChatCellView *)cell expandOrCollapseSpammedMessage:(id<KOChatEntryProtocol>)model;
+
 @end
 
 @interface KOChatCellView : UITableViewCell<KOChatElementsViewDelegate>
