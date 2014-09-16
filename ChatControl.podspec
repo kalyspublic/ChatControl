@@ -34,6 +34,7 @@ Pod::Spec.new do |s|
   s.dependency 'EDHexColor', '~> 0.0'
   s.dependency 'UIImage-Resize'
   s.dependency 'libextobjc'
+  s.dependency 'SZTextView'
   # s.dependency 'MBAutoGrowingTextView', '~> 0.1.0'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

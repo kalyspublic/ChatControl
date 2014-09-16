@@ -5,11 +5,13 @@
 //  Created by Kalys Osmonov on 7/10/14.
 //
 //
+#import <libextobjc/EXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <QuartzCore/QuartzCore.h>
 #import <EDHexColor/UIColor+EDHexColor.h>
 #import <UIImage-Resize/UIImage+Resize.h>
-#import "GCPlaceholderTextView.h"
+#import <SZTextView/SZTextView.h>
+
 #import "KOTextAttachment.h"
 #import "KOChatEntryElement.h"
 
@@ -25,7 +27,7 @@
 @property (nonatomic, weak) IBOutlet UIView *keyboardAccessoryView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *keyboardAccessoryViewHeight;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *keyboardAccessoryViewBottom;
-@property (nonatomic, weak) IBOutlet GCPlaceholderTextView *messageTextField;
+@property (nonatomic, weak) IBOutlet SZTextView *messageTextField;
 @property (nonatomic, weak) IBOutlet UIButton *sendButton;
 @property (nonatomic, strong) RACSubject *messageTextFieldUpdateSignal;
 
@@ -39,6 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    @weakify(self);
 
     [self.tableView registerNib:[UINib nibWithNibName:@"KOChatCellView"
                                                bundle:nil] forCellReuseIdentifier:@"KOChatCell"];
@@ -53,6 +56,11 @@
         NSString *trimmedString = [value stringByTrimmingCharactersInSet:
                                    [NSCharacterSet whitespaceCharacterSet]];
         return @(![trimmedString isEqualToString:@""] && ![value isEqualToString:@"Write a comment"]);
+    }];
+    
+    [self.messageTextField.rac_textSignal subscribeNext:^(id x) {
+        @strongify(self);
+        [self textViewDidChange:self.messageTextField];
     }];
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissInputControls)];
@@ -308,7 +316,8 @@
 }
 
 - (void) appendImageElementToTextView:(id<KOChatElementProtocol>)element withThumbnail:(UIImage *)image {
-    [self.messageTextField clearPlaceholder];
+    // TODO
+    // [self.messageTextField clearPlaceholder];
     
     NSMutableAttributedString *attrString = [self.messageTextField.attributedText mutableCopy];
     
