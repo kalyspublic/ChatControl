@@ -18,6 +18,7 @@
 #import "KOChatViewController.h"
 
 #define KOMessageFrameHeight 42.0
+#define KOMessageTextViewFontSize 16.0
 
 
 @interface KOChatViewController ()
@@ -322,7 +323,7 @@
     NSMutableAttributedString *attrString = [self.messageTextField.attributedText mutableCopy];
     
     if (![self.messageTextField.text isEqualToString:@""]) {
-        NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]}];
+        NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:KOMessageTextViewFontSize]}];
         [attrString appendAttributedString:textAttrString];
     }
     
@@ -333,7 +334,7 @@
     NSMutableAttributedString *imageAttrString = [[NSAttributedString attributedStringWithAttachment:textAttachment] mutableCopy];
     
     [attrString appendAttributedString:imageAttrString];
-    NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]}];
+    NSAttributedString *textAttrString = [[NSAttributedString alloc] initWithString:@"\n" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:KOMessageTextViewFontSize]}];
     [attrString appendAttributedString:textAttrString];
     self.messageTextField.attributedText = attrString;
     [self.messageTextFieldUpdateSignal sendNext:@"append photo"];
