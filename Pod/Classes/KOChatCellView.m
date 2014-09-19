@@ -16,9 +16,9 @@
 #import <UIImage-Resize/UIImage+Resize.h>
 #import "KOTextAttachment.h"
 
-#define koGreenBubbleColor @"e8ffcd"
-#define koBlueBubbleColor @"c4eaf5"
-#define koWhiteBubbleColor @"ffffff"
+#define koGreenBubbleImage @"bubbleGreen"
+#define koBlueBubbleImage @"bubbleBlue"
+#define koWhiteBubblImage @"bubbleWhite"
 
 #define koOutgoingTimeColor @"a2b092"
 #define koDefaultTimeColor @"B0B0B0"
@@ -27,6 +27,7 @@
 @interface KOChatCellView ()
 
 @property (nonatomic, weak) IBOutlet UIView *bubbleView;
+@property (nonatomic, weak) IBOutlet UIImageView *bubbleImageView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *bubbleViewTop;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *bubbleViewRight;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *bubbleViewBottom;
@@ -73,10 +74,11 @@
     self.isDateVisible = NO;
     self.isOutgoing = NO;
     self.errorWhiteOverlay.hidden = YES;
-    [self.spinner stopAnimating];
+//    [self.spinner stopAnimating];
     self.tailGreenImageView.image = [UIImage imageNamed:@"tail_green"];
     self.usernameLabel.text = @"";
     [self.avatarImageView setImage:nil];
+    self.bubbleViewTop.constant = 4.0;
 }
 
 - (void)awakeFromNib
@@ -93,9 +95,11 @@
 - (void) configureCell {
     self.elementsView.elementsViewDelegate = self;
     @weakify(self);
-    self.spinner.transform = CGAffineTransformMakeScale(0.6, 0.6);
-    self.bubbleView.layer.cornerRadius = 8;
-    self.errorWhiteOverlay.layer.cornerRadius = 8;
+//    self.spinner.transform = CGAffineTransformMakeScale(0.6, 0.6);
+//    self.bubbleView.layer.cornerRadius = 8;
+//    self.errorWhiteOverlay.layer.cornerRadius = 8;
+    self.bubbleView.backgroundColor = [UIColor clearColor];
+    self.bubbleViewTop.constant = 4.0;
     RAC(self.errorWhiteOverlayTop, constant) = RACObserve(self.bubbleViewTop, constant);
     RAC(self.errorWhiteOverlayBottom, constant) = RACObserve(self.bubbleViewBottom, constant);
     
@@ -179,29 +183,17 @@
         }
         self.avatarImageView.userInteractionEnabled = ![entry isSpamed];
         self.usernameLabel.userInteractionEnabled = ![entry isSpamed];
-        
-        if ([entry likesCount] >= koManyLikesCount) {
-            self.bubbleView.backgroundColor = [UIColor colorWithHexString:koBlueBubbleColor];
-            self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_blue"];
-        } else {
-            self.bubbleView.backgroundColor = [UIColor colorWithHexString:koWhiteBubbleColor];
-            self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_white"];
-        }
-    }];
-    
-    [[RACSignal combineLatest:@[[RACObserve(self, entry) ignore:nil], RACObserve(self, isOutgoing)]] subscribeNext:^(RACTuple *tuple) {
-        @strongify(self);
-        id<KOChatEntryProtocol> entry = tuple.first;
-        id isOutgoing = tuple.second;
-        
-        if ([isOutgoing boolValue]) {
+
+        if (self.isOutgoing) {
             [self setMessageStatus:[entry sendingStatus]];
-            @weakify(self);
-            [[RACObserve(entry, sendingStatus) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id sendingStatusObj) {
-                @strongify(self);
-                KOMessageStatus sendingStatus = (KOMessageStatus)[sendingStatusObj integerValue];
-                [self setMessageStatus:sendingStatus];
-            }];
+        } else {
+            if ([entry likesCount] >= koManyLikesCount) {
+                [self setBubble:koBlueBubbleImage];
+                self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_blue"];
+            } else {
+                [self setBubble:koWhiteBubblImage];
+                self.tailLeftImaveView.image = [UIImage imageNamed:@"tail_white"];
+            }
         }
     }];
     
@@ -216,7 +208,7 @@
     [RACObserve(self, isOutgoing) subscribeNext:^(id isOutgoing) {
         @strongify(self);
         if ([isOutgoing boolValue]) {
-            self.bubbleView.backgroundColor = [UIColor colorWithHexString:koGreenBubbleColor];
+            [self setBubble:koGreenBubbleImage];
             self.tailGreenImageView.hidden = NO;
             self.tailLeftImaveView.hidden = YES;
             self.timeLabel.textColor = [UIColor colorWithHexString:koOutgoingTimeColor];
@@ -248,6 +240,12 @@
     return YES;
 }
 
+- (void) setBubble:(NSString *) bubbleType {
+    UIImage *image = [UIImage imageNamed:bubbleType];
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
+    self.bubbleImageView.image = [image resizableImageWithCapInsets:edgeInsets];
+}
+
 - (void) setMessageStatus:(KOMessageStatus) sendingStatus {
     if (sendingStatus == koMessageStatusSending) {
         self.timeLabelRight.constant = 27;
@@ -257,8 +255,10 @@
         self.errorWhiteOverlay.hidden = NO;
         self.tailGreenImageView.image = [UIImage imageNamed:@"tail_whiteError"];
     } else if (sendingStatus == koMessageStatusSuccessful) {
+        if ([self.spinner isAnimating]) {
+            [self.spinner stopAnimating];
+        }
         self.timeLabelRight.constant = 27;
-        [self.spinner stopAnimating];
         self.successfulImageView.hidden = NO;
     } else {
         [self.spinner stopAnimating];

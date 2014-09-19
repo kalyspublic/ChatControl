@@ -29,10 +29,14 @@
                             <constraint firstAttribute="width" constant="6" id="xnq-ZE-k8u"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZp-7h-Kjm">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZp-7h-Kjm" userLabel="Bubble Container">
                         <rect key="frame" x="9" y="18" width="302" height="177"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cIR-XR-7nN" userLabel="BubbleImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="302" height="177"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXb-HZ-bQ8" userLabel="Content View">
                                 <rect key="frame" x="46" y="30" width="247" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -63,6 +67,10 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:26" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnq-FI-lKv">
                                 <rect key="frame" x="244" y="12" width="31" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="owQ-d0-gwr"/>
+                                    <constraint firstAttribute="width" constant="31" id="sSQ-Gt-3We"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.69019607843137254" green="0.69019607843137254" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -145,12 +153,16 @@
                             <constraint firstAttribute="bottom" secondItem="hvE-bc-JKe" secondAttribute="bottom" constant="6" id="W00-sw-bdz"/>
                             <constraint firstItem="DXb-HZ-bQ8" firstAttribute="leading" secondItem="qZp-7h-Kjm" secondAttribute="leading" constant="46" id="YTu-nf-PWw"/>
                             <constraint firstAttribute="trailing" secondItem="hnq-FI-lKv" secondAttribute="trailing" constant="27" id="bv6-MM-KxJ"/>
+                            <constraint firstItem="cIR-XR-7nN" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" id="cyg-T1-bx0"/>
                             <constraint firstAttribute="trailing" secondItem="DXb-HZ-bQ8" secondAttribute="trailing" constant="9" id="dMj-Cf-f6Q"/>
                             <constraint firstAttribute="bottom" secondItem="DXb-HZ-bQ8" secondAttribute="bottom" constant="22" id="eXx-VI-iw9"/>
                             <constraint firstItem="DXb-HZ-bQ8" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="30" id="hyk-NP-Tu4"/>
+                            <constraint firstItem="cIR-XR-7nN" firstAttribute="leading" secondItem="qZp-7h-Kjm" secondAttribute="leading" id="k8x-uu-ZML"/>
                             <constraint firstItem="xLN-8S-0ml" firstAttribute="leading" secondItem="qZp-7h-Kjm" secondAttribute="leading" constant="46" id="koh-Ih-L5m"/>
+                            <constraint firstAttribute="bottom" secondItem="cIR-XR-7nN" secondAttribute="bottom" id="nrT-uN-ySh"/>
                             <constraint firstItem="xLN-8S-0ml" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="8" id="oxS-vW-L1y"/>
                             <constraint firstItem="Bmq-5z-GVl" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="12" id="pJP-12-oVh"/>
+                            <constraint firstAttribute="trailing" secondItem="cIR-XR-7nN" secondAttribute="trailing" id="qYB-pu-vAf"/>
                             <constraint firstItem="TSq-iH-vUG" firstAttribute="top" secondItem="qZp-7h-Kjm" secondAttribute="top" constant="-1" id="uXN-rE-3O4"/>
                         </constraints>
                     </view>
@@ -219,6 +231,7 @@
             <connections>
                 <outlet property="avatarImageView" destination="X4z-bP-dj6" id="iui-Mn-XLA"/>
                 <outlet property="bookmarkImageView" destination="TSq-iH-vUG" id="t0h-Ce-4Gq"/>
+                <outlet property="bubbleImageView" destination="cIR-XR-7nN" id="KIx-uI-5nT"/>
                 <outlet property="bubbleView" destination="qZp-7h-Kjm" id="o1l-6q-NY4"/>
                 <outlet property="bubbleViewBottom" destination="Jzj-49-QCI" id="fJ0-gc-OSr"/>
                 <outlet property="bubbleViewLeft" destination="uOc-AE-DZ0" id="2Bo-zm-7rb"/>
