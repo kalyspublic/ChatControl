@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ChatControl"
-  s.version          = "1.0.3"
+  s.version          = "1.0.4"
   s.summary          = "A short description of ChatControl."
   s.description      = <<-DESC
                        An optional longer description of ChatControl
