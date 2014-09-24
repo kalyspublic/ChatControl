@@ -230,10 +230,12 @@
     CGSize textViewContentSize = self.messageTextField.contentSize;
 
     CGFloat limit, newHeight;
-    if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
-        limit = 100;
+    CGSize windowSize = [[UIScreen mainScreen] bounds].size;
+    if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight)
+    {
+        limit = windowSize.width - 230;
     } else {
-        limit = 200;
+        limit = windowSize.height - 290;
     }
     
     if (textViewContentSize.height < limit) {
