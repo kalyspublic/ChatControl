@@ -319,8 +319,6 @@
 }
 
 - (void) appendImageElementToTextView:(id<KOChatElementProtocol>)element {
-    // TODO
-    // [self.messageTextField clearPlaceholder];
     
     NSMutableAttributedString *attrString = [self.messageTextField.attributedText mutableCopy];
     
