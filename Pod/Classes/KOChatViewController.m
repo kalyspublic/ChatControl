@@ -226,6 +226,13 @@
     [self setTextViewFrame:self.interfaceOrientation];
 }
 
+- (BOOL) textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if (self.messageTextField == textView) {
+        return [[textView text] length] - range.length + text.length < 4096;
+    }
+    return YES;
+}
+
 - (void) setTextViewFrame:(UIInterfaceOrientation) orientation {
     CGSize textViewContentSize = self.messageTextField.contentSize;
 
