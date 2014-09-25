@@ -53,7 +53,7 @@
 
 - (CGFloat ) appendMediaElement:(id<KOChatElementProtocol>)element yOffset:(CGFloat)yOffset {
     KOImageView *imageView = [[KOImageView alloc] initWithFrame:CGRectMake(0, yOffset, koMediaElementWidth, koMediaElementHeight)];
-    [imageView setImageWithURL:[NSURL URLWithString:[element thumbnailURL]]];
+    [imageView setImageWithURL:[element thumbnailURL]];
     imageView.element = element;
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnImage:)];
     [imageView addGestureRecognizer:tapRecognizer];
