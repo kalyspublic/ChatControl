@@ -16,6 +16,7 @@
     if (element) {
         element.type = koChatEntryTypeText;
         element.text = text;
+        element.udid = @"ololo";
     }
     return element;
 }
@@ -25,8 +26,9 @@
     
     if (element) {
         element.type = koChatEntryTypePhoto;
-        element.imageURL = imageURL;
-        element.thumbnailURL = thumbnailURL;
+        element.sourceURL = [NSURL URLWithString:imageURL];
+        element.thumbnailURL = [NSURL URLWithString:thumbnailURL];
+        element.udid = @"ololo";
     }
     return element;
 }
@@ -36,8 +38,9 @@
     
     if (element) {
         element.type = koChatEntryTypeVideo;
-        element.videoURL = videoURL;
-        element.thumbnailURL = thumbnailURL;
+        element.sourceURL = [NSURL URLWithString:videoURL];
+        element.thumbnailURL = [NSURL URLWithString:thumbnailURL];
+        element.udid = @"ololo";
     }
     return element;
 }

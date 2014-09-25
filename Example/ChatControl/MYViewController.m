@@ -58,7 +58,7 @@
 
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *selectedImage = info[UIImagePickerControllerEditedImage];
-    [self.chatVC appendImageElementToTextView:[MYChatEntryElement elementWithImageURL:@"http://i.imgur.com/krDidy9.png" andThumbnailURL:@"http://i.imgur.com/krDidy9.png   "] withThumbnail:selectedImage];
+    [self.chatVC appendImageElementToTextView:[MYChatEntryElement elementWithImageURL:@"http://i.imgur.com/krDidy9.png" andThumbnailURL:@"http://i.imgur.com/krDidy9.png   "]];
 
     [picker dismissViewControllerAnimated:YES completion:^{
         [self.chatVC updateTextFieldFrame];

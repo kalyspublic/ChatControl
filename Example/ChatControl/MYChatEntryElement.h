@@ -17,8 +17,8 @@
 
 @property (nonatomic, assign) KOChatEntryType type;
 @property (nonatomic, strong) NSString *text;
-@property (nonatomic, strong) NSString *thumbnailURL;
-@property (nonatomic, strong) NSString *imageURL;
-@property (nonatomic, strong) NSString *videoURL;
+@property (nonatomic, strong) NSURL *thumbnailURL;
+@property (nonatomic, strong) NSURL *sourceURL;
+@property (nonatomic, strong) NSString *udid;
 
 @end
