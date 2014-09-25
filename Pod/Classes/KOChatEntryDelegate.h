@@ -24,9 +24,9 @@ typedef enum {
 
 @property (nonatomic, readonly) KOChatEntryType type;
 @property (nonatomic, readonly) NSString *text;
-@property (nonatomic, readonly) NSString *thumbnailURL;
-@property (nonatomic, readonly) NSString *imageURL;
-@property (nonatomic, readonly) NSString *videoURL;
+@property (nonatomic, readonly) NSURL *thumbnailURL;
+@property (nonatomic, readonly) NSURL *sourceURL;
+@property (nonatomic, readonly) NSString *udid;
 
 @end
 

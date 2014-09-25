@@ -45,5 +45,5 @@
 - (void) disableSendButton;
 - (void) enableSendButton;
 
-- (void) appendImageElementToTextView:(id<KOChatElementProtocol>)element withThumbnail:(UIImage *)image;
+- (void) appendImageElementToTextView:(id<KOChatElementProtocol>)element;
 @end

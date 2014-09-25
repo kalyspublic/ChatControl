@@ -318,7 +318,7 @@
     return elements;
 }
 
-- (void) appendImageElementToTextView:(id<KOChatElementProtocol>)element withThumbnail:(UIImage *)image {
+- (void) appendImageElementToTextView:(id<KOChatElementProtocol>)element {
     // TODO
     // [self.messageTextField clearPlaceholder];
     
@@ -331,6 +331,7 @@
     
     KOTextAttachment *textAttachment = [[KOTextAttachment alloc] init];
     
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[element thumbnailURL]]];
     textAttachment.image = [image resizedImageToFitInSize:CGSizeMake(205, 114) scaleIfSmaller:NO];
     textAttachment.element = element;
     NSMutableAttributedString *imageAttrString = [[NSAttributedString attributedStringWithAttachment:textAttachment] mutableCopy];
