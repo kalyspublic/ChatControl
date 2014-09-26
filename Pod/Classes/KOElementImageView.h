@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KOChatEntryDelegate.h"
+
+@protocol KOChatElementProtocol;
 
 @interface KOElementImageView : UIImageView
 
@@ -17,5 +18,6 @@
 - (void) showDownloadButton;
 - (void) showProgressBar;
 - (void) showPlayButton;
+- (void) setProgress:(NSNumber *)progress;
 
 @end

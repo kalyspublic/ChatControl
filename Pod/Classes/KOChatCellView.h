@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KOChatEntryDelegate.h"
 #import "KOChatElementsView.h"
+
+@protocol KOChatElementProtocol;
+@protocol KOChatEntryProtocol;
 
 @class KOChatCellView;
 

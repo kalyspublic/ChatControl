@@ -15,6 +15,7 @@
 #import <libextobjc/EXTScope.h>
 #import <UIImage-Resize/UIImage+Resize.h>
 #import "KOTextAttachment.h"
+#import "KOChatEntryDelegate.h"
 
 #define koGreenBubbleImage @"bubbleGreen"
 #define koBlueBubbleImage @"bubbleBlue"
@@ -23,6 +24,8 @@
 #define koOutgoingTimeColor @"a2b092"
 #define koDefaultTimeColor @"B0B0B0"
 #define koManyLikesCount 10
+
+static void *ProgressObserverContext = &ProgressObserverContext;
 
 @interface KOChatCellView ()
 
@@ -312,8 +315,37 @@
     [self.delegate koChatCellView:self expandOrCollapseSpammedMessage:self.entry];
 }
 
-- (void) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element sender:(id)sender {
+- (void) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element cacheURL:(NSURL *)cacheURL sender:(id)sender {
+    if (!cacheURL) {
+        NSProgress *progress = [NSProgress progressWithTotalUnitCount:100];
+        [progress setUserInfoObject:sender forKey:@"imageView"];
+        [progress addObserver:self
+                   forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
+                      options:NSKeyValueObservingOptionInitial
+                      context:ProgressObserverContext];
+        [progress becomeCurrentWithPendingUnitCount:1];
+        [progress resignCurrent];
+    }
     [self.delegate koChatCellView:self mediaTapOnElement:element model:self.entry sender:sender];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                        change:(NSDictionary *)change context:(void *)context
+{
+    @weakify(self);
+    if (context == ProgressObserverContext)
+    {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            @strongify(self);
+            NSProgress *progress = object;
+            [self.elementsView updateProgressBarForElement:progress.userInfo[@"imageView"] progress:@(progress.fractionCompleted)];
+        }];
+    }
+    else
+    {
+        [super observeValueForKeyPath:keyPath ofObject:object
+                               change:change context:context];
+    }
 }
 
 - (void) setAvatarByURL:(NSString *)avatarPath {

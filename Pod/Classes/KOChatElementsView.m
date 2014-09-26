@@ -9,8 +9,8 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <QuartzCore/QuartzCore.h>
 #import "KOChatElementsView.h"
-#import "KOImageView.h"
 #import "KOElementImageView.h"
+#import "KOChatEntryDelegate.h"
 
 @implementation KOChatElementsView
 
@@ -67,7 +67,15 @@
     [self addSubview:imageView];
     
     NSURL *cacheURL = [self.elementsViewDelegate thumbnailURL:[element sourceURL]];
-    imageView.cacheURL = cacheURL;
+    if (cacheURL) {
+        imageView.cacheURL = cacheURL;
+        if ([element type] == koChatEntryTypePhoto) {
+            imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:cacheURL]];
+        } else if ([element type] == koChatEntryTypeVideo) {
+//            imageView.image = fetch thumbnail from video; TODO
+            [imageView showPlayButton];
+        }
+    }
     
     /*
     if ([element type] == koChatEntryTypeVideo) {
@@ -81,8 +89,15 @@
 }
 
 - (void) didTapOnImage:(UITapGestureRecognizer *)sender {
-    KOImageView *imageView = (KOImageView *)sender.view;
-    [self.elementsViewDelegate koChatElementsView:self didTapOnElement:imageView.element sender:sender.view];
+    KOElementImageView *imageView = (KOElementImageView *)sender.view;
+    [self.elementsViewDelegate koChatElementsView:self didTapOnElement:imageView.element cacheURL:imageView.cacheURL sender:sender.view];
+    if (!imageView.cacheURL) {
+        [imageView showProgressBar];
+    }
+}
+
+- (void) updateProgressBarForElement:(KOElementImageView *)imageView progress:(NSNumber *)progress {
+    [imageView setProgress:progress];
 }
 
 - (void) dealloc {

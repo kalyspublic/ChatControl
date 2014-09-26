@@ -7,7 +7,7 @@
 //
 
 #import "KOElementImageView.h"
-#import "KOChatElementsView.h"
+#import "KOChatEntryDelegate.h"
 
 @interface KOElementImageView ()
 
@@ -21,9 +21,7 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        if ([self.element type] == koChatEntryTypeVideo) {
-            [self showDownloadButton];
-        }
+        
     }
     return self;
 }
@@ -38,6 +36,10 @@
 }
 
 - (void) showPlayButton {
+    
+}
+
+- (void) setProgress:(NSNumber *)progress {
     
 }
 

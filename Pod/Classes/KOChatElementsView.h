@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KOChatEntryDelegate.h"
 
 #define koMediaElementWidth 247.0
 #define koMediaElementHeight 138.0
@@ -15,11 +14,12 @@
 #define koContentWidthLandscape 490.0
 #define koContentWidthPortrait 245.0
 
+@protocol KOChatElementProtocol;
 @class KOChatElementsView;
 
 @protocol KOChatElementsViewDelegate <NSObject>
 
-- (void) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element sender:(id)sender;
+- (void) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element cacheURL:(NSURL *)cacheURL sender:(id)sender;
 
 - (NSURL *) thumbnailURL:(NSURL *)sourceURL;
 
@@ -29,5 +29,7 @@
 
 @property (nonatomic, weak) id<KOChatElementsViewDelegate> elementsViewDelegate;
 @property (nonatomic, strong) NSArray *elements;
+
+- (void) updateProgressBarForElement:(id<KOChatElementProtocol>)element progress:(NSNumber *)progress;
 
 @end
