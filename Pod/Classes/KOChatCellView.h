@@ -32,6 +32,8 @@
 
 - (void) koChatCellView:(KOChatCellView *)cell expandOrCollapseSpammedMessage:(id<KOChatEntryProtocol>)model;
 
+- (NSURL *) koChatCellViewThumbnailURLFromCacheFor:(NSURL *)sourceURL;
+
 @end
 
 @interface KOChatCellView : UITableViewCell<KOChatElementsViewDelegate>
@@ -50,5 +52,7 @@
 - (void) deleteSaveAction:(id) sender;
 - (void) copy:(id)sender;
 - (void) setAvatarByURL:(NSString *)avatarPath;
+
+- (void) mediaDownloadFinishedFor:(id<KOChatElementProtocol>)element newImageURL:(NSURL *)imageURL;
 
 @end

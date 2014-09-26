@@ -19,7 +19,6 @@
 - (void) koChatViewController:(KOChatViewController *)koChatViewController joinDidTap:(id) sender;
 - (void) koChatViewController:(KOChatViewController *)koChatViewController cameraButtonTouched:(id) sender textField:(UITextView *)textField;
 - (void) koChatViewController:(KOChatViewController *)koChatViewController sendButtonTouched:(id) sender textViewElements:(NSArray *)elements;
-
 @end
 
 @interface KOChatViewController : UIViewController<KOChatTableViewHeaderDelegate, KOChatTableViewFooterDelegate, UITextViewDelegate>

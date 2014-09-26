@@ -320,4 +320,12 @@
     [self.avatarImageView setImageWithURL:[NSURL URLWithString:avatarPath]];
 }
 
+- (void) mediaDownloadFinishedFor:(id<KOChatElementProtocol>)element newImageURL:(NSURL *)imageURL {
+    
+}
+
+- (NSURL *) thumbnailURL:(NSURL *)sourceURL {
+    return [self.delegate koChatCellViewThumbnailURLFromCacheFor:sourceURL];
+}
+
 @end

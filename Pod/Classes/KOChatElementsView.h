@@ -21,6 +21,8 @@
 
 - (void) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element sender:(id)sender;
 
+- (NSURL *) thumbnailURL:(NSURL *)sourceURL;
+
 @end
 
 @interface KOChatElementsView : UIScrollView

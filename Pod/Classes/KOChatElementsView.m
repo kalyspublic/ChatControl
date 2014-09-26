@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "KOChatElementsView.h"
 #import "KOImageView.h"
+#import "KOElementImageView.h"
 
 @implementation KOChatElementsView
 
@@ -52,7 +53,7 @@
 }
 
 - (CGFloat ) appendMediaElement:(id<KOChatElementProtocol>)element yOffset:(CGFloat)yOffset {
-    KOImageView *imageView = [[KOImageView alloc] initWithFrame:CGRectMake(0, yOffset, koMediaElementWidth, koMediaElementHeight)];
+    KOElementImageView *imageView = [[KOElementImageView alloc] initWithFrame:CGRectMake(0, yOffset, koMediaElementWidth, koMediaElementHeight)];
     [imageView setImageWithURL:[element thumbnailURL]];
     imageView.element = element;
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnImage:)];
@@ -65,12 +66,16 @@
     
     [self addSubview:imageView];
     
+    NSURL *cacheURL = [self.elementsViewDelegate thumbnailURL:[element sourceURL]];
+    imageView.cacheURL = cacheURL;
+    
+    /*
     if ([element type] == koChatEntryTypeVideo) {
         UIImageView *playImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btnPlay"]];
         [imageView addSubview:playImageView];
         
         playImageView.center = CGPointMake(koMediaElementWidth/2.0, koMediaElementHeight/2.0);
-    }
+    }*/
 
     return koMediaElementHeight + koMediaElementBottomPadding;
 }
