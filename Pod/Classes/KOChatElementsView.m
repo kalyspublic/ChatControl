@@ -75,6 +75,10 @@
 //            imageView.image = fetch thumbnail from video; TODO
             [imageView showPlayButton];
         }
+    } else {
+        if ([element type] == koChatEntryTypeVideo) {
+            [imageView showDownloadButton];
+        }
     }
     
     /*
@@ -98,6 +102,18 @@
 
 - (void) updateProgressBarForElement:(KOElementImageView *)imageView progress:(NSNumber *)progress {
     [imageView setProgress:progress];
+}
+
+- (void) updateElementMedia:(id<KOChatElementProtocol>)element url:(NSURL *)cacheURL {
+    [[self subviews] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[KOElementImageView class]] && [[((KOElementImageView *) obj) element] isEqual:element]) {
+            KOElementImageView *imageView = (id)obj;
+            if ([element type] == koChatEntryTypeVideo) {
+                [imageView showPlayButton];
+            }
+            *stop = YES;
+        }
+    }];
 }
 
 - (void) dealloc {

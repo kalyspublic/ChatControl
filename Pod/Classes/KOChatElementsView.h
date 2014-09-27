@@ -31,5 +31,6 @@
 @property (nonatomic, strong) NSArray *elements;
 
 - (void) updateProgressBarForElement:(id<KOChatElementProtocol>)element progress:(NSNumber *)progress;
+- (void) updateElementMedia:(id<KOChatElementProtocol>)element url:(NSURL *)cacheURL;
 
 @end
