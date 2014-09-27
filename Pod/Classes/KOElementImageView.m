@@ -62,6 +62,7 @@
 }
 
 - (void) setProgress:(NSNumber *)progress {
+    NSLog(@"%@", progress);
     self.progressBar.progress = [progress floatValue];
 }
 
@@ -85,7 +86,7 @@
     [self addSubview:self.progressBar];
     self.progressBar.center = CGPointMake(koMediaElementWidth/2.0, koMediaElementHeight/2.0);
     self.progressBar.hidden = YES;
-    self.progressBar.progress = 0.0;
+    self.progressBar.progress = 0.0f;
 }
 
 @end

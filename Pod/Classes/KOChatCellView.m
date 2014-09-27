@@ -316,16 +316,6 @@ static void *ProgressObserverContext = &ProgressObserverContext;
 }
 
 - (void) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element cacheURL:(NSURL *)cacheURL sender:(id)sender {
-    if (!cacheURL) {
-        NSProgress *progress = [NSProgress progressWithTotalUnitCount:100];
-        [progress setUserInfoObject:sender forKey:@"imageView"];
-        [progress addObserver:self
-                   forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
-                      options:NSKeyValueObservingOptionInitial
-                      context:ProgressObserverContext];
-        [progress becomeCurrentWithPendingUnitCount:1];
-        [progress resignCurrent];
-    }
     [self.delegate koChatCellView:self mediaTapOnElement:element model:self.entry sender:sender];
 }
 
@@ -353,7 +343,7 @@ static void *ProgressObserverContext = &ProgressObserverContext;
 }
 
 - (void) mediaDownloadFinishedFor:(id<KOChatElementProtocol>)element newImageURL:(NSURL *)imageURL {
-    
+    [self.elementsView updateElementMedia:element url:imageURL];
 }
 
 - (NSURL *) thumbnailURL:(NSURL *)sourceURL {

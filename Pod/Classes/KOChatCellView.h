@@ -55,6 +55,7 @@
 - (void) copy:(id)sender;
 - (void) setAvatarByURL:(NSString *)avatarPath;
 
+- (void) setMediaDownloadProgressForElement:(id<KOChatElementProtocol>)element progress:(NSNumber *)number;
 - (void) mediaDownloadFinishedFor:(id<KOChatElementProtocol>)element newImageURL:(NSURL *)imageURL;
 
 @end

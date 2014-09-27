@@ -109,6 +109,7 @@
         if ([obj isKindOfClass:[KOElementImageView class]] && [[((KOElementImageView *) obj) element] isEqual:element]) {
             KOElementImageView *imageView = (id)obj;
             if ([element type] == koChatEntryTypeVideo) {
+                imageView.cacheURL = cacheURL;
                 [imageView showPlayButton];
             }
             *stop = YES;
