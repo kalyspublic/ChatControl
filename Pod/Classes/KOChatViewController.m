@@ -336,7 +336,13 @@
     
     KOTextAttachment *textAttachment = [[KOTextAttachment alloc] init];
     
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[element sourceURL]]];
+    UIImage *image;
+    if ([element type] == koChatEntryTypePhoto) {
+        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[element sourceURL]]];
+    } else {
+        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[element thumbnailURL]]];
+    }
+
     textAttachment.image = [image resizedImageToFitInSize:CGSizeMake(205, 114) scaleIfSmaller:NO];
     textAttachment.element = element;
     NSMutableAttributedString *imageAttrString = [[NSAttributedString attributedStringWithAttachment:textAttachment] mutableCopy];
