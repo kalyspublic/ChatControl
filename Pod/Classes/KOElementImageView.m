@@ -24,9 +24,7 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-//        [self initPlayButton];
-//        [self initDowloadView];
-//        [self initProgressBar];
+
     }
     return self;
 }
@@ -74,8 +72,11 @@
 }
 
 - (void) initDowloadView {
-    self.downloadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
-    self.downloadView.backgroundColor = [UIColor redColor];
+    self.downloadView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 142.0, 48.0)];
+    self.downloadView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgMedia"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iconDownload.png"]];
+    imageView.center = CGPointMake(24, 24);
+    [self.downloadView addSubview:imageView];
     [self addSubview:self.downloadView];
     self.downloadView.center = CGPointMake(koMediaElementWidth/2.0, koMediaElementHeight/2.0);
     self.downloadView.hidden = YES;
