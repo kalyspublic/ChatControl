@@ -16,10 +16,11 @@
 
 @protocol KOChatElementProtocol;
 @class KOChatElementsView;
+@class RACSignal;
 
 @protocol KOChatElementsViewDelegate <NSObject>
 
-- (void) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element cacheURL:(NSURL *)cacheURL sender:(id)sender;
+- (RACSignal *) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element cacheURL:(NSURL *)cacheURL sender:(id)sender;
 
 - (NSURL *) thumbnailURL:(NSURL *)sourceURL;
 

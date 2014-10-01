@@ -315,8 +315,8 @@ static void *ProgressObserverContext = &ProgressObserverContext;
     [self.delegate koChatCellView:self expandOrCollapseSpammedMessage:self.entry];
 }
 
-- (void) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element cacheURL:(NSURL *)cacheURL sender:(id)sender {
-    [self.delegate koChatCellView:self mediaTapOnElement:element model:self.entry sender:sender];
+- (RACSignal *) koChatElementsView:(KOChatElementsView *)koChatElementsView didTapOnElement:(id<KOChatElementProtocol>)element cacheURL:(NSURL *)cacheURL sender:(id)sender {
+    return [[self.delegate koChatCellView:self mediaTapOnElement:element model:self.entry sender:sender] takeUntil:self.rac_prepareForReuseSignal];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object

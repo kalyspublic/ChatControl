@@ -7,6 +7,7 @@
 //
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <QuartzCore/QuartzCore.h>
 #import "KOChatElementsView.h"
 #import "KOElementImageView.h"
@@ -94,10 +95,27 @@
 
 - (void) didTapOnImage:(UITapGestureRecognizer *)sender {
     KOElementImageView *imageView = (KOElementImageView *)sender.view;
-    [self.elementsViewDelegate koChatElementsView:self didTapOnElement:imageView.element cacheURL:imageView.cacheURL sender:sender.view];
     if (!imageView.cacheURL) {
         [imageView showProgressBar];
     }
+
+    [[[self.elementsViewDelegate koChatElementsView:self didTapOnElement:imageView.element cacheURL:imageView.cacheURL sender:sender.view] deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id x) {
+        if ([x isKindOfClass:[NSNumber class]]) {
+            [imageView setProgress:x];
+        } else if ([x isKindOfClass:[NSURL class]]) {
+            [imageView setImageWithURL:x];
+            if ([imageView.element type] == koChatEntryTypeVideo) {
+                [imageView showPlayButton];
+            }
+        }
+    } error:^(NSError *error) {
+        NSLog(@"%@", error);
+    } completed:^{
+        if ([imageView.element type] == koChatEntryTypeVideo) {
+            [imageView showPlayButton];
+        }
+    }];
+
 }
 
 - (void) updateProgressBarForElement:(KOElementImageView *)imageView progress:(NSNumber *)progress {

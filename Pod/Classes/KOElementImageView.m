@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) UIImageView *playImageView;
 @property (nonatomic, strong) UIView *downloadView;
-@property (nonatomic, strong) BKECircularProgressView *progressBar;
+@property (nonatomic, strong) UIProgressView *progressBar;
 
 @end
 
@@ -61,7 +61,7 @@
 
 - (void) setProgress:(NSNumber *)progress {
     NSLog(@"%@", progress);
-    self.progressBar.progress = [progress floatValue];
+    [self.progressBar setProgress:[progress floatValue] animated:YES];
 }
 
 - (void) initPlayButton {
@@ -83,11 +83,20 @@
 }
 
 - (void) initProgressBar {
-    self.progressBar = [[BKECircularProgressView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    self.progressBar = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, 200, 10)];
+    self.progressBar.center = CGPointMake(koMediaElementWidth/2.0, koMediaElementHeight/2.0);
+    [self.progressBar setProgress:0.0 animated:NO];
+    [self addSubview:self.progressBar];
+    self.progressBar.hidden = YES;
+    /*
+    self.progressBar = [[BKECircularProgressView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
     [self addSubview:self.progressBar];
     self.progressBar.center = CGPointMake(koMediaElementWidth/2.0, koMediaElementHeight/2.0);
+    self.progressBar.tintColor = [UIColor redColor];
+    self.progressBar.backgroundTintColor = [UIColor greenColor];
     self.progressBar.hidden = YES;
     self.progressBar.progress = 0.0f;
+     */
 }
 
 @end

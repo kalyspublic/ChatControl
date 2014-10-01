@@ -13,10 +13,11 @@
 @protocol KOChatEntryProtocol;
 
 @class KOChatCellView;
+@class RACSignal;
 
 @protocol  KOChatCellViewDelegate <NSObject>
 
-- (void) koChatCellView:(KOChatCellView *)cell mediaTapOnElement:(id<KOChatElementProtocol>)element model:(id<KOChatEntryProtocol>)model sender:(id)sender;
+- (RACSignal *) koChatCellView:(KOChatCellView *)cell mediaTapOnElement:(id<KOChatElementProtocol>)element model:(id<KOChatEntryProtocol>)model sender:(id)sender;
 - (void) koChatCellView:(KOChatCellView *)cell errorCellTap:(id<KOChatEntryProtocol>)model sender:(id) sender;
 - (void) koChatCellView:(KOChatCellView *)cell didLongPress:(id<KOChatEntryProtocol>)model sender:(id)sender;
 - (BOOL) koChatCellView:(KOChatCellView *)cell canPerformAction:(SEL)action withSender:(id)sender;
@@ -54,8 +55,5 @@
 - (void) deleteSaveAction:(id) sender;
 - (void) copy:(id)sender;
 - (void) setAvatarByURL:(NSString *)avatarPath;
-
-- (void) setMediaDownloadProgressForElement:(id<KOChatElementProtocol>)element progress:(NSNumber *)number;
-- (void) mediaDownloadFinishedFor:(id<KOChatElementProtocol>)element newImageURL:(NSURL *)imageURL;
 
 @end
